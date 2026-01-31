@@ -1,0 +1,43 @@
+<page-header></page-header>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ isEditMode ? 'Edit Department' : 'Create Department' }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Loading Spinner Overlay -->
+    @if (loading) {
+      <div class="loading-overlay">
+        <mat-spinner></mat-spinner>
+      </div>
+    }
+
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <h3>Department Information</h3>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Department Name</mat-label>
+            <input matInput formControlName="name" />
+            <mat-error *ngIf="departmentForm.get('name')?.hasError('required')">
+              Department name is required
+            </mat-error>
+            <mat-error *ngIf="departmentForm.get('name')?.hasError('maxlength')">
+              Department name cannot exceed 100 characters
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" mat-stroked-button (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="loading">
+          {{ isEditMode ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

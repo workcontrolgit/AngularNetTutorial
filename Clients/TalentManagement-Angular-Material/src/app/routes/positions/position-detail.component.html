@@ -1,0 +1,73 @@
+<page-header></page-header>
+
+<div *ngIf="loading" class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="!loading && position">
+  <mat-card-header>
+    <mat-card-title>{{ position.positionTitle }}</mat-card-title>
+    <div class="header-actions">
+      <button mat-icon-button color="primary" (click)="editPosition()" *appHasRole="['HRAdmin', 'Manager']" matTooltip="Edit Position">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deletePosition()" *appHasRole="['HRAdmin', 'Manager']" matTooltip="Delete Position">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="goBack()" matTooltip="Back to List">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span class="label">Position Number:</span>
+        <span class="value">{{ position.positionNumber }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <span class="label">Position Title:</span>
+        <span class="value">{{ position.positionTitle }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item *ngIf="position.positionDescription">
+        <span class="label">Description:</span>
+        <span class="value">{{ position.positionDescription }}</span>
+      </mat-list-item>
+      <mat-divider *ngIf="position.positionDescription"></mat-divider>
+
+      <mat-list-item>
+        <span class="label">Department:</span>
+        <span class="value">{{ position.department?.name || position.departmentId }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <span class="label">Salary Range:</span>
+        <span class="value">{{ position.salaryRange?.name || position.salaryRangeId }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item *ngIf="position.createdAt">
+        <span class="label">Created:</span>
+        <span class="value">{{ position.createdAt | date: 'medium' }}</span>
+      </mat-list-item>
+      <mat-divider *ngIf="position.createdAt"></mat-divider>
+
+      <mat-list-item *ngIf="position.lastModifiedAt">
+        <span class="label">Last Modified:</span>
+        <span class="value">{{ position.lastModifiedAt | date: 'medium' }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!loading && !position">
+  <mat-card-content>
+    <p>Position not found.</p>
+  </mat-card-content>
+</mat-card>

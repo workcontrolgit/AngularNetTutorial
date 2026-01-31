@@ -1,0 +1,235 @@
+<page-header />
+
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+
+<!-- Dashboard Content -->
+<div *ngIf="!loading && metrics" class="dashboard-container">
+
+  <!-- Summary Metrics Cards -->
+  <div class="metrics-row">
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>people</mat-icon>
+        </div>
+        <div class="metric-value">{{ metrics.totalEmployees }}</div>
+        <div class="metric-label">Total Employees</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>business</mat-icon>
+        </div>
+        <div class="metric-value">{{ metrics.totalDepartments }}</div>
+        <div class="metric-label">Departments</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>work</mat-icon>
+        </div>
+        <div class="metric-value">{{ metrics.totalPositions }}</div>
+        <div class="metric-label">Positions</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <div class="metric-icon">
+          <mat-icon>attach_money</mat-icon>
+        </div>
+        <div class="metric-value">{{ metrics.totalSalaryRanges }}</div>
+        <div class="metric-label">Salary Ranges</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Secondary Metrics Row -->
+  <div class="secondary-metrics-row">
+    <mat-card class="metric-card secondary">
+      <mat-card-content>
+        <div class="metric-icon secondary">
+          <mat-icon>person_add</mat-icon>
+        </div>
+        <div class="metric-value">{{ metrics.newHiresThisMonth }}</div>
+        <div class="metric-label">New Hires This Month</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card secondary">
+      <mat-card-content>
+        <div class="metric-icon secondary">
+          <mat-icon>payments</mat-icon>
+        </div>
+        <div class="metric-value">{{ metrics.averageSalary | currency:'USD':'symbol':'1.0-0' }}</div>
+        <div class="metric-label">Average Salary</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Charts Row 1 -->
+  <div class="charts-row">
+    <!-- Department Distribution -->
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Employees by Department</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container" *ngIf="departmentChartData">
+          <canvas
+            baseChart
+            [data]="departmentChartData"
+            [options]="departmentChartOptions"
+            type="pie">
+          </canvas>
+        </div>
+        <div *ngIf="!departmentChartData" class="no-data">
+          <mat-icon>pie_chart</mat-icon>
+          <p>No department data available</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Position Distribution -->
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Top 10 Positions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container" *ngIf="positionChartData">
+          <canvas
+            baseChart
+            [data]="positionChartData"
+            [options]="positionChartOptions"
+            type="bar">
+          </canvas>
+        </div>
+        <div *ngIf="!positionChartData" class="no-data">
+          <mat-icon>bar_chart</mat-icon>
+          <p>No position data available</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Charts Row 2 -->
+  <div class="charts-row">
+    <!-- Gender Distribution -->
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Gender Distribution</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container" *ngIf="genderChartData">
+          <canvas
+            baseChart
+            [data]="genderChartData"
+            [options]="genderChartOptions"
+            type="doughnut">
+          </canvas>
+        </div>
+        <div *ngIf="!genderChartData" class="no-data">
+          <mat-icon>donut_large</mat-icon>
+          <p>No gender data available</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Salary Range Distribution -->
+    <mat-card class="chart-card">
+      <mat-card-header>
+        <mat-card-title>Salary Range Distribution</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-container" *ngIf="salaryChartData">
+          <canvas
+            baseChart
+            [data]="salaryChartData"
+            [options]="salaryChartOptions"
+            type="bar">
+          </canvas>
+        </div>
+        <div *ngIf="!salaryChartData" class="no-data">
+          <mat-icon>bar_chart</mat-icon>
+          <p>No salary range data available</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Recent Employees -->
+  <div class="activity-row">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Recent Employees</mat-card-title>
+        <button mat-button color="primary" (click)="navigateToEmployees()">
+          View All
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list *ngIf="metrics.recentEmployees && metrics.recentEmployees.length > 0">
+          <mat-list-item *ngFor="let employee of metrics.recentEmployees" (click)="navigateToEmployee(employee.id)" class="clickable-item">
+            <mat-icon matListItemIcon>person</mat-icon>
+            <div matListItemTitle>{{ employee.fullName }}</div>
+            <div matListItemLine>{{ employee.positionTitle }} • {{ employee.departmentName }}</div>
+            <div matListItemMeta>{{ employee.createdAt | date:'MMM d, y' }}</div>
+          </mat-list-item>
+        </mat-list>
+        <div *ngIf="!metrics.recentEmployees || metrics.recentEmployees.length === 0" class="no-data">
+          <mat-icon>people_outline</mat-icon>
+          <p>No recent employees</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="actions-row" *appHasRole="['HRAdmin', 'Manager']">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Quick Actions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="action-buttons">
+          <button mat-raised-button color="primary" (click)="navigateToAddEmployee()">
+            <mat-icon>person_add</mat-icon>
+            Add Employee
+          </button>
+          <button mat-raised-button color="accent" (click)="navigateToAddDepartment()" *appHasRole="['HRAdmin']">
+            <mat-icon>add_business</mat-icon>
+            Add Department
+          </button>
+          <button mat-raised-button color="accent" (click)="navigateToAddPosition()" *appHasRole="['HRAdmin']">
+            <mat-icon>work_outline</mat-icon>
+            Add Position
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
+
+<!-- Error State -->
+<div *ngIf="!loading && !metrics" class="error-state">
+  <mat-card>
+    <mat-card-content>
+      <div class="no-data">
+        <mat-icon>error_outline</mat-icon>
+        <p>Unable to load dashboard data</p>
+        <button mat-raised-button color="primary" (click)="loadDashboardMetrics()">
+          <mat-icon>refresh</mat-icon>
+          Retry
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

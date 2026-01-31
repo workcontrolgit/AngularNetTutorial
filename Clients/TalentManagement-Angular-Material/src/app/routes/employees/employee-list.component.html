@@ -1,0 +1,192 @@
+<page-header></page-header>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Employee Directory</mat-card-title>
+    <div class="flex-spacer"></div>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="createEmployee()"
+      *appHasRole="['HRAdmin', 'Manager']">
+      <mat-icon>add</mat-icon>
+      Add Employee
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Search Form -->
+    <form [formGroup]="searchForm" class="search-form">
+      <div class="search-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Employee Number</mat-label>
+          <input
+            matInput
+            formControlName="EmployeeNumber"
+            [matAutocomplete]="autoEmployeeNumber" />
+          <mat-autocomplete #autoEmployeeNumber="matAutocomplete">
+            <mat-option *ngFor="let option of filteredEmployeeNumbers$ | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            formControlName="FirstName"
+            [matAutocomplete]="autoFirstName" />
+          <mat-autocomplete #autoFirstName="matAutocomplete">
+            <mat-option *ngFor="let option of filteredFirstNames$ | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            formControlName="LastName"
+            [matAutocomplete]="autoLastName" />
+          <mat-autocomplete #autoLastName="matAutocomplete">
+            <mat-option *ngFor="let option of filteredLastNames$ | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="Email"
+            [matAutocomplete]="autoEmail" />
+          <mat-autocomplete #autoEmail="matAutocomplete">
+            <mat-option *ngFor="let option of filteredEmails$ | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Position Title</mat-label>
+          <input
+            matInput
+            formControlName="PositionTitle"
+            [matAutocomplete]="autoPositionTitle" />
+          <mat-autocomplete #autoPositionTitle="matAutocomplete">
+            <mat-option *ngFor="let option of filteredPositionTitles$ | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <div class="search-buttons">
+          <button mat-raised-button color="accent" (click)="onClearSearch()" type="button">
+            <mat-icon>clear</mat-icon>
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="table-container">
+      <div *ngIf="loading" class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <table
+        mat-table
+        [dataSource]="employees"
+        class="employee-table"
+        *ngIf="!loading">
+
+        <!-- Employee Number Column -->
+        <ng-container matColumnDef="employeeNumber">
+          <th mat-header-cell *matHeaderCellDef>Employee #</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.employeeNumber }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let employee">{{ getFullName(employee) }}</td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.email }}</td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef>Phone</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.phoneNumber || employee.phone || '-' }}</td>
+        </ng-container>
+
+        <!-- Position Title Column -->
+        <ng-container matColumnDef="positionTitle">
+          <th mat-header-cell *matHeaderCellDef>Position</th>
+          <td mat-cell *matCellDef="let employee">{{ employee.positionTitle || employee.position?.positionTitle || '-' }}</td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let employee">
+            <div class="action-buttons">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="viewEmployee(employee)"
+                matTooltip="View Details">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editEmployee(employee)"
+                *appHasRole="['HRAdmin', 'Manager']"
+                matTooltip="Edit Employee">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteEmployee(employee)"
+                *appHasRole="['HRAdmin', 'Manager']"
+                matTooltip="Delete Employee">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- No Data Row -->
+        <tr class="mat-row" *ngIf="employees.length === 0">
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+            <div class="no-data">
+              <mat-icon>info</mat-icon>
+              <p>No employees found</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      [length]="totalCount"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 50, 100]"
+      [pageIndex]="pageNumber - 1"
+      (page)="onPageChange($event)"
+      showFirstLastButtons>
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

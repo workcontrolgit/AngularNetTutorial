@@ -1,0 +1,94 @@
+{
+  "menu": [
+    {
+      "route": "dashboard",
+      "name": "dashboard",
+      "type": "link",
+      "icon": "dashboard"
+    },
+    {
+      "route": "employees",
+      "name": "employees",
+      "type": "sub",
+      "icon": "people",
+      "children": [
+        {
+          "route": "",
+          "name": "employeeList",
+          "type": "link"
+        },
+        {
+          "route": "create",
+          "name": "addEmployee",
+          "type": "link",
+          "permissions": {
+            "only": ["canAdd"]
+          }
+        }
+      ]
+    },
+    {
+      "route": "departments",
+      "name": "departments",
+      "type": "sub",
+      "icon": "business",
+      "children": [
+        {
+          "route": "",
+          "name": "departmentList",
+          "type": "link"
+        },
+        {
+          "route": "create",
+          "name": "addDepartment",
+          "type": "link",
+          "permissions": {
+            "only": ["canAdd"]
+          }
+        }
+      ]
+    },
+    {
+      "route": "positions",
+      "name": "positions",
+      "type": "sub",
+      "icon": "work",
+      "children": [
+        {
+          "route": "",
+          "name": "positionList",
+          "type": "link"
+        },
+        {
+          "route": "create",
+          "name": "addPosition",
+          "type": "link",
+          "permissions": {
+            "only": ["canAdd"]
+          }
+        }
+      ]
+    },
+    {
+      "route": "salary-ranges",
+      "name": "salaryRanges",
+      "type": "sub",
+      "icon": "attach_money",
+      "children": [
+        {
+          "route": "",
+          "name": "salaryRangeList",
+          "type": "link"
+        },
+        {
+          "route": "create",
+          "name": "addSalaryRange",
+          "type": "link",
+          "permissions": {
+            "only": ["canAdd"]
+          }
+        }
+      ]
+    }
+  ]
+}

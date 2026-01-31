@@ -1,0 +1,125 @@
+<page-header></page-header>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Positions</mat-card-title>
+    <span class="flex-spacer"></span>
+    <button mat-raised-button color="primary" (click)="createPosition()" *appHasRole="['HRAdmin', 'Manager']">
+      <mat-icon>add</mat-icon>
+      Add Position
+    </button>
+    <button mat-stroked-button color="accent" (click)="addMockData()" *appHasRole="['HRAdmin']" style="margin-left: 8px;">
+      <mat-icon>data_object</mat-icon>
+      Add Mock Data
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Search Filters -->
+    <div class="search-filters" style="margin-bottom: 16px; display: flex; gap: 16px; flex-wrap: wrap;">
+      <mat-form-field appearance="outline" style="flex: 1; min-width: 200px;">
+        <mat-label>Position Number</mat-label>
+        <input matInput [(ngModel)]="searchPositionNumber" (input)="onSearch()" placeholder="Search by position number">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="flex: 1; min-width: 200px;">
+        <mat-label>Position Title</mat-label>
+        <input matInput [(ngModel)]="searchPositionTitle" (input)="onSearch()" placeholder="Search by position title">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="flex: 1; min-width: 200px;">
+        <mat-label>Department</mat-label>
+        <input matInput [(ngModel)]="searchDepartment" (input)="onSearch()" placeholder="Search by department">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <button mat-stroked-button (click)="clearFilters()" style="height: 56px;">
+        <mat-icon>clear</mat-icon>
+        Clear Filters
+      </button>
+    </div>
+
+    <div class="table-container">
+      <div *ngIf="loading" class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <table mat-table [dataSource]="positions" matSort (matSortChange)="onSortChange($event)" class="position-table" *ngIf="!loading">
+        <ng-container matColumnDef="positionNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Position Number</th>
+          <td mat-cell *matCellDef="let position">{{ position.positionNumber }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="positionTitle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Position Title</th>
+          <td mat-cell *matCellDef="let position">{{ position.positionTitle }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="departmentId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+          <td mat-cell *matCellDef="let position">{{ position.department?.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="salaryRangeId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary Range</th>
+          <td mat-cell *matCellDef="let position">{{ position.salaryRange?.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="mat-column-actions">Actions</th>
+          <td mat-cell *matCellDef="let position" class="mat-column-actions">
+            <div class="action-buttons">
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="viewPosition(position)"
+                matTooltip="View Details">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editPosition(position)"
+                *appHasRole="['HRAdmin', 'Manager']"
+                matTooltip="Edit Position">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deletePosition(position)"
+                *appHasRole="['HRAdmin']"
+                matTooltip="Delete Position">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- No Data Row -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+            <div class="no-data">
+              <mat-icon>work_off</mat-icon>
+              <p>No positions found</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <mat-paginator
+      [length]="totalCount"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      [pageIndex]="pageNumber - 1"
+      (page)="onPageChange($event)"
+      showFirstLastButtons>
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

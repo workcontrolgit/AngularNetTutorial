@@ -1,0 +1,61 @@
+<page-header></page-header>
+
+<div *ngIf="loading" class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="!loading && salaryRange">
+  <mat-card-header>
+    <mat-card-title>{{ salaryRange.name }}</mat-card-title>
+    <div class="header-actions">
+      <button mat-icon-button color="primary" (click)="editSalaryRange()" *appHasRole="['HRAdmin', 'Manager']" matTooltip="Edit Salary Range">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteSalaryRange()" *appHasRole="['HRAdmin', 'Manager']" matTooltip="Delete Salary Range">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button (click)="goBack()" matTooltip="Back to List">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span class="label">Name:</span>
+        <span class="value">{{ salaryRange.name }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <span class="label">Minimum Salary:</span>
+        <span class="value">{{ salaryRange.minSalary | currency }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <span class="label">Maximum Salary:</span>
+        <span class="value">{{ salaryRange.maxSalary | currency }}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-list-item *ngIf="salaryRange.createdAt">
+        <span class="label">Created:</span>
+        <span class="value">{{ salaryRange.createdAt | date: 'medium' }}</span>
+      </mat-list-item>
+      <mat-divider *ngIf="salaryRange.createdAt"></mat-divider>
+
+      <mat-list-item *ngIf="salaryRange.lastModifiedAt">
+        <span class="label">Last Modified:</span>
+        <span class="value">{{ salaryRange.lastModifiedAt | date: 'medium' }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!loading && !salaryRange">
+  <mat-card-content>
+    <p>Salary range not found.</p>
+  </mat-card-content>
+</mat-card>

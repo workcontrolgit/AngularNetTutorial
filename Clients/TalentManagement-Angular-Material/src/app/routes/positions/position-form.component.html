@@ -1,0 +1,83 @@
+<page-header></page-header>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ getFormTitle() }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Loading Spinner Overlay -->
+    @if (loading) {
+      <div class="loading-overlay">
+        <mat-spinner></mat-spinner>
+      </div>
+    }
+
+    <form [formGroup]="positionForm" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Position Title</mat-label>
+          <input matInput formControlName="positionTitle" />
+          <mat-error *ngIf="positionForm.get('positionTitle')?.hasError('required')">
+            Position title is required
+          </mat-error>
+          <mat-error *ngIf="positionForm.get('positionTitle')?.hasError('maxlength')">
+            Position title cannot exceed 100 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Position Number</mat-label>
+          <input matInput formControlName="positionNumber" />
+          <mat-error *ngIf="positionForm.get('positionNumber')?.hasError('required')">
+            Position number is required
+          </mat-error>
+          <mat-error *ngIf="positionForm.get('positionNumber')?.hasError('maxlength')">
+            Position number cannot exceed 50 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Position Description</mat-label>
+          <textarea matInput formControlName="positionDescription" rows="4"></textarea>
+          <mat-error *ngIf="positionForm.get('positionDescription')?.hasError('maxlength')">
+            Position description cannot exceed 500 characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Department</mat-label>
+          <mat-select formControlName="departmentId">
+            <mat-option *ngFor="let department of departments" [value]="department.id">
+              {{ department.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="positionForm.get('departmentId')?.hasError('required')">
+            Department is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Salary Range</mat-label>
+          <mat-select formControlName="salaryRangeId">
+            <mat-option *ngFor="let salaryRange of salaryRanges" [value]="salaryRange.id">
+              {{ salaryRange.name }} (${{ salaryRange.minSalary | number:'1.0-0' }} - ${{ salaryRange.maxSalary | number:'1.0-0' }})
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="positionForm.get('salaryRangeId')?.hasError('required')">
+            Salary range is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" mat-stroked-button (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="loading">
+          {{ isEditMode ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

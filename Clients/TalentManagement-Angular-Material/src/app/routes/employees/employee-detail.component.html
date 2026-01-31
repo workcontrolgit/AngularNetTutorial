@@ -1,0 +1,141 @@
+<page-header></page-header>
+
+<div *ngIf="loading" class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="!loading && employee">
+  <mat-card-header>
+    <mat-card-title>{{ getFullName() }}</mat-card-title>
+    <div class="flex-spacer"></div>
+    <div class="header-actions">
+      <button mat-stroked-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to List
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="editEmployee()"
+        *appHasRole="['HRAdmin', 'Manager']">
+        <mat-icon>edit</mat-icon>
+        Edit
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteEmployee()"
+        *appHasRole="['HRAdmin', 'Manager']">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="detail-container">
+      <div class="detail-section">
+        <h3>Personal Information</h3>
+        <mat-divider></mat-divider>
+        <mat-list>
+          <mat-list-item>
+            <span matListItemTitle>Employee Number</span>
+            <span matListItemLine>{{ employee.employeeNumber }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Full Name</span>
+            <span matListItemLine>{{ getFullName() }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Date of Birth</span>
+            <span matListItemLine>{{ (employee.dateOfBirth || employee.birthday) | date }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Gender</span>
+            <span matListItemLine>{{ getGenderLabel(employee.gender) }}</span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div class="detail-section">
+        <h3>Contact Information</h3>
+        <mat-divider></mat-divider>
+        <mat-list>
+          <mat-list-item>
+            <span matListItemTitle>Email</span>
+            <span matListItemLine>
+              <a [href]="'mailto:' + employee.email">{{ employee.email }}</a>
+            </span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Phone Number</span>
+            <span matListItemLine>
+              <a [href]="'tel:' + (employee.phoneNumber || employee.phone)">{{ employee.phoneNumber || employee.phone }}</a>
+            </span>
+          </mat-list-item>
+          <mat-list-item *ngIf="employee.address">
+            <span matListItemTitle>Address</span>
+            <span matListItemLine>{{ employee.address }}</span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div class="detail-section">
+        <h3>Employment Information</h3>
+        <mat-divider></mat-divider>
+        <mat-list>
+          <mat-list-item *ngIf="employee.hireDate">
+            <span matListItemTitle>Hire Date</span>
+            <span matListItemLine>{{ employee.hireDate | date }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Salary</span>
+            <span matListItemLine>{{ employee.salary | currency }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Department</span>
+            <span matListItemLine>{{ employee.departmentName || employee.department?.name || 'N/A' }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span matListItemTitle>Position</span>
+            <span matListItemLine>{{ employee.positionTitle || employee.position?.positionTitle || 'N/A' }}</span>
+          </mat-list-item>
+          <mat-list-item *ngIf="employee.salaryRange">
+            <span matListItemTitle>Salary Range</span>
+            <span matListItemLine>
+              {{ employee.salaryRange.name }}
+              (${{ employee.salaryRange.minSalary | number }} - ${{ employee.salaryRange.maxSalary | number }})
+            </span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div class="detail-section" *ngIf="employee.createdAt || employee.lastModifiedAt">
+        <h3>Audit Information</h3>
+        <mat-divider></mat-divider>
+        <mat-list>
+          <mat-list-item *ngIf="employee.createdAt">
+            <span matListItemTitle>Created</span>
+            <span matListItemLine>{{ employee.createdAt | date:'medium' }}</span>
+          </mat-list-item>
+          <mat-list-item *ngIf="employee.lastModifiedAt">
+            <span matListItemTitle>Last Modified</span>
+            <span matListItemLine>{{ employee.lastModifiedAt | date:'medium' }}</span>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!loading && !employee">
+  <mat-card-content>
+    <div class="no-data">
+      <mat-icon>error</mat-icon>
+      <p>Employee not found</p>
+      <button mat-raised-button color="primary" (click)="goBack()">
+        Go Back
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

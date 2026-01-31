@@ -1,0 +1,158 @@
+<page-header></page-header>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ getFormTitle() }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Loading Spinner Overlay -->
+    @if (loading) {
+      <div class="loading-overlay">
+        <mat-spinner></mat-spinner>
+      </div>
+    }
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="form-section">
+        <h3>Personal Information</h3>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Employee Number</mat-label>
+            <input matInput formControlName="employeeNumber" />
+            <mat-error *ngIf="employeeForm.get('employeeNumber')?.hasError('required')">
+              Employee number is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Prefix</mat-label>
+            <input matInput formControlName="prefix" placeholder="Mr., Mrs., Dr." />
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" />
+            <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">
+              First name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middleName" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+            <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">
+              Last name is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="dobPicker" formControlName="birthday" />
+            <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dobPicker></mat-datepicker>
+            <mat-error *ngIf="employeeForm.get('birthday')?.hasError('required')">
+              Date of birth is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+            <mat-error *ngIf="employeeForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">
+              Please enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phone" />
+            <mat-error *ngIf="employeeForm.get('phone')?.hasError('required')">
+              Phone number is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option *ngFor="let option of genderOptions" [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="employeeForm.get('gender')?.hasError('required')">
+              Gender is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Employment Information</h3>
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="departmentId">
+              <mat-option *ngFor="let dept of departments" [value]="dept.id">
+                {{ dept.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="employeeForm.get('departmentId')?.hasError('required')">
+              Department is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Position</mat-label>
+            <mat-select formControlName="positionId">
+              <mat-option *ngFor="let position of positions" [value]="position.id">
+                {{ position.positionTitle }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="employeeForm.get('positionId')?.hasError('required')">
+              Position is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Salary</mat-label>
+            <input matInput type="number" formControlName="salary" />
+            <span matTextPrefix>$&nbsp;</span>
+            <mat-error *ngIf="employeeForm.get('salary')?.hasError('required')">
+              Salary is required
+            </mat-error>
+            <mat-error *ngIf="employeeForm.get('salary')?.hasError('min')">
+              Salary must be greater than 0
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" mat-stroked-button (click)="onCancel()">
+          Cancel
+        </button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="loading">
+          {{ isEditMode ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
