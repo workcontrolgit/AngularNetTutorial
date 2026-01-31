@@ -2,6 +2,8 @@
 
 This guide will help you convert the existing repositories into proper Git submodules.
 
+**Tutorial Repository**: https://github.com/workcontrolgit/AngularNetTutotial.git
+
 ## Current Situation
 
 You have:
@@ -64,19 +66,20 @@ git add .gitmodules Clients/ ApiResources/ TokenService/ README.md .gitignore
 git commit -m "Add submodules for Angular client, API, and IdentityServer"
 ```
 
-### 5. (Optional) Create GitHub Repository
+### 5. Push to GitHub Repository
 
-If you want to host this tutorial on GitHub:
+Push your changes to the tutorial repository:
 
-1. Create a new repository on GitHub (e.g., `CAT-Pattern-Tutorial`)
-2. Add the remote:
-   ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/CAT-Pattern-Tutorial.git
-   ```
-3. Push:
-   ```bash
-   git push -u origin main
-   ```
+```bash
+git remote add origin https://github.com/workcontrolgit/AngularNetTutotial.git
+git branch -M main
+git push -u origin main
+```
+
+**Note**: If the remote already exists, just push:
+```bash
+git push
+```
 
 ## Verifying Setup
 
@@ -100,7 +103,7 @@ You should see something like:
 Anyone cloning your tutorial should use:
 
 ```bash
-git clone --recurse-submodules https://github.com/YOUR_USERNAME/CAT-Pattern-Tutorial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
 ```
 
 ### Updating Submodules
