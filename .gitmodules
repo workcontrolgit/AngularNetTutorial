@@ -1,0 +1,9 @@
+[submodule "Clients/TalentManagement-Angular-Material"]
+	path = Clients/TalentManagement-Angular-Material
+	url = https://github.com/workcontrolgit/TalentManagement-Angular-Material.git
+[submodule "ApiResources/TalentManagement-API"]
+	path = ApiResources/TalentManagement-API
+	url = https://github.com/workcontrolgit/TalentManagement-API.git
+[submodule "TokenService/Duende-IdentityServer"]
+	path = TokenService/Duende-IdentityServer
+	url = https://github.com/workcontrolgit/Duende-IdentityServer.git

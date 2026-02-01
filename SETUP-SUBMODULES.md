@@ -7,7 +7,7 @@ This guide will help you convert the existing repositories into proper Git submo
 ## Current Situation
 
 You have:
-- A parent Git repository initialized at `c:\apps\medium`
+- A parent Git repository initialized at `c:\apps\AngularNetTutotial`
 - Three component folders with their own Git repositories (or content)
 
 ## Steps to Set Up Submodules
@@ -21,7 +21,7 @@ Before running these commands, **close VS Code** or any other applications that 
 Open PowerShell or Git Bash and navigate to your project:
 
 ```bash
-cd c:\apps\medium
+cd c:\apps\AngularNetTutotial
 ```
 
 Remove the existing folders (they have their .git directories removed already):

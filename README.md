@@ -7,7 +7,7 @@ This repository demonstrates the **Client, API Resource, and Token Service (CAT)
 ## Repository Structure
 
 ```
-medium/
+AngularNetTutorial/
 ├── Clients/
 │   └── TalentManagement-Angular-Material/    # Angular Material client
 ├── ApiResources/
@@ -55,12 +55,12 @@ git submodule update --init --recursive
 #### 1. Start the Token Service (Identity Server)
 
 ```bash
-cd TokenService/Duende-IdentityServer
+cd TokenService/Duende-IdentityServer/src/Duende.STS.Identity
 dotnet restore
 dotnet run
 ```
 
-Default URL: `https://localhost:5001`
+**URL**: `https://localhost:44310`
 
 #### 2. Start the API Resource
 
@@ -70,17 +70,27 @@ dotnet restore
 dotnet run
 ```
 
-Default URL: `https://localhost:7001`
+**URL**: `https://localhost:44378`
 
 #### 3. Start the Angular Client
 
 ```bash
-cd Clients/TalentManagement-Angular-Material
+cd Clients/TalentManagement-Angular-Material/talent-management
 npm install
 npm start
 ```
 
-Default URL: `http://localhost:4200`
+**URL**: `http://localhost:4200`
+
+## Application URLs
+
+| Component | URL | Description |
+|-----------|-----|-------------|
+| **Angular Client** | `http://localhost:4200` | Main application UI |
+| **Web API** | `https://localhost:44378` | RESTful API endpoints |
+| **IdentityServer** | `https://localhost:44310` | Authentication & Authorization |
+| **IdentityServer Admin** | `https://localhost:44303` | IdentityServer admin panel |
+| **IdentityServer Admin API** | `https://localhost:44302` | IdentityServer admin API |
 
 ## Architecture Overview
 
