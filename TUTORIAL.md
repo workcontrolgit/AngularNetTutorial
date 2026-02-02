@@ -1,6 +1,6 @@
-# Building Modern Web Applications with the CAT Pattern
+# Building Modern Web Applications with Angular, .NET, and OAuth 2.0
 
-## A Complete Tutorial Series: Angular, .NET, and OAuth 2.0
+## A Complete Tutorial Series Using the CAT Pattern
 
 Welcome to this comprehensive tutorial series that demonstrates building a modern, secure web application using the **CAT (Client, API Resource, Token Service)** pattern. This pattern represents industry best practices for building scalable, maintainable, and secure enterprise applications.
 
