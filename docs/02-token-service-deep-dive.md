@@ -331,9 +331,6 @@ The signature is created by:
 3. Signing with a private key using the algorithm specified in the header
 4. Base64 encoding the result
 
-![Token Structure](images/jwt-token-structure.png)
-*Figure 6: JWT token structure showing header, payload, and signature components*
-
 ---
 
 ## 🏗️ Duende IdentityServer Overview
@@ -371,9 +368,6 @@ Our IdentityServer setup consists of three main components:
 * REST API for administrative operations
 * Programmatic access to IdentityServer configuration
 * Integration with automation tools
-
-![IdentityServer Admin UI](images/identityserver-admin-ui.png)
-*Figure 5: Duende IdentityServer Admin UI for managing clients, resources, and users*
 
 ---
 

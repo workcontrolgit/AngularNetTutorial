@@ -190,9 +190,6 @@ namespace TalentManagementAPI.Application.Features.Employees.Commands.DeleteEmpl
 - Publishes **domain events** on changes
 - Proper null checking with failure results
 
-![CRUD Operations](images/crud-operations.png)
-*Figure 10: TalentManagement CRUD operations - Create, Read, Update, Delete employee records*
-
 ---
 
 ### Frontend: Complete CRUD with BaseApiService
@@ -606,9 +603,6 @@ this.employeeService.getAllPaged(params).subscribe({
 * Improves performance
 * Client controls response payload
 * Security: only allowed fields can be requested
-
-![Search and Filtering](images/search-filtering-ui.png)
-*Figure 11: Advanced search and filtering with pagination and field shaping*
 
 ---
 

@@ -712,12 +712,6 @@ export class EmployeeService extends BaseApiService<Employee> {
 * Only needs to define `endpoint` property
 * Can add custom methods as needed
 
-![Employee List](images/employee-list-page.png)
-*Figure 8: TalentManagement employee list with Material Design data table*
-
-![Employee Form](images/employee-form.png)
-*Figure 9: Create/Edit employee form with validation and Material Design components*
-
 ---
 
 ## 📝 Summary

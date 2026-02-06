@@ -639,9 +639,6 @@ namespace TalentManagementAPI.WebApi.Controllers.v1
 - Returns `IActionResult` (not strongly-typed `ActionResult<T>`)
 - Uses `Guid` for all entity IDs
 
-![Swagger UI](images/swagger-api-endpoints.png)
-*Figure 7: Swagger UI showing TalentManagement API endpoints with authentication*
-
 ---
 
 ## 🔒 Authentication & Authorization

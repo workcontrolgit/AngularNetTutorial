@@ -110,9 +110,6 @@ Our application consists of three main components:
 10. Return protected data
 ```
 
-![CAT Pattern Architecture](images/cat-pattern-architecture.png)
-*Figure 1: CAT Pattern architecture showing the three-tier separation of concerns*
-
 ---
 
 ## 🔐 Key Security Features
@@ -242,15 +239,6 @@ npm start
    * **Username:** `alice` or `admin`
    * **Password:** `Pass123$`
 5. After successful login, you'll be redirected back to the Angular dashboard
-
-![Angular Login Page](images/angular-login-page.png)
-*Figure 2: TalentManagement Angular application login page*
-
-![IdentityServer Login](images/identityserver-login.png)
-*Figure 3: Duende IdentityServer authentication page*
-
-![Application Dashboard](images/application-dashboard.png)
-*Figure 4: TalentManagement dashboard after successful authentication*
 
 ### Common Issues
 
