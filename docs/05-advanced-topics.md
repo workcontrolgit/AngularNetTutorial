@@ -1,6 +1,6 @@
-## Part 5: Advanced Topics — Git Submodules, Testing, Deployment, and Production
+# Part 5: Advanced Topics — Git Submodules, Testing, Deployment, and Production
 
-# Building Modern Web Applications with Angular, .NET, and OAuth 2.0
+## Building Modern Web Applications with Angular, .NET, and OAuth 2.0
 
 **[← Part 4: Angular Client](04-angular-client-deep-dive.md)** | **[Tutorial Home](TUTORIAL.md)** | **[Part 6: Real-World Features →](06-real-world-features.md)**
 
@@ -1092,6 +1092,3 @@ In this advanced topics guide, we covered:
 
 **Tutorial Home:** [📚 Complete Tutorial Series](TUTORIAL.md)
 
----
-
-**📌 Tags:** #docker #cicd #github-actions #azure #aws #testing #playwright #monitoring #logging #performance #security #devops #deployment #containerization #submodules

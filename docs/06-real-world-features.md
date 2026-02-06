@@ -1,6 +1,6 @@
-## Part 6: Real-World Features — CRUD Operations, Dashboard, Search, and Analytics
+# Part 6: Real-World Features — CRUD Operations, Dashboard, Search, and Analytics
 
-# Building Modern Web Applications with Angular, .NET, and OAuth 2.0
+## Building Modern Web Applications with Angular, .NET, and OAuth 2.0
 
 **[← Part 5: Advanced Topics](05-advanced-topics.md)** | **[Tutorial Home](TUTORIAL.md)**
 
@@ -11,6 +11,7 @@
 This final part demonstrates real-world features aligned with the **actual TalentManagement project** implementation:
 
 * **Complete CRUD Operations** — Full Create, Read, Update, Delete workflows with Guid IDs
+* **Custom Mediator Pattern** — Using custom IMediator implementation (not MediatR library)
 * **Repository Pattern** — Using IEmployeeRepositoryAsync instead of direct DbContext
 * **Result Wrapper** — Handling Result<T> and PagedResult<T> responses
 * **Base API Service** — Generic service pattern for Angular
@@ -26,9 +27,9 @@ This final part demonstrates real-world features aligned with the **actual Talen
 **GetEmployeeByIdQuery.cs:**
 
 ```csharp
-using MediatR;
-using TalentManagementAPI.Application.Common.Interfaces;
-using TalentManagementAPI.Application.DTOs;
+using TalentManagementAPI.Application.Messaging;
+using TalentManagementAPI.Application.Interfaces.Repositories;
+using Mapster;
 
 namespace TalentManagementAPI.Application.Features.Employees.Queries.GetEmployeeById
 {
@@ -72,7 +73,7 @@ namespace TalentManagementAPI.Application.Features.Employees.Queries.GetEmployee
 **UpdateEmployeeCommand.cs:**
 
 ```csharp
-using MediatR;
+using TalentManagementAPI.Application.Messaging;
 using TalentManagementAPI.Application.Events;
 using TalentManagementAPI.Domain.ValueObjects;
 
@@ -143,7 +144,7 @@ namespace TalentManagementAPI.Application.Features.Employees.Commands.UpdateEmpl
 **DeleteEmployeeByIdCommand.cs:**
 
 ```csharp
-using MediatR;
+using TalentManagementAPI.Application.Messaging;
 
 namespace TalentManagementAPI.Application.Features.Employees.Commands.DeleteEmployeeById
 {
@@ -181,12 +182,16 @@ namespace TalentManagementAPI.Application.Features.Employees.Commands.DeleteEmpl
 ```
 
 **Key Features:**
+- Uses **custom mediator pattern** (`TalentManagementAPI.Application.Messaging`, not MediatR library)
 - Uses **Repository pattern** (`IEmployeeRepositoryAsync`)
 - Returns `Result<T>` wrapper (not bare values)
 - Uses `Guid` for all entity IDs
 - Updates **PersonName** value object
 - Publishes **domain events** on changes
 - Proper null checking with failure results
+
+![CRUD Operations](images/crud-operations.png)
+*Figure 10: TalentManagement CRUD operations - Create, Read, Update, Delete employee records*
 
 ---
 
@@ -602,6 +607,9 @@ this.employeeService.getAllPaged(params).subscribe({
 * Client controls response payload
 * Security: only allowed fields can be requested
 
+![Search and Filtering](images/search-filtering-ui.png)
+*Figure 11: Advanced search and filtering with pagination and field shaping*
+
 ---
 
 ## 📝 Summary
@@ -654,6 +662,3 @@ In this final part, we covered **real-world features** aligned with the actual p
 
 **Start from beginning:** [Part 1: Foundation →](01-foundation.md)
 
----
-
-**📌 Tags:** #crud #repository #valueobjects #domainevents #result-wrapper #fieldshaping #pagination #cleanarchitecture #angular #dotnet #typescript #csharp #guid #baseservice #production

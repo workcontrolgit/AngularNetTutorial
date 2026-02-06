@@ -1,6 +1,6 @@
-## Part 4: Angular Client Deep Dive — Modern SPA with Material Design and OIDC
+# Part 4: Angular Client Deep Dive — Modern SPA with Material Design and OIDC
 
-# Building Modern Web Applications with Angular, .NET, and OAuth 2.0
+## Building Modern Web Applications with Angular, .NET, and OAuth 2.0
 
 **[← Part 3: API Resource](03-api-resource-deep-dive.md)** | **[Tutorial Home](TUTORIAL.md)** | **[Part 5: Advanced Topics →](05-advanced-topics.md)**
 
@@ -712,6 +712,12 @@ export class EmployeeService extends BaseApiService<Employee> {
 * Only needs to define `endpoint` property
 * Can add custom methods as needed
 
+![Employee List](images/employee-list-page.png)
+*Figure 8: TalentManagement employee list with Material Design data table*
+
+![Employee Form](images/employee-form.png)
+*Figure 9: Create/Edit employee form with validation and Material Design components*
+
 ---
 
 ## 📝 Summary
@@ -762,6 +768,3 @@ In this deep dive, we covered the **actual TalentManagement Angular** implementa
 
 **Tutorial Home:** [📚 Complete Tutorial Series](TUTORIAL.md)
 
----
-
-**📌 Tags:** #angular #typescript #materialdesign #oidc #spa #rxjs #oauth2 #angularauth #webdevelopment #frontend #authentication #pkce #httpinterceptor #guards #dependencyinjection

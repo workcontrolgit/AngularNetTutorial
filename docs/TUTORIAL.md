@@ -117,87 +117,11 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 2. Continue with **[Part 2: Token Service](02-token-service-deep-dive.md)** to understand authentication
 3. Follow the series sequentially for best results
 
-### For Reference
-* Jump to specific topics using the table of contents in each document
-* Use the search function to find specific concepts
-* Refer back to examples and code snippets
-
 ---
 
 ## 🔗 Navigation
 
 * **[Repository README](../README.md)** — Project overview and setup
-* **[Developer Guide (CLAUDE.md)](../CLAUDE.md)** — Technical reference for contributors
 * **[Setup Submodules Guide](../SETUP-SUBMODULES.md)** — Git submodules setup instructions
 
----
 
-## 📝 Documentation Format
-
-### Main Tutorial (TUTORIAL.md)
-* **Format:** Comprehensive reference with tables
-* **Purpose:** Complete technical documentation
-* **Audience:** Developers working with the codebase
-* **Best for:** Reference, copy-paste examples, technical details
-
-### Tutorial Series (docs/*.md)
-* **Format:** Reader-friendly, no tables
-* **Purpose:** Step-by-step learning and publishing
-* **Audience:** Learners, blog readers, tutorial followers
-* **Best for:** Learning flow, Medium.com publishing, sharing
-
----
-
-## 🚀 Quick Links
-
-**Getting Started:**
-* [Prerequisites](01-foundation.md#-getting-started)
-* [Quick Start Guide](01-foundation.md#quick-start-running-all-components)
-* [First Login](01-foundation.md#first-login)
-
-**Understanding Architecture:**
-* [CAT Pattern Overview](01-foundation.md#-what-is-the-cat-pattern)
-* [High-Level Architecture](01-foundation.md#-high-level-architecture)
-* [Authentication Flow](01-foundation.md#authentication-flow)
-
-**Component Details:**
-* [Component Deep Dive](01-foundation.md#-component-deep-dive)
-* [Angular Client](01-foundation.md#1-angular-client-presentation-tier)
-* [API Resource](01-foundation.md#2-api-resource-business-logic-tier)
-* [Token Service](01-foundation.md#3-token-service-authentication-tier)
-
-**Authentication Deep Dive:**
-* [OAuth 2.0 Fundamentals](02-token-service-deep-dive.md#-oauth-20-fundamentals)
-* [OpenID Connect](02-token-service-deep-dive.md#-openid-connect-oidc)
-* [Understanding Tokens](02-token-service-deep-dive.md#-understanding-tokens)
-* [Security Best Practices](02-token-service-deep-dive.md#-security-best-practices)
-
-**API Development:**
-* [Clean Architecture](03-api-resource-deep-dive.md#-clean-architecture-fundamentals)
-* [CQRS with MediatR](03-api-resource-deep-dive.md#-application-layer)
-* [Entity Framework Core](03-api-resource-deep-dive.md#-infrastructure-layer)
-
-**Angular Development:**
-* [OIDC Authentication](04-angular-client-deep-dive.md#-oidc-authentication)
-* [API Communication](04-angular-client-deep-dive.md#-api-communication)
-
-**Advanced Topics:**
-* [Git Submodules Workflow](05-advanced-topics.md#-git-submodules-deep-dive)
-* [Docker & Docker Compose](05-advanced-topics.md#-docker-containerization)
-* [CI/CD with GitHub Actions](05-advanced-topics.md#-cicd-pipelines)
-* [Azure Deployment](05-advanced-topics.md#-production-deployment)
-
-**Real-World Features:**
-* [Complete CRUD](06-real-world-features.md#-complete-crud-implementation)
-* [Result Wrapper Handling](06-real-world-features.md#-result-wrapper-handling)
-* [Advanced Search with Field Shaping](06-real-world-features.md#-advanced-search-with-field-shaping)
-
----
-
-## 📌 Tags
-
-`#angular` `#dotnet` `#oauth2` `#openidconnect` `#identityserver` `#webdevelopment` `#authentication` `#security` `#cleanarchitecture` `#typescript` `#csharp` `#enterpriseapplications` `#fullstack` `#spa` `#jwt`
-
----
-
-*Updated: February 2026*

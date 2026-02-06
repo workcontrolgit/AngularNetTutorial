@@ -1,6 +1,6 @@
-## Part 3: API Resource Deep Dive — Clean Architecture, Entity Framework Core, and RESTful Design
+# Part 3: API Resource Deep Dive — Clean Architecture, Entity Framework Core, and RESTful Design
 
-# Building Modern Web Applications with Angular, .NET, and OAuth 2.0
+## Building Modern Web Applications with Angular, .NET, and OAuth 2.0
 
 **[← Part 2: Token Service](02-token-service-deep-dive.md)** | **[Tutorial Home](TUTORIAL.md)** | **[Part 4: Angular Client Deep Dive →](04-angular-client-deep-dive.md)**
 
@@ -308,19 +308,23 @@ namespace TalentManagementAPI.Domain.Enums
 
 ## 💼 Application Layer
 
-### CQRS Pattern with Result Wrapper
+### CQRS Pattern with Custom Mediator
 
-The Application layer uses **CQRS (Command Query Responsibility Segregation)** to separate reads from writes, and wraps all responses in a `Result<T>` type.
+The Application layer uses **CQRS (Command Query Responsibility Segregation)** to separate reads from writes, implemented with a **custom mediator pattern** (not the MediatR library).
 
-**Commands** — Modify state (Create, Update, Delete)
-**Queries** — Retrieve data (Read)
-**Result<T>** — Standardized response wrapper
+**Key Components:**
+* **Custom Mediator** — `TalentManagementAPI.Application.Messaging.IMediator` (custom implementation)
+* **Commands** — Modify state (Create, Update, Delete)
+* **Queries** — Retrieve data (Read)
+* **Result<T>** — Standardized response wrapper
+* **Pipeline Behaviors** — Validation, logging, caching decorators
 
 ### Command Example: CreateEmployee
 
 **CreateEmployeeCommand.cs:**
 
 ```csharp
+using TalentManagementAPI.Application.Messaging;
 using TalentManagementAPI.Application.Events;
 
 namespace TalentManagementAPI.Application.Features.Employees.Commands.CreateEmployee
@@ -635,6 +639,9 @@ namespace TalentManagementAPI.WebApi.Controllers.v1
 - Returns `IActionResult` (not strongly-typed `ActionResult<T>`)
 - Uses `Guid` for all entity IDs
 
+![Swagger UI](images/swagger-api-endpoints.png)
+*Figure 7: Swagger UI showing TalentManagement API endpoints with authentication*
+
 ---
 
 ## 🔒 Authentication & Authorization
@@ -673,7 +680,7 @@ In this deep dive, we covered the **actual TalentManagement API** implementation
 
 ✅ **Clean Architecture** — Four layers with clear separation
 ✅ **Domain Layer** — Value Objects (PersonName), Base Entities with Guid IDs
-✅ **Application Layer** — CQRS with nested handlers, Result<T> wrapper, Repository pattern
+✅ **Application Layer** — CQRS with custom mediator, nested handlers, Result<T> wrapper, Repository pattern
 ✅ **Infrastructure Layer** — Generic repository with field shaping
 ✅ **WebApi Layer** — API versioning, BaseApiController, AllowAnonymous for demos
 ✅ **Key Patterns** — Repository, Event Dispatcher, Result wrapper, Field shaping
@@ -708,6 +715,4 @@ In this deep dive, we covered the **actual TalentManagement API** implementation
 
 **Tutorial Home:** [📚 Complete Tutorial Series](TUTORIAL.md)
 
----
 
-**📌 Tags:** #dotnet #cleanarchitecture #webapi #entityframeworkcore #cqrs #mediatr #restapi #authentication #repository #valueobjects #ddd #solidprinciples #guid #apiversion
