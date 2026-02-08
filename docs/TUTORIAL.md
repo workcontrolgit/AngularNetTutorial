@@ -110,18 +110,74 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 
 ---
 
+## 🧪 Hands-On Labs
+
+**Want to learn by doing?** Follow our progressive hands-on labs that teach practical skills by building with the actual source code.
+
+**[View All Labs →](labs/README.md)**
+
+### Quick Start Labs
+
+| Lab | Focus | Time | Prerequisites |
+|-----|-------|------|---------------|
+| **[LAB-01](labs/LAB-01-verify-setup.md)** | Setup Verification | 20 min | Git, .NET, Node.js |
+| **[LAB-02](labs/LAB-02-inspect-tokens.md)** | JWT Token Inspection | 30 min | LAB-01 |
+| **[LAB-03](labs/LAB-03-extend-api.md)** | Clean Architecture Vertical Slice | 30 min | LAB-01, LAB-02 |
+| **[LAB-04](labs/LAB-04-build-component.md)** | Angular Material Component | 45 min | LAB-03 |
+| **[LAB-05](labs/LAB-05-write-tests.md)** | Unit Testing (xUnit + Jasmine) | 60 min | LAB-04 |
+| **[LAB-06](labs/LAB-06-docker-deployment.md)** | Docker Containerization | 60 min | LAB-05 |
+
+### What You'll Build
+
+✅ **LAB-03:** Add a "Notes" field to Employee entity (Domain → Migration → Application → Testing)
+✅ **LAB-04:** Build an Angular search component with Material Design, reactive forms, and RxJS
+✅ **LAB-05:** Write unit tests for validators, services, and components
+✅ **LAB-06:** Containerize all three CAT Pattern components with Docker Compose
+
+**[Start with LAB-01: Verify Setup →](labs/LAB-01-verify-setup.md)**
+
+---
+
 ## 📖 How to Use This Tutorial
 
-### For Learning
+### For Learning Theory
 1. Start with **[Part 1: Foundation](01-foundation.md)** to understand the architecture
 2. Continue with **[Part 2: Token Service](02-token-service-deep-dive.md)** to understand authentication
 3. Follow the series sequentially for best results
 
+### For Hands-On Practice
+1. Complete **[LAB-01: Verify Setup](labs/LAB-01-verify-setup.md)** to ensure your environment is ready
+2. Follow labs **LAB-02 through LAB-06** in sequence
+3. Reference tutorial parts as needed for deeper understanding
+
+### Recommended Learning Path
+**Best approach for mastering the CAT Pattern:**
+
+1. **Read Part 1** (Foundation) — Understand the big picture
+2. **Complete LAB-01** — Verify your setup works
+3. **Read Part 2** (Token Service) — Learn authentication theory
+4. **Complete LAB-02** — Inspect JWT tokens hands-on
+5. **Read Part 3** (API Resource) — Learn Clean Architecture
+6. **Complete LAB-03** — Build vertical slice through API
+7. **Read Part 4** (Angular Client) — Learn Angular patterns
+8. **Complete LAB-04** — Build Angular component
+9. **Complete LAB-05** — Add unit tests
+10. **Read Part 5** (Advanced Topics) — Learn Docker & deployment
+11. **Complete LAB-06** — Containerize the application
+12. **Read Part 6** (Real-World Features) — Production patterns
+
 ---
 
-## 🔗 Navigation
+## 🗺️ Quick Navigation
 
-* **[Repository README](../README.md)** — Project overview and setup
+### Essential Guides
+* **[Repository README](../README.md)** — Project overview and quick start
 * **[Setup Submodules Guide](../SETUP-SUBMODULES.md)** — Git submodules setup instructions
+* **[CODE-MAP.md](CODE-MAP.md)** — Find anything in the codebase quickly
+* **[CLAUDE.md](../CLAUDE.md)** — Developer guide for AI assistance
+
+### Labs & Solutions
+* **[All Labs](labs/README.md)** — Hands-on practice exercises
+* **[Lab Solutions](labs/solutions/)** — Complete solution code for LAB-03, LAB-04, LAB-05
 
 

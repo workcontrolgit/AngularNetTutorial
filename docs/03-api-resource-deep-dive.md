@@ -20,6 +20,7 @@ Our **TalentManagement API** uses **.NET 10 Web API** with **Clean Architecture*
 
 ### Why Clean Architecture?
 
+
 Without Clean Architecture, you'd have:
 
 * Business logic mixed with data access code
@@ -555,6 +556,7 @@ namespace TalentManagementAPI.WebApi.Controllers
 
 ### Employees Controller
 
+
 **EmployeesController.cs:**
 
 ```csharp
@@ -645,6 +647,7 @@ namespace TalentManagementAPI.WebApi.Controllers.v1
 
 ### How Token Validation Works
 
+
 **Step 1:** Angular sends request with Bearer token
 
 ```http
@@ -667,9 +670,52 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI...
 
 **Step 4:** If authorized, controller action executes
 
+
 **Step 5:** If unauthorized, returns 401 (not authenticated) or 403 (not authorized)
 
 ---
+
+
+## Web API Features in Swagger
+
+The screenshots below summarize the API surface and highlight API resources directly in Swagger.
+
+### API Overview
+
+![Swagger API endpoints overview](images/webapi/swagger-api-endpoints.png)
+*Figure: Swagger overview of all TalentManagement API endpoint groups.*
+
+This view helps developers quickly understand versioned routes, available controllers, and endpoint discovery for testing.
+
+### Employee Resource (Primary Tutorial Path)
+
+![Employees resource in Swagger](images/webapi/swagger-employees-resource-expanded.png)
+*Figure: Expanded Employees API resource with read/write endpoints.*
+
+This is the core tutorial API path with read/write endpoints used for end-to-end CRUD workflows.
+
+### Other Domain Resources
+
+![Departments API resource](images/webapi/swagger-departments-resource-expanded.png)
+*Figure: Expanded Departments API resource in Swagger.*
+
+![Positions API resource](images/webapi/swagger-positions-resource-expanded.png)
+*Figure: Expanded Positions API resource in Swagger.*
+
+![SalaryRanges API resource](images/webapi/swagger-salaryranges-resource-expanded.png)
+*Figure: Expanded SalaryRanges API resource in Swagger.*
+
+These resources follow the same architectural patterns as Employees: versioned routes, authorization, validation, and repository-backed persistence.
+
+### Platform Resources (Cross-Cutting)
+
+![Dashboard API resource](images/webapi/swagger-dashboard-resource-expanded.png)
+*Figure: Dashboard resource for aggregate and summary data endpoints.*
+
+![Cache API resource](images/webapi/swagger-cache-resource-expanded.png)
+*Figure: Cache resource for cache management and refresh endpoints.*
+
+Dashboard and Cache support operational and cross-cutting scenarios beyond CRUD and are useful for production diagnostics and performance workflows.
 
 ## 📝 Summary
 
@@ -681,6 +727,7 @@ In this deep dive, we covered the **actual TalentManagement API** implementation
 ✅ **Infrastructure Layer** — Generic repository with field shaping
 ✅ **WebApi Layer** — API versioning, BaseApiController, AllowAnonymous for demos
 ✅ **Key Patterns** — Repository, Event Dispatcher, Result wrapper, Field shaping
+
 
 ### Key Architectural Decisions
 
@@ -711,5 +758,7 @@ In this deep dive, we covered the **actual TalentManagement API** implementation
 **Previous:** [← Part 2: Token Service Deep Dive](02-token-service-deep-dive.md)
 
 **Tutorial Home:** [📚 Complete Tutorial Series](TUTORIAL.md)
+
+
 
 
