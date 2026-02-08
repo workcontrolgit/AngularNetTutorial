@@ -2,12 +2,12 @@
 
 This guide will help you convert the existing repositories into proper Git submodules.
 
-**Tutorial Repository**: https://github.com/workcontrolgit/AngularNetTutotial.git
+**Tutorial Repository**: https://github.com/workcontrolgit/AngularNetTutorial.git
 
 ## Current Situation
 
 You have:
-- A parent Git repository initialized at `c:\apps\AngularNetTutotial`
+- A parent Git repository initialized at `c:\apps\AngularNetTutorial`
 - Three component folders with their own Git repositories (or content)
 
 ## Steps to Set Up Submodules
@@ -21,7 +21,7 @@ Before running these commands, **close VS Code** or any other applications that 
 Open PowerShell or Git Bash and navigate to your project:
 
 ```bash
-cd c:\apps\AngularNetTutotial
+cd c:\apps\AngularNetTutorial
 ```
 
 Remove the existing folders (they have their .git directories removed already):
@@ -71,7 +71,7 @@ git commit -m "Add submodules for Angular client, API, and IdentityServer"
 Push your changes to the tutorial repository:
 
 ```bash
-git remote add origin https://github.com/workcontrolgit/AngularNetTutotial.git
+git remote add origin https://github.com/workcontrolgit/AngularNetTutorial.git
 git branch -M main
 git push -u origin main
 ```
@@ -103,7 +103,7 @@ You should see something like:
 Anyone cloning your tutorial should use:
 
 ```bash
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 ```
 
 ### Updating Submodules

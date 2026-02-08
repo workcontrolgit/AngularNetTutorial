@@ -173,9 +173,9 @@ All communication encrypted with CORS configuration for cross-origin requests.
 
 ```bash
 # Clone with all submodules
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 
-cd AngularNetTutotial
+cd AngularNetTutorial
 
 # Verify submodules are initialized
 git submodule status
@@ -856,7 +856,7 @@ This tutorial gives you a complete, working example to learn from, customize, an
 
 ## 🔗 Repository & Resources
 
-**Full source code:** [github.com/workcontrolgit/AngularNetTutotial](https://github.com/workcontrolgit/AngularNetTutotial)
+**Full source code:** [github.com/workcontrolgit/AngularNetTutorial](https://github.com/workcontrolgit/AngularNetTutorial)
 
 **Tutorial documentation:** Complete guides in the docs/ folder
 
