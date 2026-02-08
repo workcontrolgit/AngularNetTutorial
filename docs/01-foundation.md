@@ -49,6 +49,10 @@ The **CAT (Client, API Resource, Token Service)** pattern is an architectural ap
          └──────── HTTPS + JWT Tokens ───────┘
 ```
 
+
+![Angular dashboard (anonymous access)](images/angular/application-dashboard-anonymous.png)
+*Figure: Angular dashboard accessible before authentication.*
+
 ### Why CAT Pattern?
 
 ✅ **Separation of Concerns** — Each tier has a single, well-defined responsibility
@@ -78,15 +82,27 @@ Our application consists of three main components:
 * Token issuance and validation
 * Client and scope management
 
+![IdentityServer Admin dashboard](images/identityserver/identityserver-admin-dashboard.png)
+*Figure: IdentityServer Admin dashboard for authentication service management.*
+
 ### 3. **ASP.NET Core Web API (Port 44378)**
 * CRUD operations
 * Business logic
 * JWT authentication
 * Role-based authorization
 
+![Swagger API endpoints overview](images/webapi/swagger-api-endpoints.png)
+*Figure: Swagger UI for API endpoint discovery and testing.*
+
 ### Authentication Flow
 
 ```
+
+![Angular login entry from user menu](images/angular/angular-login-page.png)
+*Figure: User opens the top-right menu and starts sign-in from Angular.*
+
+![IdentityServer login page](images/angular/identityserver-login-ashtyn1.png)
+*Figure: IdentityServer login page where user credentials are entered.*
 1. User clicks "Login" in Angular
    ↓
 2. Redirect to IdentityServer
@@ -237,6 +253,9 @@ npm start
    * **Username:** `ashtyn1`
    * **Password:** `Pa$$word123`
 5. After successful login, you'll be redirected back to the Angular dashboard
+
+![Employee list page in Angular](images/angular/employee-list-page.png)
+*Figure: Angular employee list page after successful authentication.*
 
 **Note:** For IdentityServer Admin UI (https://localhost:44303), use:
    * **Username:** `admin`
@@ -602,6 +621,9 @@ Access the Admin UI at **https://localhost:44303** to manage:
 * **Roles** — Define user roles
 * **API Scopes** — Define fine-grained permissions
 
+![IdentityServer clients configuration](images/identityserver/identityserver-clients-list.png)
+*Figure: IdentityServer Clients list used to manage OAuth/OIDC client configuration.*
+
 ---
 
 ## 💡 Benefits of the CAT Pattern
@@ -850,5 +872,6 @@ This tutorial gives you a complete, working example to learn from, customize, an
 ---
 
 *This tutorial series covers building production-ready applications with Angular 20, .NET 10, and Duende IdentityServer 7.0. Perfect for full-stack developers, architects, and teams building secure enterprise applications.*
+
 
 

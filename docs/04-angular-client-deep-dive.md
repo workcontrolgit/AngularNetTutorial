@@ -18,6 +18,9 @@ The **Angular Client** is the presentation layer of the CAT pattern. It's respon
 
 Our **TalentManagement Angular** app uses **Angular 20** (standalone components) with **Angular Material**, **ng-matero** admin template, and **angular-oauth2-oidc** library for OIDC integration.
 
+![Anonymous Angular dashboard](images/angular/application-dashboard-anonymous.png)
+*Figure: Angular dashboard before authentication, showing public entry experience.*
+
 ### Why Angular with Material Design?
 
 Angular with Material Design provides:
@@ -88,6 +91,9 @@ export class EmployeesComponent {
   ) { }
 }
 ```
+
+![Employee list UI with Material table](images/angular/employee-list-page.png)
+*Figure: Angular Material-based employee list UI with table-driven presentation.*
 
 ---
 
@@ -176,6 +182,9 @@ export const environment = {
 ```
 
 ### Auth Configuration
+
+![Angular login entry point](images/angular/angular-login-page.png)
+*Figure: Login entry from the top-right user menu in the Angular client.*
 
 **auth.config.ts:**
 
@@ -380,6 +389,9 @@ export class OidcAuthService {
 
 ### Auth Guard
 
+![IdentityServer login from Angular flow](images/angular/identityserver-login-ashtyn1.png)
+*Figure: Redirected IdentityServer login page during Angular OIDC code flow.*
+
 **auth.guard.ts:**
 
 ```typescript
@@ -402,6 +414,9 @@ export const authGuard: CanActivateFn = (route, state) => {
 ```
 
 ### Auth Interceptor
+
+![Profile page after authenticated navigation](images/angular/profile-overview-page.png)
+*Figure: Profile page reached after successful authentication and guarded routing.*
 
 **auth.interceptor.ts:**
 
@@ -554,6 +569,9 @@ export interface PagedResponse<T> {
 
 ### Base API Service
 
+![Employee search and filtering UI](images/angular/employee-search-filtering-ui.png)
+*Figure: Search and filtering behavior that maps to query parameters in API requests.*
+
 **base-api.service.ts:**
 
 ```typescript
@@ -668,6 +686,9 @@ export abstract class BaseApiService<T> {
 
 ### Employee Service
 
+![Employee CRUD operations in Angular](images/angular/employee-crud-operations.png)
+*Figure: CRUD actions in Angular that map to create/update/delete API calls.*
+
 **employee.service.ts:**
 
 ```typescript
@@ -711,6 +732,9 @@ export class EmployeeService extends BaseApiService<Employee> {
 * Inherits all CRUD methods (getAll, getById, create, update, delete)
 * Only needs to define `endpoint` property
 * Can add custom methods as needed
+
+![Employee create form](images/angular/employee-form.png)
+*Figure: Employee create form that sends command payloads through EmployeeService.*
 
 ---
 
