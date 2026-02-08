@@ -118,14 +118,35 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 
 ### Quick Start Labs
 
-| Lab | Focus | Time | Prerequisites |
-|-----|-------|------|---------------|
-| **[LAB-01](labs/LAB-01-verify-setup.md)** | Setup Verification | 20 min | Git, .NET, Node.js |
-| **[LAB-02](labs/LAB-02-inspect-tokens.md)** | JWT Token Inspection | 30 min | LAB-01 |
-| **[LAB-03](labs/LAB-03-extend-api.md)** | Clean Architecture Vertical Slice | 30 min | LAB-01, LAB-02 |
-| **[LAB-04](labs/LAB-04-build-component.md)** | Angular Material Component | 45 min | LAB-03 |
-| **[LAB-05](labs/LAB-05-write-tests.md)** | Unit Testing (xUnit + Jasmine) | 60 min | LAB-04 |
-| **[LAB-06](labs/LAB-06-docker-deployment.md)** | Docker Containerization | 60 min | LAB-05 |
+**LAB-01: Setup Verification (20 minutes)**
+* **Focus:** Verify development environment and Git submodules
+* **Prerequisites:** Git, .NET SDK 10.0+, Node.js 20.x
+* **Start here:** [LAB-01: Verify Setup](labs/LAB-01-verify-setup.md)
+
+**LAB-02: JWT Token Inspection (30 minutes)**
+* **Focus:** Understand OAuth 2.0 tokens and authentication flow
+* **Prerequisites:** LAB-01 completed
+* **Continue to:** [LAB-02: Inspect JWT Tokens](labs/LAB-02-inspect-tokens.md)
+
+**LAB-03: Clean Architecture Vertical Slice (30 minutes)**
+* **Focus:** Extend API with new property through all layers
+* **Prerequisites:** LAB-01, LAB-02 completed
+* **Continue to:** [LAB-03: Extend API](labs/LAB-03-extend-api.md)
+
+**LAB-04: Angular Material Component (45 minutes)**
+* **Focus:** Build search component with Material Design and RxJS
+* **Prerequisites:** LAB-03 completed
+* **Continue to:** [LAB-04: Build Component](labs/LAB-04-build-component.md)
+
+**LAB-05: Unit Testing (60 minutes)**
+* **Focus:** Write comprehensive unit tests for backend and frontend
+* **Prerequisites:** LAB-04 completed
+* **Continue to:** [LAB-05: Write Tests](labs/LAB-05-write-tests.md)
+
+**LAB-06: Docker Containerization (60 minutes)**
+* **Focus:** Containerize all three CAT Pattern components
+* **Prerequisites:** LAB-05 completed
+* **Continue to:** [LAB-06: Docker Deployment](labs/LAB-06-docker-deployment.md)
 
 ### What You'll Build
 
