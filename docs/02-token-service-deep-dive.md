@@ -20,6 +20,9 @@ In this tutorial, we use **Duende IdentityServer 7.0**, which is a certified imp
 
 ### Why Do We Need a Token Service?
 
+![IdentityServer Admin dashboard](images/identityserver/identityserver-admin-dashboard.png)
+*Figure: IdentityServer Admin dashboard for token service operations.*
+
 Without a dedicated token service, you'd have to:
 
 * Store user credentials in every application
@@ -48,6 +51,9 @@ A token service centralizes all of this, providing:
 
 #### 1. The Four Roles
 
+![Angular login entry](images/angular/angular-login-page.png)
+*Figure: Angular client initiates OAuth flow from the top-right Login action.*
+
 OAuth 2.0 defines four key roles in the authentication and authorization process:
 
 * **Resource Owner** — The user who owns the data (in our app: the end user logging in)
@@ -75,6 +81,9 @@ OAuth 2.0 defines several "grant types" - ways for clients to obtain access toke
 * `code_challenge_method=S256`
 
 **Step 3:** IdentityServer shows login form, user enters credentials
+
+![IdentityServer login page](images/angular/identityserver-login-ashtyn1.png)
+*Figure: IdentityServer login step in Authorization Code Flow with PKCE.*
 
 **Step 4:** IdentityServer redirects back to callback URL with authorization code:
 * `http://localhost:4200/callback?code=xyz123`
@@ -135,6 +144,9 @@ In a third-party scenario (like "Sign in with Google"), users would see a consen
 **OpenID Connect** is an **authentication layer** built on top of OAuth 2.0. While OAuth 2.0 handles authorization (what you can access), OIDC handles authentication (who you are).
 
 ### OAuth 2.0 vs OIDC
+
+![IdentityServer logout confirmation](images/angular/identityserver-logout-intermediate.png)
+*Figure: IdentityServer end-session confirmation page used in logout flow.*
 
 Understanding the difference between OAuth 2.0 and OIDC:
 
@@ -358,16 +370,16 @@ Our IdentityServer setup consists of three main components:
 * Token issuance and validation
 * UserInfo endpoint
 
-**Admin UI (Port 44303):**
-* Web-based administration interface
-* Manage clients and applications
-* Manage users and roles
+
+
+![IdentityServer clients list](images/identityserver/identityserver-clients-list.png)
+*Figure: IdentityServer Clients list for OAuth/OIDC client management.*
 * Configure API resources and scopes
 
-**Admin API (Port 44302):**
-* REST API for administrative operations
-* Programmatic access to IdentityServer configuration
-* Integration with automation tools
+
+
+![IdentityServer Admin API Swagger](images/identityserver/identityserver-swagger-ui.png)
+*Figure: Swagger UI for IdentityServer Admin API diagnostics and testing.*
 
 ---
 
@@ -376,6 +388,9 @@ Our IdentityServer setup consists of three main components:
 ### Configuration Files
 
 #### identityserverdata.json - Clients and Resources
+
+![TalentManagement client URL settings](images/identityserver/identityserver-client-talentmanagement-urls-tab.png)
+*Figure: TalentManagement client URL configuration (redirect and logout URLs).*
 
 This file defines:
 * **Identity Resources** — User information scopes
@@ -460,6 +475,9 @@ Tokens are sent in HTTP headers. Without HTTPS, they can be intercepted.
 
 ### 2. Use PKCE for SPAs
 
+![Advanced grant types settings](images/identityserver/identityserver-client-talentmanagement-advanced-grant-types.png)
+*Figure: Advanced Grant Types settings for controlling OAuth flows per client.*
+
 SPAs can't securely store client secrets. PKCE prevents authorization code interception attacks.
 
 Always set:
@@ -467,6 +485,9 @@ Always set:
 * `RequireClientSecret: false` (for public clients like SPAs)
 
 ### 3. Short Token Lifetimes
+
+![Advanced token settings](images/identityserver/identityserver-client-talentmanagement-advanced-token.png)
+*Figure: Advanced Token settings for client token/session lifetime tuning.*
 
 **Recommended token lifetimes:**
 
@@ -630,4 +651,5 @@ In this deep dive, we covered:
 **Previous:** [← Part 1: Foundation — Understanding the CAT Pattern](01-foundation.md)
 
 **Tutorial Home:** [📚 Complete Tutorial Series](TUTORIAL.md)
+
 
