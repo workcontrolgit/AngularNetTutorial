@@ -48,15 +48,15 @@ If you haven't cloned the repository yet:
 
 ```bash
 # Clone the main repository with all submodules
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 
 # Navigate into the repository
-cd AngularNetTutotial
+cd AngularNetTutorial
 ```
 
 **Expected output:**
 ```
-Cloning into 'AngularNetTutotial'...
+Cloning into 'AngularNetTutorial'...
 Submodule 'ApiResources/TalentManagement-API' (https://github.com/workcontrolgit/TalentManagement-API.git) registered for path 'ApiResources/TalentManagement-API'
 Submodule 'Clients/TalentManagement-Angular-Material' (https://github.com/workcontrolgit/TalentManagement-Angular-Material.git) registered for path 'Clients/TalentManagement-Angular-Material'
 Submodule 'TokenService/Duende-IdentityServer' (https://github.com/workcontrolgit/Duende-IdentityServer.git) registered for path 'TokenService/Duende-IdentityServer'
@@ -68,7 +68,7 @@ If you already cloned the repository but submodule folders are empty:
 
 ```bash
 # Navigate to the repository root
-cd AngularNetTutotial
+cd AngularNetTutorial
 
 # Initialize and clone all submodules
 git submodule update --init --recursive
@@ -135,7 +135,7 @@ git submodule update --init --force --recursive
 pwd  # Mac/Linux
 cd   # Windows
 
-# Should be: /path/to/AngularNetTutotial
+# Should be: /path/to/AngularNetTutorial
 ```
 
 **Problem: Submodules show "detached HEAD" state**

@@ -233,7 +233,7 @@ AngularNetTutorial/
 **Common commands:**
 ```bash
 # Clone with submodules
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 
 # Initialize submodules after clone
 git submodule update --init --recursive
@@ -335,8 +335,8 @@ git submodule update --remote --merge
 3. Search labs for similar problems
 
 ### External Help
-- **GitHub Issues:** [Report issues](https://github.com/workcontrolgit/AngularNetTutotial/issues)
-- **Pull Requests:** [Contribute improvements](https://github.com/workcontrolgit/AngularNetTutotial/pulls)
+- **GitHub Issues:** [Report issues](https://github.com/workcontrolgit/AngularNetTutorial/issues)
+- **Pull Requests:** [Contribute improvements](https://github.com/workcontrolgit/AngularNetTutorial/pulls)
 
 ---
 
@@ -447,7 +447,7 @@ npm test
 
 ```bash
 # Clone with submodules
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 
 # Update submodules
 git submodule update --remote --merge
@@ -472,4 +472,4 @@ git submodule status
 
 ---
 
-*Need to add something to this map? [Contribute!](https://github.com/workcontrolgit/AngularNetTutotial/pulls)*
+*Need to add something to this map? [Contribute!](https://github.com/workcontrolgit/AngularNetTutorial/pulls)*

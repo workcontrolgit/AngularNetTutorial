@@ -45,7 +45,7 @@ The CAT pattern uses Git submodules to keep each component in its own repository
 
 ```bash
 # Clone with all submodules
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 
 # If already cloned without submodules
 git submodule update --init --recursive
@@ -126,8 +126,8 @@ git commit -m "Switch Angular client to new dashboard feature"
 
 **Workflow 3: Clone and immediately start working**
 ```bash
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
-cd AngularNetTutotial/Clients/TalentManagement-Angular-Material
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
+cd AngularNetTutorial/Clients/TalentManagement-Angular-Material
 git checkout develop
 # Start working...
 ```

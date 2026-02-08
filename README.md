@@ -2,7 +2,7 @@
 
 This repository demonstrates the **Client, API Resource, and Token Service (CAT)** pattern using Angular and .NET technologies.
 
-**Repository**: https://github.com/workcontrolgit/AngularNetTutotial.git
+**Repository**: https://github.com/workcontrolgit/AngularNetTutorial.git
 
 ## Documentation
 
@@ -44,15 +44,15 @@ AngularNetTutorial/
 This repository uses Git submodules to manage the individual components. Clone everything with:
 
 ```bash
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
-cd AngularNetTutotial
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
+cd AngularNetTutorial
 ```
 
 Or if you've already cloned without submodules:
 
 ```bash
-git clone https://github.com/workcontrolgit/AngularNetTutotial.git
-cd AngularNetTutotial
+git clone https://github.com/workcontrolgit/AngularNetTutorial.git
+cd AngularNetTutorial
 git submodule update --init --recursive
 ```
 

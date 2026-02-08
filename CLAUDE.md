@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **tutorial repository** demonstrating the **CAT (Client, API Resource, Token Service)** pattern using Git submodules. Each component is a separate repository that can be developed independently.
 
-**Tutorial Repository**: https://github.com/workcontrolgit/AngularNetTutotial.git
+**Tutorial Repository**: https://github.com/workcontrolgit/AngularNetTutorial.git
 
 ## Architecture: CAT Pattern with Git Submodules
 
@@ -63,7 +63,7 @@ npm start
 
 ```bash
 # Clone with all submodules
-git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutotial.git
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
 
 # Or initialize submodules after cloning
 git submodule update --init --recursive
