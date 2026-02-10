@@ -80,20 +80,20 @@ Here's what happens under the hood:
 # Inside AngularNetTutorial/.gitmodules
 [submodule "Clients/TalentManagement-Angular-Material"]
     path = Clients/TalentManagement-Angular-Material
-    url = https://github.com/yourorg/angular-client.git
+    url = https://github.com/workcontrolgit/TalentManagement-Angular-Material.git
 
 [submodule "ApiResources/TalentManagement-API"]
     path = ApiResources/TalentManagement-API
-    url = https://github.com/yourorg/dotnet-api.git
+    url = https://github.com/workcontrolgit/TalentManagement-API.git
 ```
 
 The parent repo's git metadata stores the exact commit SHA for each submodule:
 
 ```bash
 # Parent repo internally tracks:
-Clients/TalentManagement-Angular-Material → commit abc123def456
-ApiResources/TalentManagement-API        → commit 789ghi012jkl
-TokenService/Duende-IdentityServer       → commit 345mno678pqr
+Clients/TalentManagement-Angular-Material → commit abc123def456789012345678901234567890abcd
+ApiResources/TalentManagement-API        → commit 789ghi012jkl345678901234567890123456abcd
+TokenService/Duende-IdentityServer       → commit 345mno678pqr901234567890123456789012abcd
 ```
 
 **2. When you clone, you get those exact commits**
@@ -313,7 +313,25 @@ git submodule update --init --recursive
 
 **This is the magic:** Your teammate added a new feature that touched both the API and Angular repos. They pushed updates to both submodules and the parent. You run two commands, and suddenly you have their exact working configuration—same commits, same versions, same guaranteed compatibility.
 
-**No more "It works on my machine but not yours."** If the parent repo says API commit `abc123` goes with Angular commit `def456`, that's what everyone gets.
+**No more "It works on my machine but not yours."** If the parent repo says API commit `abc123...` goes with Angular commit `def456...`, that's what everyone gets.
+
+**Example team collaboration workflow:**
+
+```bash
+# Teammate pushes updates
+# - API submodule: new commit 789ghi012jkl...
+# - Angular submodule: new commit 345mno678pqr...
+# - Parent repo: updated to reference both new commits
+
+# You pull the changes
+git pull                                    # Gets parent repo changes
+git submodule update --init --recursive     # Checks out exact commits
+
+# Now you have:
+# - API at commit 789ghi012jkl... (exactly what teammate tested)
+# - Angular at commit 345mno678pqr... (exactly what teammate tested)
+# - Guaranteed to work together
+```
 
 ## 📊 Real-World Impact: Before vs. After
 
