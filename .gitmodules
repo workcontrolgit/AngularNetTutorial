@@ -7,3 +7,6 @@
 [submodule "TokenService/Duende-IdentityServer"]
 	path = TokenService/Duende-IdentityServer
 	url = https://github.com/workcontrolgit/Duende-IdentityServer.git
+[submodule "Tests/AngularNetTutorial-Playwright"]
+	path = Tests/AngularNetTutorial-Playwright
+	url = https://github.com/workcontrolgit/AngularNetTutorial-Playwright.git
