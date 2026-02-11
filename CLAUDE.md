@@ -236,6 +236,9 @@ Each submodule has its own documentation:
 ### IdentityServer Documentation
 - Check `TokenService/Duende-IdentityServer/` for IdentityServer configuration guides
 
+### Playwright Testing Documentation
+- Check `Tests/AngularNetTutorial-Playwright/` for E2E testing guides and test scenarios
+
 ## Common Development Tasks
 
 ### Adding a New API Scope
