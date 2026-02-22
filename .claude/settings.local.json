@@ -1,15 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mv:*)",
-      "Bash(git submodule add:*)",
-      "Bash(git pull:*)",
-      "Bash(git merge:*)",
-      "Bash(cat:*)",
-      "Bash(ls:*)",
-      "Bash(find:*)",
-      "Bash(git commit:*)",
-      "Bash(del *.png)"
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
