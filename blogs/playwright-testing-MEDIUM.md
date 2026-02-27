@@ -686,6 +686,3 @@ npx playwright test --ui
 
 Happy testing!
 
----
-
-**📌 Tags:** #playwright #testing #e2e #angular #typescript #oauth2 #identityserver #webdevelopment #automation #qa #testautomation #javascript #devtools #continuousintegration #softwaretesting #fullstack
