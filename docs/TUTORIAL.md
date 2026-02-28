@@ -1,6 +1,6 @@
 # Building Modern Web Applications with Angular, .NET, and OAuth 2.0 — Complete Tutorial Series
 
-Learn how to build secure, scalable enterprise applications using the **CAT Pattern** (Client, API Resource, Token Service) with Angular 20, .NET 10, and Duende IdentityServer.
+Learn how to build secure, scalable enterprise applications using the **CAT Pattern** (Client, API Resource, Token Service) with Angular 20, .NET 10, and Duende IdentityServer, plus comprehensive **end-to-end testing** with Playwright.
 
 ## 📚 Tutorial Series
 
@@ -81,7 +81,10 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 
 **Topics covered:**
 * Git submodules deep dive (workflows, commands, best practices)
-* Testing strategies (unit, integration, E2E with Playwright)
+* Testing strategies (unit, integration, E2E)
+* **Playwright E2E testing submodule** (separate repo for tests)
+* Test automation for authentication flows
+* Running tests across all CAT components
 * Docker containerization (Dockerfiles, docker-compose)
 * CI/CD pipelines (GitHub Actions)
 * Production deployment (Azure, AWS)
@@ -89,7 +92,7 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 * Performance optimization (caching, compression, lazy loading)
 * Production security hardening
 
-**Perfect for:** DevOps, production deployments, CI/CD automation, containerization
+**Perfect for:** DevOps, production deployments, CI/CD automation, containerization, test automation
 
 ---
 
@@ -107,6 +110,54 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 * Real-world production patterns
 
 **Perfect for:** Implementing production features, data visualization, search functionality
+
+---
+
+## 🏗️ Repository Architecture
+
+This tutorial repository uses **Git submodules** to organize the CAT Pattern into four independent components:
+
+### Core Components (CAT Pattern)
+
+1. **Client** — `Clients/TalentManagement-Angular-Material/`
+   * Angular 20 + Material Design SPA
+   * OIDC authentication with PKCE
+   * Repository: https://github.com/workcontrolgit/TalentManagement-Angular-Material
+
+2. **API Resource** — `ApiResources/TalentManagement-API/`
+   * .NET 10 Web API with Clean Architecture
+   * JWT Bearer token validation
+   * Repository: https://github.com/workcontrolgit/TalentManagement-API
+
+3. **Token Service** — `TokenService/Duende-IdentityServer/`
+   * Duende IdentityServer 7.0
+   * OAuth 2.0 / OpenID Connect provider
+   * Repository: https://github.com/workcontrolgit/Duende-IdentityServer
+
+### Testing Component
+
+4. **E2E Tests** — `Tests/AngularNetTutorial-Playwright/`
+   * Playwright end-to-end tests
+   * Full authentication flow testing
+   * Cross-component integration tests
+   * Repository: https://github.com/workcontrolgit/AngularNetTutorial-Playwright
+
+**Why Git Submodules?**
+* Each component can be developed, versioned, and tested independently
+* Reuse components across multiple projects
+* Clear separation of concerns
+* Independent CI/CD pipelines per component
+
+**Getting Started:**
+```bash
+# Clone with all submodules
+git clone --recurse-submodules https://github.com/workcontrolgit/AngularNetTutorial.git
+
+# Or initialize submodules after cloning
+git submodule update --init --recursive
+```
+
+See **[SETUP-SUBMODULES.md](../SETUP-SUBMODULES.md)** for detailed Git submodule instructions.
 
 ---
 
@@ -148,12 +199,18 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 * **Prerequisites:** LAB-05 completed
 * **Continue to:** [LAB-06: Docker Deployment](labs/LAB-06-docker-deployment.md)
 
+**LAB-07: E2E Testing with Playwright (45 minutes)**
+* **Focus:** Write and run end-to-end tests for authentication flows
+* **Prerequisites:** LAB-06 completed
+* **Continue to:** [LAB-07: E2E Testing](labs/LAB-07-e2e-testing.md)
+
 ### What You'll Build
 
 ✅ **LAB-03:** Add a "Notes" field to Employee entity (Domain → Migration → Application → Testing)
 ✅ **LAB-04:** Build an Angular search component with Material Design, reactive forms, and RxJS
 ✅ **LAB-05:** Write unit tests for validators, services, and components
 ✅ **LAB-06:** Containerize all three CAT Pattern components with Docker Compose
+✅ **LAB-07:** Write Playwright E2E tests for authentication and CRUD operations
 
 **[Start with LAB-01: Verify Setup →](labs/LAB-01-verify-setup.md)**
 
@@ -183,9 +240,10 @@ Learn how to build secure, scalable enterprise applications using the **CAT Patt
 7. **Read Part 4** (Angular Client) — Learn Angular patterns
 8. **Complete LAB-04** — Build Angular component
 9. **Complete LAB-05** — Add unit tests
-10. **Read Part 5** (Advanced Topics) — Learn Docker & deployment
+10. **Read Part 5** (Advanced Topics) — Learn Docker, deployment & testing
 11. **Complete LAB-06** — Containerize the application
-12. **Read Part 6** (Real-World Features) — Production patterns
+12. **Complete LAB-07** — Write E2E tests with Playwright
+13. **Read Part 6** (Real-World Features) — Production patterns
 
 ---
 
