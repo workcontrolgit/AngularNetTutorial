@@ -252,7 +252,7 @@ cd TokenService/Duende-IdentityServer/src/Duende.STS.Identity
 dotnet run
 
 # Terminal 2: API
-cd ApiResources/TalentManagement-API
+cd ApiResources/TalentManagement-API/TalentManagementAPI.WebApi
 dotnet run
 
 # Terminal 3: Angular Client
@@ -379,7 +379,7 @@ cd TokenService/Duende-IdentityServer/src/Duende.STS.Identity
 dotnet run
 
 # Start API (Terminal 2)
-cd ApiResources/TalentManagement-API
+cd ApiResources/TalentManagement-API/TalentManagementAPI.WebApi
 dotnet run
 
 # Start Angular (Terminal 3)
