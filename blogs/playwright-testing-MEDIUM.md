@@ -378,9 +378,48 @@ test('dashboard should match visual baseline', async ({ page }) => {
 
 ## 🚀 Running the Tests
 
+### Prerequisites: Start All Services
+
+**IMPORTANT:** Before running Playwright tests, you must have all three services running. Start them in this order:
+
+**Terminal 1: Start IdentityServer (must start first)**
+
+```bash
+cd TokenService/Duende-IdentityServer/src/Duende.STS.Identity
+dotnet run
+```
+
+**Wait for:** `Now listening on: https://localhost:44310`
+
+**Terminal 2: Start the API (requires IdentityServer running)**
+
+```bash
+cd ApiResources/TalentManagement-API/TalentManagementAPI.WebApi
+dotnet run
+```
+
+**Wait for:** `Now listening on: https://localhost:44378`
+
+**Terminal 3: Start Angular Client**
+
+```bash
+cd Clients/TalentManagement-Angular-Material/talent-management
+npm start
+```
+
+**Wait for:** `Angular Live Development Server is listening on localhost:4200`
+
+**Verify all services are running:**
+
+* **IdentityServer:** https://localhost:44310
+* **API:** https://localhost:44378
+* **Angular:** http://localhost:4200
+
+---
+
 ### Quick Start
 
-**Install dependencies:**
+**Install Playwright dependencies:**
 
 ```bash
 cd Tests/AngularNetTutorial-Playwright
