@@ -6,6 +6,12 @@ Testing complex applications is hard. Testing applications with OAuth authentica
 
 ![Playwright Testing Architecture](https://via.placeholder.com/800x400?text=Playwright+Testing+Architecture)
 
+📖 **Tutorial Repository:** [AngularNetTutorial on GitHub](https://github.com/workcontrolgit/AngularNetTutorial)
+
+---
+
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This Playwright article picks up where that tutorial left off** — showing you how to write automated end-to-end tests that verify the entire stack works correctly together.
+
 ---
 
 ## 🎯 What is Playwright?
@@ -69,16 +75,17 @@ Our Playwright testing suite lives as a **separate Git submodule** — allowing 
 
 ### Core Directories
 
-**tests/** — All test specifications organized by category
+**tests/** — Diagnostic and template test specs
 
-* **auth/** — Authentication and authorization flows
-* **employee-management/** — Employee CRUD operations
-* **department-management/** — Department operations
-* **api/** — Direct API endpoint testing
-* **workflows/** — End-to-end user scenarios
-* **accessibility/** — ARIA compliance and keyboard navigation
-* **performance/** — Load time and rendering benchmarks
-* **visual/** — Visual regression testing
+* **diagnostic.spec.ts** — App behavior and authentication diagnostics
+* **diagnostic-token-storage.spec.ts** — Token extraction method comparison
+* **seed.spec.ts** — Starter template for new test files
+
+**examples/** — Ready-to-use test examples (copy and adapt these)
+
+* **employee-create-with-pom.example.ts** — Create employee using Page Object Model
+* **employee-smoke-with-pom.example.ts** — Smoke test: login, navigate, create
+* **annotated-employee-test.example.ts** — Heavily commented walkthrough for beginners
 
 **fixtures/** — Reusable test helpers and utilities
 
@@ -88,20 +95,30 @@ Our Playwright testing suite lives as a **separate Git submodule** — allowing 
 
 **page-objects/** — Page Object Models for UI abstraction
 
-* **auth/login.page.ts** — Login page interactions
+* **base-list.page.ts** — Base class for all list pages (search, pagination, CRUD)
+* **base-form.page.ts** — Base class for all form pages (validation, submit)
 * **employee-list.page.ts** — Employee list operations
 * **employee-form.page.ts** — Employee form actions
+* **department-list.page.ts** / **department-form.page.ts** — Department pages
+* **position-list.page.ts** / **position-form.page.ts** — Position pages
+* **salary-range-list.page.ts** / **salary-range-form.page.ts** — Salary range pages
 
 **config/** — Test configuration and credentials
 
-* **test-users.json** — Test account credentials
-* **environments.json** — Environment-specific URLs
+* **test-users.json** — Test account credentials per role
+* **environments.json** — Environment-specific URLs (dev/staging/prod)
+* **api-endpoints.json** — API endpoint mappings
+* **test-config.ts** — Centralized timeouts, URLs, and feature flags
+
+**utils/** — Shared utilities
+
+* **token-manager.ts** — JWT token parsing, caching, and validation
 
 ---
 
 ## 🧪 Test Categories Explained
 
-### 1. Authentication Tests (auth/)
+### 1. Authentication Tests
 
 Tests the complete OIDC authentication flow with IdentityServer.
 
@@ -129,10 +146,10 @@ test('should successfully login with valid credentials', async ({ page }) => {
   await loginOption.click();
 
   // Wait for redirect to IdentityServer
-  await page.waitForURL(/sts\.skoruba\.local.*/);
+  await page.waitForURL(/localhost:44310/);
 
-  // Fill credentials
-  await page.fill('input[name="Username"]', 'ashtyn1');
+  // Fill credentials (manager role)
+  await page.fill('input[name="Username"]', 'rosamond33');
   await page.fill('input[name="Password"]', 'Pa$$word123');
   await page.click('button:has-text("Login")');
 
@@ -154,7 +171,7 @@ await loginAsRole(page, 'hradmin');  // Logs in as HRAdmin
 
 ---
 
-### 2. API Tests (api/)
+### 2. API Tests
 
 Direct testing of API endpoints with JWT token validation.
 
@@ -525,9 +542,9 @@ Reusable setup code that runs before tests.
 // fixtures/auth.fixtures.ts
 export async function loginAsRole(page: Page, role: 'employee' | 'manager' | 'hradmin') {
   const credentials = {
-    employee: { username: 'employee1', password: 'Pa$$word123' },
-    manager: { username: 'ashtyn1', password: 'Pa$$word123' },
-    hradmin: { username: 'admin1', password: 'Pa$$word123' },
+    employee: { username: 'antoinette16', password: 'Pa$$word123' },
+    manager: { username: 'rosamond33', password: 'Pa$$word123' },
+    hradmin: { username: 'ashtyn1', password: 'Pa$$word123' },
   };
 
   const { username, password } = credentials[role];
@@ -535,7 +552,7 @@ export async function loginAsRole(page: Page, role: 'employee' | 'manager' | 'hr
   await page.goto('/');
   await page.locator('button[aria-label="User menu"]').click();
   await page.locator('button:has-text("Login")').click();
-  await page.waitForURL(/sts\.skoruba\.local.*/);
+  await page.waitForURL(/localhost:44310/);
   await page.fill('input[name="Username"]', username);
   await page.fill('input[name="Password"]', password);
   await page.click('button:has-text("Login")');
@@ -638,25 +655,24 @@ The trace viewer shows:
 
 ---
 
-## 📊 Project Progress
+## 📊 Project Structure
 
-**Current Testing Coverage:**
+**What's included out of the box:**
 
-* **39 test files** across 16 categories
-* **Authentication** — 8 test scenarios covering OIDC flows
-* **API Testing** — 15 tests for token validation and endpoints
-* **CRUD Operations** — Employee, Department, Position, Salary Range tests
-* **Accessibility** — ARIA compliance and keyboard navigation
-* **Visual Regression** — Dashboard and form rendering
-* **Performance** — Load time benchmarks
+* **3 diagnostic tests** — Verify app is running, tokens are accessible, authentication works
+* **3 example test files** — Copy-paste starting points for your own tests
+* **10 Page Object classes** — Cover all major entities (Employee, Department, Position, Salary Range)
+* **3 fixture files** — Auth helpers, data factories, API helpers
+* **Token manager utility** — JWT parsing, caching, expiry checking
 
-**Test Execution:**
+**Test Execution features (configured in playwright.config.ts):**
 
 * **Cross-browser** — Chromium, Firefox, WebKit
-* **Parallel execution** — Faster feedback
-* **Retry logic** — Automatic retries on failures
+* **Parallel execution** — Faster feedback locally
+* **Retry logic** — 2 automatic retries on CI
 * **Screenshots** — Captured on test failure
-* **HTML Reports** — Detailed test results
+* **HTML Reports** — Detailed results in `playwright-report/`
+* **Traces** — Recorded on first retry for debugging
 
 ---
 
