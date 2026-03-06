@@ -6,7 +6,7 @@ You've built a beautiful Angular app. Now you need to add authentication. You se
 
 This article is different. We'll follow a real login request step by step through actual working code, from the moment a user clicks "Login" to the moment they see their dashboard — with a Playwright test that proves it works.
 
-![OAuth 2.0 PKCE Flow](https://via.placeholder.com/800x400?text=OAuth+2.0+PKCE+Flow+Diagram)
+![IdentityServer Login Page — the OAuth 2.0 PKCE flow in action](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/identityserver/identityserver-login-admin.png)
 
 📖 **Tutorial Repository:** [AngularNetTutorial on GitHub](https://github.com/workcontrolgit/AngularNetTutorial)
 
