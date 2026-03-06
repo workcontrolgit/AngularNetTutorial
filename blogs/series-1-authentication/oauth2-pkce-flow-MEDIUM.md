@@ -365,7 +365,9 @@ The interceptor is registered once in `app.config.ts` and applies to every HTTP 
 
 ## 🔑 The Two Tokens: What Each One Does
 
-After a successful login, Angular holds two tokens:
+After a successful login, Angular holds two tokens. You can see both in action on the Profile page — it displays the user's name, email, and roles decoded from the identity token:
+
+![Profile Overview Page — identity token claims displayed in the Angular app](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/angular/profile-overview-page.png)
 
 **Identity Token (id_token)**
 * **Purpose:** Proves who the user is (authentication)
