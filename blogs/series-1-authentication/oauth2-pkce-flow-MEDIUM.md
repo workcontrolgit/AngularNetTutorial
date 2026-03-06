@@ -80,6 +80,51 @@ Here is how it works in plain English:
 
 ---
 
+## 🗺️ The OIDC/PKCE Flow at a Glance
+
+Before diving into code, here is the complete flow mapped out:
+
+```
+ Browser / Angular              IdentityServer              .NET API
+      (port 4200)                 (port 44310)             (port 44378)
+        │                             │                         │
+  [clicks Login]                      │                         │
+  generate code_verifier (secret)     │                         │
+  compute code_challenge (hash)       │                         │
+        │                             │                         │
+        │── 1. GET /authorize ───────►│                         │
+        │   ?response_type=code       │                         │
+        │   &code_challenge=abc123    │                         │
+        │   &client_id=TalentMgmt     │                         │
+        │                             │                         │
+        │◄── 2. Show login page ──────│                         │
+        │                             │                         │
+  [enters username + password]        │                         │
+        │── 3. POST credentials ─────►│                         │
+        │                        [validates user]               │
+        │◄── 4. Redirect to callback ─│                         │
+        │   /callback?code=xyz789     │                         │
+        │                             │                         │
+        │── 5. POST /connect/token ──►│                         │
+        │   code=xyz789               │                         │
+        │   code_verifier=secret      │ hash(secret)==abc123?   │
+        │                             │ ✅ match → issue tokens  │
+        │◄── 6. id_token ─────────────│                         │
+        │       + access_token        │                         │
+        │                             │                         │
+  [load user info + permissions]      │                         │
+        │                             │                         │
+        │── 7. GET /api/v1/employees ─────────────────────────►│
+        │   Authorization: Bearer <access_token>                │
+        │                             │            [verify JWT] │
+        │                             │          [check scopes] │
+        │◄───────────────────────────────── 200 OK + JSON ──────│
+```
+
+**The PKCE security guarantee:** The `code_verifier` (the secret) is generated in the browser and **never sent to IdentityServer directly** — only its hash (`code_challenge`) is. When Angular later exchanges the code for tokens, it sends the original secret. IdentityServer rehashes it and compares — if someone intercepted the authorization code in Step 4, they cannot use it without the secret.
+
+---
+
 ## 🚀 The Complete Login Flow: Step by Step
 
 Here's exactly what happens when a user clicks "Login" in our Angular app.
