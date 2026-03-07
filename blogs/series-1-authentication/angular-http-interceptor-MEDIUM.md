@@ -474,7 +474,7 @@ The interceptor chain in this app also demonstrates a broader principle — **co
 * [Why Your Angular App Needs PKCE: OAuth 2.0 Explained with a Working Demo](#) — OAuth 2.0 PKCE Flow
 * [Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes](#) — Route Guards
 * **Never Forget a Bearer Token Again** — This article
-* *Show the Right Buttons to the Right People: Role-Based UI in Angular* — Coming next
+* [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
 
 ---
 

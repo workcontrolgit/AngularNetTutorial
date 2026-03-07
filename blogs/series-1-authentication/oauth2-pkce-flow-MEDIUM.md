@@ -598,7 +598,9 @@ Understanding PKCE makes you a better full-stack developer because:
 * [Stop Juggling Multiple Repos: Manage Your Full-Stack App Like a Workspace](#) — Git Submodules
 * [End-to-End Testing Made Simple: How Playwright Transforms Testing](#) — Playwright Overview
 * **Why Your Angular App Needs PKCE** — This article
-* *Lock Down Your Angular Routes: Auth Guards with OIDC* — Coming next
+* [Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes](#) — Route Guards
+* [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
+* [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
 
 ---
 

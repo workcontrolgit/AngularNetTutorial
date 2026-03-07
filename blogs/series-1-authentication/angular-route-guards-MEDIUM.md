@@ -619,7 +619,8 @@ The pattern here — a broad `canActivateChild` on the layout parent, plus targe
 * [End-to-End Testing Made Simple: How Playwright Transforms Testing](#) — Playwright Overview
 * [Why Your Angular App Needs PKCE: OAuth 2.0 Explained with a Working Demo](#) — OAuth 2.0 PKCE Flow
 * **Lock Down Your Angular Routes** — This article
-* *Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained* — Coming next
+* [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
+* [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
 
 ---
 
