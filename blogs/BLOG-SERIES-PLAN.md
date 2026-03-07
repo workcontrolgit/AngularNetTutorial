@@ -95,10 +95,11 @@
 
 ## 🎨 Series 3: Angular Material UI
 
-- [ ] **Article 3.1 — Data Tables**
+- [~] **Article 3.1 — Data Tables**
   - **Title:** Build a Production-Ready Data Table in Angular Material: Sort, Filter, Page
-  - **Subtitle:** From Zero to a Fully Functional Employee List with MatTable, MatSort, and MatPaginator
+  - **Subtitle:** From Zero to a Fully Functional Employee List with MatTable, MatPaginator, and Server-Side Filtering
   - **File:** `blogs/series-3-angular-material/angular-material-datatable-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 3.2 — Reactive Forms**
   - **Title:** Reactive Forms Done Right: Validation Patterns Every Angular Developer Should Know
@@ -159,8 +160,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 10
-**Not started:** 8
+**Draft ready:** 11
+**Not started:** 7
 
 ---
 

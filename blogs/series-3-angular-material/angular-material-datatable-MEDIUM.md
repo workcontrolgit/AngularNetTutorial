@@ -1,0 +1,593 @@
+# Build a Production-Ready Data Table in Angular Material: Sort, Filter, Page
+
+## From Zero to a Fully Functional Employee List with MatTable, MatPaginator, and Server-Side Filtering
+
+Angular Material's `mat-table` is one of those components that looks simple in a tutorial — and then turns complicated fast when real requirements arrive: server-side pagination, multi-field filtering, autocomplete suggestions, loading spinners, empty states, and role-based action buttons all in one component.
+
+This article builds the complete Employee List from the **TalentManagement** app — a production-style data table that handles 1,000+ employees without loading them all at once. Every line of code comes from the real application.
+
+![Employee List Page](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/angular/employee-list-page.png)
+
+---
+
+## 📚 What You'll Learn
+
+* How `mat-table` binds to a data array with `[dataSource]`
+* Defining columns with `matColumnDef`, `mat-header-cell`, and `mat-cell`
+* Server-side pagination with `MatPaginator` and the `PagedResponse<T>` API contract
+* Converting `MatPaginator`'s 0-based page index to the API's 1-based `pageNumber`
+* Auto-submitting filters with `debounceTime` on `FormGroup.valueChanges`
+* Autocomplete suggestions powered by the same search API — with a minimum character threshold
+* `MatProgressSpinner` for loading state and a "no results" empty row
+* Role-based action buttons using `*appHasRole` (View/Edit/Delete per role)
+
+---
+
+## 🏗️ The Component at a Glance
+
+The `EmployeeListComponent` is a standalone Angular component with these responsibilities:
+
+```
+EmployeeListComponent
+│
+├── Search Form (ReactiveFormsModule)
+│   ├── 5 filter fields: EmployeeNumber, FirstName, LastName, Email, PositionTitle
+│   ├── Autocomplete dropdown per field (live API query, min 2 chars)
+│   └── Auto-submit on value change (500ms debounce)
+│
+├── Data Table (mat-table)
+│   ├── 6 columns: Employee #, Name, Email, Phone, Position, Actions
+│   ├── Loading spinner (mat-spinner)
+│   └── Empty state row
+│
+├── Paginator (mat-paginator)
+│   ├── Page sizes: [5, 10, 25, 50, 100]
+│   └── Total count from API (server-side)
+│
+└── Role-Based Actions
+    ├── View: all users
+    ├── Edit: HRAdmin, Manager
+    └── Delete: HRAdmin only
+```
+
+The component uses server-side filtering and pagination — every filter change and page turn fires a new API request. No data is held in memory beyond the current page.
+
+---
+
+## 📋 Building the Table: mat-table Basics
+
+### The Minimal Setup
+
+The `mat-table` directive turns a plain HTML `<table>` into a Material data table. It binds to a data array via `[dataSource]`:
+
+```html
+<table mat-table [dataSource]="employees" class="employee-table">
+
+  <!-- Column: Employee Number -->
+  <ng-container matColumnDef="employeeNumber">
+    <th mat-header-cell *matHeaderCellDef>Employee #</th>
+    <td mat-cell *matCellDef="let employee">{{ employee.employeeNumber }}</td>
+  </ng-container>
+
+  <!-- Column: Name (computed from multiple fields) -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let employee">{{ getFullName(employee) }}</td>
+  </ng-container>
+
+  <!-- Column: Actions -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let employee">
+      <div class="action-buttons">
+        <button mat-icon-button color="primary"
+          (click)="viewEmployee(employee)"
+          matTooltip="View Details">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="accent"
+          (click)="editEmployee(employee)"
+          *appHasRole="['HRAdmin', 'Manager']"
+          matTooltip="Edit Employee">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn"
+          (click)="deleteEmployee(employee)"
+          *appHasRole="['HRAdmin']"
+          matTooltip="Delete Employee">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Empty state -->
+  <tr class="mat-row" *ngIf="employees.length === 0">
+    <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+      <div class="no-data">
+        <mat-icon>info</mat-icon>
+        <p>No employees found</p>
+      </div>
+    </td>
+  </tr>
+</table>
+```
+
+### How Column Definitions Work
+
+Each column follows the same three-part pattern:
+
+```
+<ng-container matColumnDef="columnName">   ← 1. Name (must match displayedColumns entry)
+  <th mat-header-cell *matHeaderCellDef>   ← 2. Header cell template
+  <td mat-cell *matCellDef="let row">      ← 3. Data cell template with row context
+</ng-container>
+```
+
+The `displayedColumns` array in the component controls which columns appear and in what order:
+
+```typescript
+displayedColumns: string[] = [
+  'employeeNumber',
+  'name',
+  'email',
+  'phone',
+  'positionTitle',
+  'actions',
+];
+```
+
+Reordering columns means reordering this array — no template changes required.
+
+### Computed Columns
+
+The `name` column doesn't map to a single property. It calls a component method that assembles the display value:
+
+```typescript
+getFullName(employee: Employee): string {
+  const parts = [
+    employee.prefix,     // "Mr.", "Dr.", etc.
+    employee.firstName,
+    employee.middleName,
+    employee.lastName,
+  ].filter(Boolean);    // removes null/undefined/empty strings
+  return parts.join(' ');
+}
+```
+
+This pattern — a column whose content is computed rather than a direct property — works identically. The `*matCellDef="let employee"` context variable is just the row object; you can call any method or pipe on it.
+
+### Column Width with CSS
+
+Material table columns get CSS classes automatically based on their `matColumnDef` value: `.mat-column-employeeNumber`, `.mat-column-name`, etc. Use these to set fixed widths:
+
+```scss
+.mat-column-employeeNumber { width: 120px; }
+.mat-column-name           { min-width: 200px; }
+.mat-column-email          { min-width: 200px; }
+.mat-column-phone          { width: 150px; }
+.mat-column-positionTitle  { min-width: 200px; }
+.mat-column-actions        { width: 120px; }
+```
+
+---
+
+## 📄 Server-Side Pagination with MatPaginator
+
+### The API Contract
+
+The API returns a `PagedResponse<T>` on every list request:
+
+```typescript
+export interface PagedResponse<T> {
+  value: T[];            // the current page of data
+  pageNumber: number;    // 1-based current page
+  pageSize: number;
+  recordsFiltered: number;  // filtered count (with active search)
+  recordsTotal: number;     // total count in database
+  isSuccess: boolean;
+  errors: string[];
+  executionTimeMs: number;
+}
+```
+
+The `totalCount` from `recordsTotal` feeds `mat-paginator`'s `[length]` input — this is what the paginator uses to calculate how many page buttons to show.
+
+### Wiring Up the Paginator
+
+In the template, `mat-paginator` is wired to the component state and fires a `(page)` event on every navigation:
+
+```html
+<mat-paginator
+  [length]="totalCount"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[5, 10, 25, 50, 100]"
+  [pageIndex]="pageNumber - 1"
+  (page)="onPageChange($event)"
+  showFirstLastButtons>
+</mat-paginator>
+```
+
+**`[length]="totalCount"`** — the total number of records (not the current page count). Without this, the paginator doesn't know how many pages exist.
+
+**`[pageIndex]="pageNumber - 1"`** — `MatPaginator` is 0-based (`0 = first page`), but the API expects 1-based page numbers. The subtraction converts between them.
+
+**`showFirstLastButtons`** — adds skip-to-first and skip-to-last navigation buttons.
+
+### Handling Page Changes
+
+```typescript
+pageSize   = 10;
+pageNumber = 1;   // 1-based for the API
+
+onPageChange(event: PageEvent): void {
+  this.pageSize   = event.pageSize;
+  this.pageNumber = event.pageIndex + 1;  // 0-based → 1-based
+  this.loadEmployees();
+}
+```
+
+`PageEvent` carries three properties: `pageIndex` (0-based), `pageSize`, and `length`. The `+ 1` is the only translation needed between Angular Material's 0-based convention and the API's 1-based convention.
+
+### Loading Data
+
+```typescript
+loadEmployees(): void {
+  this.loading = true;
+
+  const params = {
+    PageNumber: this.pageNumber,
+    PageSize:   this.pageSize,
+    ...this.searchForm.value,   // spread active filter values
+  };
+
+  // Remove empty filter values so the API doesn't filter on blank strings
+  Object.keys(params).forEach(key => {
+    if (params[key] === '' || params[key] === null || params[key] === undefined) {
+      delete params[key];
+    }
+  });
+
+  this.employeeService.getAllPaged(params).subscribe({
+    next: response => {
+      this.employees  = response.value;
+      this.totalCount = response.recordsTotal;
+      this.loading    = false;
+    },
+    error: error => {
+      console.error('Error loading employees:', error);
+      this.loading = false;
+    },
+  });
+}
+```
+
+The `...this.searchForm.value` spread includes all active filter values in the same `params` object as pagination. `BaseApiService.buildHttpParams()` converts this flat object to `HttpParams`:
+
+```typescript
+protected buildHttpParams(params?: QueryParams): HttpParams {
+  let httpParams = new HttpParams();
+  if (params) {
+    Object.keys(params).forEach(key => {
+      const value = params[key];
+      if (value !== null && value !== undefined) {
+        httpParams = httpParams.set(key, value.toString());
+      }
+    });
+  }
+  return httpParams;
+}
+```
+
+The resulting HTTP request looks like:
+
+```
+GET /api/v1/employees?PageNumber=1&PageSize=10&LastName=smith
+```
+
+---
+
+## 🔍 Server-Side Filtering with Reactive Forms
+
+### The Form Structure
+
+Five filter fields share a single `FormGroup`:
+
+```typescript
+initSearchForm(): void {
+  this.searchForm = this.fb.group({
+    FirstName:      [''],
+    LastName:       [''],
+    Email:          [''],
+    EmployeeNumber: [''],
+    PositionTitle:  [''],
+  });
+}
+```
+
+### Auto-Submit on Value Change
+
+Instead of a "Search" button, the form submits automatically whenever any field changes — with a 500ms debounce to avoid firing on every keystroke:
+
+```typescript
+setupAutoSubmit(): void {
+  this.searchForm.valueChanges
+    .pipe(
+      debounceTime(500),
+      distinctUntilChanged(
+        (prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)
+      ),
+      takeUntil(this.destroy$)
+    )
+    .subscribe(() => {
+      this.pageNumber = 1;  // reset to page 1 when filter changes
+      this.loadEmployees();
+    });
+}
+```
+
+**`debounceTime(500)`** — waits 500ms after the last keystroke before firing. Prevents an API call for every character typed.
+
+**`distinctUntilChanged`** — skips the emission if the form value hasn't actually changed (e.g., clicking into a field and clicking out without typing). The JSON comparison handles the nested object comparison.
+
+**`takeUntil(this.destroy$)`** — unsubscribes when the component is destroyed, preventing memory leaks. The `destroy$` subject is completed in `ngOnDestroy()`.
+
+**`this.pageNumber = 1`** — always resets to the first page when filters change. Without this, a user filtering to find "Smith" on page 3 would see page 3 of the Smith results (which might be empty) instead of page 1.
+
+### The Clear Button
+
+```typescript
+onClearSearch(): void {
+  this.searchForm.reset();  // sets all fields to null
+  this.pageNumber = 1;
+  if (this.paginator) {
+    this.paginator.pageIndex = 0;  // sync the paginator UI
+  }
+  this.loadEmployees();
+}
+```
+
+`searchForm.reset()` triggers `valueChanges`, which triggers `setupAutoSubmit()`, which calls `loadEmployees()`. But `onClearSearch()` also calls `loadEmployees()` directly — so the data reloads twice. The `distinctUntilChanged` guard minimizes this, and the double-load is harmless since both requests return the same result.
+
+---
+
+## ✨ Autocomplete: Live Search Suggestions
+
+![Employee Search Filtering UI](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/angular/employee-search-filtering-ui.png)
+
+Each filter field has an autocomplete dropdown populated by a live API query. The same `getAllPaged()` endpoint used for the table also powers the suggestions:
+
+### Setting Up Autocomplete Observables
+
+```typescript
+setupAutocomplete(): void {
+  this.filteredLastNames$ = this.searchForm.get('LastName')!.valueChanges.pipe(
+    startWith(''),
+    debounceTime(300),         // shorter debounce than auto-submit
+    distinctUntilChanged(),
+    switchMap(value => this.getAutocompleteOptions('LastName', value))
+  );
+
+  // Same pattern for FirstName, Email, EmployeeNumber, PositionTitle...
+}
+```
+
+**`debounceTime(300)`** — 300ms for autocomplete (faster feedback) vs 500ms for auto-submit (avoid excessive table reloads).
+
+**`switchMap`** — cancels the previous API request if the user keeps typing. Without `switchMap`, fast typists would see stale suggestions from earlier requests arriving after newer ones.
+
+### Fetching Suggestions
+
+```typescript
+getAutocompleteOptions(
+  field: string,
+  value: string
+): Observable<string[]> {
+  if (!value || value.length < 2) {
+    return of([]);   // minimum 2 characters before querying
+  }
+
+  const params: any = {
+    PageNumber: 1,
+    PageSize: 10,
+    [field]: value,   // dynamic field name as computed property key
+  };
+
+  return this.employeeService.getAllPaged(params).pipe(
+    map(response => {
+      const fieldMap: { [key: string]: (emp: Employee) => string } = {
+        'EmployeeNumber': emp => emp.employeeNumber,
+        'FirstName':      emp => emp.firstName,
+        'LastName':       emp => emp.lastName,
+        'Email':          emp => emp.email,
+        'PositionTitle':  emp => emp.positionTitle || '',
+      };
+
+      return response.value
+        .map(emp => fieldMap[field](emp))
+        .filter((v, i, arr) => v && arr.indexOf(v) === i);  // unique, non-empty
+    }),
+    catchError(() => of([]))
+  );
+}
+```
+
+**`value.length < 2`** — requires at least 2 characters. Autocomplete on 0 or 1 characters returns too many results to be useful and puts unnecessary load on the API.
+
+**`[field]: value`** — computed property key syntax sends `{ LastName: "sm" }` to the API. The same endpoint that filters the table filters the autocomplete suggestions.
+
+**Unique values** — `.filter((v, i, arr) => v && arr.indexOf(v) === i)` removes duplicates. Multiple employees can share the same last name; autocomplete should show each unique value once.
+
+### The Autocomplete Template
+
+```html
+<mat-form-field appearance="outline">
+  <mat-label>Last Name</mat-label>
+  <input matInput
+    formControlName="LastName"
+    [matAutocomplete]="autoLastName" />
+  <mat-autocomplete #autoLastName="matAutocomplete">
+    <mat-option
+      *ngFor="let option of filteredLastNames$ | async"
+      [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+```
+
+The `| async` pipe subscribes to `filteredLastNames$` and unsubscribes automatically when the template is destroyed — no manual subscription management needed.
+
+---
+
+## ⏳ Loading State and Empty State
+
+### Loading Spinner
+
+A `mat-spinner` covers the table area while data is fetching:
+
+```html
+<div class="table-container">
+  <div *ngIf="loading" class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <table mat-table [dataSource]="employees" *ngIf="!loading">
+    <!-- columns... -->
+  </table>
+</div>
+```
+
+The `*ngIf="!loading"` on the `<table>` ensures the table only renders once data is available, avoiding a flash of an empty table.
+
+### Empty State Row
+
+When the API returns zero results, the table shows a helpful message:
+
+```html
+<tr class="mat-row" *ngIf="employees.length === 0">
+  <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+    <div class="no-data">
+      <mat-icon>info</mat-icon>
+      <p>No employees found</p>
+    </div>
+  </td>
+</tr>
+```
+
+`[attr.colspan]="displayedColumns.length"` spans all columns dynamically — if you add or remove a column, the empty row spans correctly without touching the template.
+
+---
+
+## 🔒 Role-Based Action Buttons
+
+Each action button uses `*appHasRole` to conditionally render based on the current user's roles:
+
+```html
+<!-- View: all users see this -->
+<button mat-icon-button color="primary"
+  (click)="viewEmployee(employee)"
+  matTooltip="View Details">
+  <mat-icon>visibility</mat-icon>
+</button>
+
+<!-- Edit: HRAdmin and Manager only -->
+<button mat-icon-button color="accent"
+  (click)="editEmployee(employee)"
+  *appHasRole="['HRAdmin', 'Manager']"
+  matTooltip="Edit Employee">
+  <mat-icon>edit</mat-icon>
+</button>
+
+<!-- Delete: HRAdmin only -->
+<button mat-icon-button color="warn"
+  (click)="deleteEmployee(employee)"
+  *appHasRole="['HRAdmin']"
+  matTooltip="Delete Employee">
+  <mat-icon>delete</mat-icon>
+</button>
+```
+
+`*appHasRole` is a structural directive — it removes the element from the DOM entirely if the role check fails. An Employee user sees only the View button. A Manager sees View and Edit. An HRAdmin sees all three.
+
+The same check applies to the **Add Employee** button in the card header:
+
+```html
+<button mat-raised-button color="primary"
+  (click)="createEmployee()"
+  *appHasRole="['HRAdmin', 'Manager']">
+  <mat-icon>add</mat-icon>
+  Add Employee
+</button>
+```
+
+---
+
+## 🧩 Putting It All Together: Component Initialization
+
+```typescript
+ngOnInit(): void {
+  this.initSearchForm();    // 1. Build the FormGroup
+  this.setupAutocomplete(); // 2. Wire autocomplete observables to form fields
+  this.setupAutoSubmit();   // 3. Subscribe to form changes → reload table
+  this.loadEmployees();     // 4. Initial load on page open
+}
+```
+
+The order matters: autocomplete setup must come after `initSearchForm()` (observables subscribe to the form controls). Auto-submit setup after that (subscribes to `valueChanges`). The initial load happens last.
+
+### Cleanup with OnDestroy
+
+```typescript
+private destroy$ = new Subject<void>();
+
+ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
+```
+
+The `takeUntil(this.destroy$)` in `setupAutoSubmit()` uses this subject to unsubscribe cleanly when Angular destroys the component. Without this, the subscription would fire after navigation away from the employee list — causing API calls from a dead component.
+
+---
+
+## 🎯 Key Design Decisions
+
+**Server-side pagination over client-side** — loading all 1,000+ employees to paginate in the browser defeats the purpose of pagination. Every page turn is a new API request returning only 10 (or 25, or 50) records.
+
+**Auto-submit over a Search button** — users expect filtering to be instant. A debounced `valueChanges` subscription gives the "search as you type" experience without flooding the API.
+
+**Reset to page 1 on filter change** — if you're on page 3 filtering by "Smith" and you add a second filter, there may not be a page 3 in the new results. Always resetting to page 1 prevents the paginator from showing a page that doesn't exist.
+
+**`switchMap` for autocomplete** — cancels in-flight requests when the user keeps typing. Prevents stale suggestions from earlier (slower) requests appearing after newer (faster) ones.
+
+**`*appHasRole` removes from DOM** — unlike `[hidden]` or `[style.display]`, the structural directive removes the element entirely. An Employee user cannot inspect the DOM and find a hidden Delete button.
+
+**Modular imports** — each Material module is explicitly imported in the `imports` array of the standalone component: `MatTableModule`, `MatPaginatorModule`, `MatFormFieldModule`, `MatAutocompleteModule`, etc. Tree-shaking ensures only the modules actually used are included in the bundle.
+
+---
+
+## 📖 Series Navigation
+
+**AngularNetTutorial Blog Series:**
+
+* [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56) — Main tutorial
+* [Stop Juggling Multiple Repos: Manage Your Full-Stack App Like a Workspace](#) — Git Submodules
+* [End-to-End Testing Made Simple: How Playwright Transforms Testing](#) — Playwright Overview
+* [Why Your Angular App Needs PKCE: OAuth 2.0 Explained with a Working Demo](#) — OAuth 2.0 PKCE Flow
+* [Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes](#) — Route Guards
+* [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
+* [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
+* [How to Structure a .NET 10 API So It Doesn't Become a Mess](#) — Clean Architecture
+* [How Your .NET API Knows to Trust Angular: JWT Validation Explained](#) — JWT Validation
+* [Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients](#) — API Versioning
+* [Test Your Secured .NET API Without Writing a Single Line of Frontend Code](#) — Swagger with JWT
+* **Build a Production-Ready Data Table in Angular Material** — This article
+* *Reactive Forms Done Right: Validation Patterns Every Angular Developer Should Know* — Coming next
+
+---
+
+**📌 Tags:** #angular #angularmaterial #mattable #datatable #pagination #rxjs #reactiveforms #autocomplete #typescript #fullstack #dotnet #materialdesign #frontend #spa #webdevelopment
