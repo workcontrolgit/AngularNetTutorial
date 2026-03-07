@@ -51,10 +51,11 @@
   - **File:** `blogs/series-1-authentication/angular-route-guards-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 1.3 — HTTP Interceptor**
+- [~] **Article 1.3 — HTTP Interceptor**
   - **Title:** Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained
   - **Subtitle:** How One File Automatically Secures Every API Request in Your Angular App
   - **File:** `blogs/series-1-authentication/angular-http-interceptor-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 1.4 — Role-Based UI**
   - **Title:** Show the Right Buttons to the Right People: Role-Based UI in Angular
@@ -153,8 +154,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 4
-**Not started:** 14
+**Draft ready:** 5
+**Not started:** 13
 
 ---
 
