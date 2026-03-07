@@ -506,7 +506,7 @@ If step 11 fails → `403 Forbidden`
 * [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
 * [How to Structure a .NET 10 API So It Doesn't Become a Mess](#) — Clean Architecture
 * **How Your .NET API Knows to Trust Angular** — This article
-* *Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients* — Coming next
+* [Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients](#) — API Versioning
 
 ---
 

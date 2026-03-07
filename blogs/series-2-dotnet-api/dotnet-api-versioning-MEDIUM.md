@@ -1,0 +1,410 @@
+# Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients
+
+## Why `/api/v1/` Matters and How to Implement Versioning the Right Way
+
+You ship a REST API. Angular consumes it. Six months later, a requirement changes — the response shape needs to be different, a field needs to be renamed, or a breaking change is unavoidable. Without versioning, you have two choices: break existing clients, or never evolve the API. Neither is acceptable.
+
+API versioning solves this by letting multiple versions coexist at the same URL prefix. Clients opt in to the new version when they're ready. Old clients keep working unchanged.
+
+This article walks through the exact versioning setup in the **TalentManagement API** — how the route templates, version readers, Swagger integration, and Angular client URL all fit together.
+
+![Swagger API Endpoints](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/webapi/swagger-departments-resource-expanded.png)
+
+---
+
+## 📚 What You'll Learn
+
+* Why URL-based versioning (`/api/v1/`, `/api/v2/`) is the most practical approach
+* How `Asp.Versioning.Mvc` wires versioning into ASP.NET Core
+* The route template `api/v{version:apiVersion}/[controller]` and what each part means
+* Three ways clients can specify a version: URL segment, header, media type
+* How `AssumeDefaultVersionWhenUnspecified` keeps old clients working
+* How `ReportApiVersions` signals available versions to clients
+* How Angular's `environment.ts` locks to a specific API version
+* What adding a v2 endpoint alongside v1 looks like in practice
+
+---
+
+## 🎯 Why Version the URL?
+
+There are three common strategies for API versioning:
+
+**URL segment versioning** — `/api/v1/employees`, `/api/v2/employees`
+* Explicit and visible in every request
+* Easy to test in a browser or with curl
+* Works with every HTTP client — no special headers required
+
+**Header versioning** — `x-api-version: 2`
+* Keeps URLs clean
+* Less discoverable — clients need documentation to know it exists
+
+**Media type versioning** — `Accept: application/json;version=2`
+* Fully REST-compliant (the version is part of the resource representation)
+* Complicated to implement and test
+
+The TalentManagement API supports **all three simultaneously** — but the primary and most practical method is URL segments. Angular's `environment.ts` bakes in `/api/v1/` directly:
+
+```typescript
+export const environment = {
+  apiUrl: 'https://localhost:44378/api/v1',
+  // ...
+};
+```
+
+Every Angular service call goes to `/api/v1/employees`, `/api/v1/positions`, etc. When a v2 is introduced, Angular updates `apiUrl` to `/api/v2/` when it's ready — existing v1 clients are untouched.
+
+---
+
+## 📦 The Package: Asp.Versioning.Mvc
+
+The API uses the official Microsoft API versioning library:
+
+```xml
+<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.1" />
+```
+
+`Asp.Versioning.Mvc.ApiExplorer` bundles two things:
+
+* **`Asp.Versioning.Mvc`** — the core versioning middleware (route constraints, version readers, `[ApiVersion]` attribute)
+* **`Asp.Versioning.Mvc.ApiExplorer`** — Swagger/OpenAPI integration (groups endpoints by version, substitutes `{version}` in route templates)
+
+---
+
+## ⚙️ Registration: AddApiVersioning and AddApiExplorer
+
+Versioning is configured in `ServiceExtensions.cs` via two extension methods, both called from `Program.cs`:
+
+```csharp
+// Program.cs
+builder.Services.AddApiVersioningExtension();
+builder.Services.AddMvcCore().AddApiExplorer();
+builder.Services.AddVersionedApiExplorerExtension();
+```
+
+### AddApiVersioningExtension — Core Setup
+
+```csharp
+public static void AddApiVersioningExtension(
+    this IServiceCollection services)
+{
+    services.AddApiVersioning(config =>
+    {
+        config.DefaultApiVersion = new ApiVersion(1, 0);
+        config.AssumeDefaultVersionWhenUnspecified = true;
+        config.ReportApiVersions = true;
+    });
+}
+```
+
+**`DefaultApiVersion = new ApiVersion(1, 0)`**
+Sets the fallback version when no version is specified. A request to `/api/employees` (without a version segment) is treated as `/api/v1/employees`.
+
+**`AssumeDefaultVersionWhenUnspecified = true`**
+The backward-compatibility switch. Any client that doesn't send a version — old Angular code, curl scripts, health checks — gets routed to v1 automatically instead of receiving a `400 Bad Request`.
+
+**`ReportApiVersions = true`**
+Adds a response header to every API response listing the available versions:
+
+```
+api-supported-versions: 1.0
+```
+
+Clients can inspect this header to discover what versions exist without reading documentation.
+
+### AddVersionedApiExplorerExtension — Swagger Integration
+
+```csharp
+public static void AddVersionedApiExplorerExtension(
+    this IServiceCollection services)
+{
+    var apiVersioningBuilder = services.AddApiVersioning(options =>
+    {
+        options.ReportApiVersions = true;
+        options.DefaultApiVersion = new ApiVersion(1, 0);
+        options.AssumeDefaultVersionWhenUnspecified = true;
+        options.ApiVersionReader = ApiVersionReader.Combine(
+            new UrlSegmentApiVersionReader(),
+            new HeaderApiVersionReader("x-api-version"),
+            new MediaTypeApiVersionReader("x-api-version"));
+    });
+
+    apiVersioningBuilder.AddApiExplorer(options =>
+    {
+        options.GroupNameFormat = "'v'VVV";
+        options.SubstituteApiVersionInUrl = true;
+    });
+}
+```
+
+**`ApiVersionReader.Combine(...)`** — Three ways to pass the version:
+
+```
+# 1. URL segment (primary — most common)
+GET /api/v1/employees
+
+# 2. Custom header
+GET /api/employees
+x-api-version: 1
+
+# 3. Media type parameter
+GET /api/employees
+Accept: application/json;x-api-version=1
+```
+
+The first reader that finds a version wins. If no reader finds one, `AssumeDefaultVersionWhenUnspecified` kicks in.
+
+**`GroupNameFormat = "'v'VVV"`** — How Swagger groups endpoints. `VVV` is a format specifier that produces `v1`, `v2`, etc. This creates a separate Swagger document per API version.
+
+**`SubstituteApiVersionInUrl = true`** — Replaces `{version}` in route templates with the actual version number in Swagger UI. Without this, the Swagger UI shows literal `{version}` in every URL instead of `1`.
+
+---
+
+## 🏗️ The Route Template: api/v{version:apiVersion}/[controller]
+
+The version is embedded directly in every URL via the route template defined on `BaseApiController`:
+
+```csharp
+[ApiController]
+[Route("api/v{version:apiVersion}/[controller]")]
+public abstract class BaseApiController : ControllerBase
+{
+    private IMediator _mediator;
+    protected IMediator Mediator =>
+        _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+}
+```
+
+Breaking down `api/v{version:apiVersion}/[controller]`:
+
+```
+api/                    — literal prefix
+v                       — literal "v" character
+{version:apiVersion}    — route parameter constrained to a valid API version
+/                       — separator
+[controller]            — replaced at runtime with the controller name (minus "Controller")
+```
+
+`EmployeesController` → `/api/v1/employees`
+`DepartmentsController` → `/api/v1/departments`
+`PositionsController` → `/api/v1/positions`
+
+The `:apiVersion` constraint is registered by `AddApiVersioning()`. It validates that the value in the `{version}` segment is a known version — requests to `/api/v99/employees` return `400 Bad Request` if v99 isn't registered.
+
+---
+
+## 🏷️ The [ApiVersion] Attribute
+
+Every controller declares which version(s) it handles with `[ApiVersion]`:
+
+```csharp
+[ApiVersion("1.0")]
+public class EmployeesController : BaseApiController
+{
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> Get([FromQuery] GetEmployeesQuery filter)
+        => Ok(await Mediator.Send(filter));
+
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Post(CreateEmployeeCommand command) { ... }
+
+    [HttpDelete("{id}")]
+    [Authorize(Policy = AuthorizationConsts.AdminPolicy)]
+    public async Task<IActionResult> Delete(Guid id) { ... }
+}
+```
+
+All controllers in the `/Controllers/v1/` folder declare `[ApiVersion("1.0")]`:
+
+```
+Controllers/
+├── BaseApiController.cs          — [Route("api/v{version:apiVersion}/[controller]")]
+└── v1/
+    ├── EmployeesController.cs    — [ApiVersion("1.0")]
+    ├── DepartmentsController.cs  — [ApiVersion("1.0")]
+    ├── PositionsController.cs    — [ApiVersion("1.0")]
+    ├── SalaryRangesController.cs — [ApiVersion("1.0")]
+    ├── DashboardController.cs    — [ApiVersion("1.0")]
+    └── CacheController.cs        — [ApiVersion("1.0")]
+```
+
+Some controllers override the base route when the controller name doesn't match the desired URL segment:
+
+```csharp
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/dashboard")]  // ← explicit route
+public sealed class DashboardController : BaseApiController
+{
+    [HttpGet("metrics")]
+    public async Task<IActionResult> GetMetrics()
+        => Ok(await Mediator.Send(new GetDashboardMetricsQuery()));
+}
+```
+
+Without the explicit `[Route]`, the base class template would generate `/api/v1/dashboard` anyway (since the controller name is `Dashboard`), but the explicit declaration makes the intent unmistakable.
+
+---
+
+## 🔄 How Angular Stays in Sync
+
+Angular's `BaseApiService` never constructs API URLs manually — it reads `apiUrl` from the environment:
+
+```typescript
+export abstract class BaseApiService<T> {
+    protected apiUrl = environment.apiUrl;  // "https://localhost:44378/api/v1"
+
+    getAll(params?: QueryParams): Observable<T[]> {
+        return this.http.get<PagedResponse<T>>(
+            `${this.apiUrl}/${this.endpoint}`
+        );
+    }
+}
+```
+
+`EmployeeService` only specifies the resource name:
+
+```typescript
+@Injectable({ providedIn: 'root' })
+export class EmployeeService extends BaseApiService<Employee> {
+    protected readonly endpoint = 'employees';
+}
+```
+
+This produces: `https://localhost:44378/api/v1/employees`
+
+**The version is isolated to one place** — `environment.ts`. When v2 is ready, a single line changes:
+
+```typescript
+// Before
+apiUrl: 'https://localhost:44378/api/v1',
+
+// After (once v2 is ready)
+apiUrl: 'https://localhost:44378/api/v2',
+```
+
+No individual service files change. No HTTP calls need to be hunted down.
+
+---
+
+## 🚀 What Adding a v2 Endpoint Looks Like
+
+When a breaking change is unavoidable, v2 is added **alongside** v1 — existing clients are untouched.
+
+### Step 1: Create a v2 controller
+
+```csharp
+// Controllers/v2/EmployeesController.cs
+namespace TalentManagementAPI.WebApi.Controllers.v2
+{
+    [ApiVersion("2.0")]
+    public class EmployeesController : BaseApiController
+    {
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Get([FromQuery] GetEmployeesV2Query filter)
+            => Ok(await Mediator.Send(filter));
+
+        // POST, PUT, DELETE remain same as v1 — not every endpoint needs a v2
+    }
+}
+```
+
+### Step 2: Register the version
+
+The new controller just needs `[ApiVersion("2.0")]`. The route template `api/v{version:apiVersion}/[controller]` already handles `/api/v2/employees` — no route changes needed.
+
+### Step 3: Deprecate v1 when ready
+
+```csharp
+[ApiVersion("1.0", Deprecated = true)]  // still works, but signals clients to migrate
+[ApiVersion("2.0")]
+public class EmployeesController : BaseApiController { ... }
+```
+
+The `api-supported-versions` header now shows both:
+
+```
+api-supported-versions: 1.0, 2.0
+api-deprecated-versions: 1.0
+```
+
+Angular updates its `environment.ts` to `/api/v2` when ready. Old client deployments still on v1 continue working until the deprecation window closes.
+
+---
+
+## 🔍 Verifying Versioning Works
+
+**With curl — URL segment:**
+
+```bash
+# v1 explicitly
+curl https://localhost:44378/api/v1/employees
+
+# Default version (no segment — gets v1 due to AssumeDefaultVersionWhenUnspecified)
+curl https://localhost:44378/api/employees
+
+# Unknown version — returns 400
+curl https://localhost:44378/api/v99/employees
+```
+
+**With curl — header:**
+
+```bash
+curl https://localhost:44378/api/employees \
+  -H "x-api-version: 1"
+```
+
+**Inspect the response headers:**
+
+```bash
+curl -I https://localhost:44378/api/v1/employees
+
+# Response includes:
+# api-supported-versions: 1.0
+```
+
+**In Swagger UI:**
+
+The `GroupNameFormat = "'v'VVV"` setting creates a version dropdown in the Swagger UI. Each version gets its own Swagger document with fully substituted URLs (no `{version}` placeholder).
+
+---
+
+## 🎯 Key Design Decisions
+
+**Version in the URL, not just headers**
+URL-based versioning is visible in browser history, server logs, and analytics. Debugging a 401 error is easier when the URL shows `/api/v1/employees` rather than `/api/employees` with a hidden version header.
+
+**`AssumeDefaultVersionWhenUnspecified = true`**
+Existing Angular code that predates versioning doesn't break. Health checks, monitoring tools, and integration tests that don't pass a version number all land on v1.
+
+**`ReportApiVersions = true`**
+Every response advertises available versions. Angular code could theoretically inspect this header to detect when a new version is available — useful for proactive migration notifications.
+
+**Version isolated in `environment.ts`**
+The Angular `BaseApiService` bakes the version into the base URL. Updating to v2 is a one-line config change, not a codebase-wide refactor.
+
+**Folder convention mirrors the version**
+All v1 controllers live in `/Controllers/v1/`. When v2 is added, a `/Controllers/v2/` folder appears. The folder structure tells you which version a controller belongs to at a glance — before reading a single attribute.
+
+---
+
+## 📖 Series Navigation
+
+**AngularNetTutorial Blog Series:**
+
+* [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56) — Main tutorial
+* [Stop Juggling Multiple Repos: Manage Your Full-Stack App Like a Workspace](#) — Git Submodules
+* [End-to-End Testing Made Simple: How Playwright Transforms Testing](#) — Playwright Overview
+* [Why Your Angular App Needs PKCE: OAuth 2.0 Explained with a Working Demo](#) — OAuth 2.0 PKCE Flow
+* [Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes](#) — Route Guards
+* [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
+* [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
+* [How to Structure a .NET 10 API So It Doesn't Become a Mess](#) — Clean Architecture
+* [How Your .NET API Knows to Trust Angular: JWT Validation Explained](#) — JWT Validation
+* **Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients** — This article
+* *Test Your Secured .NET API Without Writing a Single Line of Frontend Code* — Coming next
+
+---
+
+**📌 Tags:** #dotnet #aspnetcore #webapi #apiversion #versioning #restapi #cleanarchitecture #csharp #fullstack #angular #swagger #openapi #backwardscompatibility #microservices

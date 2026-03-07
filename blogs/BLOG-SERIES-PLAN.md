@@ -79,10 +79,11 @@
   - **File:** `blogs/series-2-dotnet-api/dotnet-jwt-validation-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 2.3 — API Versioning**
+- [~] **Article 2.3 — API Versioning**
   - **Title:** Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients
   - **Subtitle:** Why `/api/v1/` Matters and How to Implement Versioning the Right Way
   - **File:** `blogs/series-2-dotnet-api/dotnet-api-versioning-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 2.4 — Swagger with JWT**
   - **Title:** Test Your Secured .NET API Without Writing a Single Line of Frontend Code
@@ -157,8 +158,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 8
-**Not started:** 10
+**Draft ready:** 9
+**Not started:** 9
 
 ---
 
