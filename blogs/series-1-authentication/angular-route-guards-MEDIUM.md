@@ -458,9 +458,34 @@ deleteEmployee(employee: Employee): void {
 
 The user must explicitly click the red **Delete** button in the dialog. Closing the dialog or clicking Cancel aborts the operation.
 
-### Layer 3 — The API Validates the Bearer Token
+### Layer 3 — The API Enforces the HRAdmin Role
 
-Even if someone bypassed the UI entirely and sent a raw HTTP DELETE request, the .NET Web API validates the access token on every request. A DELETE to `/api/v1/Employees/{id}` without a valid Bearer token — or with a token that doesn't include the `write` scope — returns `401 Unauthorized`.
+Even if someone bypassed the UI entirely and sent a raw HTTP DELETE request, the .NET Web API has its own authorization. Every DELETE endpoint is decorated with `[Authorize(Policy = "AdminPolicy")]`:
+
+```csharp
+// TalentManagementAPI.WebApi/Controllers/EmployeesController.cs
+[HttpDelete("{id}")]
+[Authorize(Policy = AuthorizationConsts.AdminPolicy)]
+public async Task<IActionResult> Delete(Guid id)
+{
+    return Ok(await Mediator.Send(new DeleteEmployeeByIdCommand { Id = id }));
+}
+```
+
+`AdminPolicy` is configured in `Program.cs` to require the `HRAdmin` role from the JWT token claims:
+
+```csharp
+// Program.cs
+options.AddPolicy(AuthorizationConsts.AdminPolicy, policy =>
+    policy.RequireRole(adminRole));   // adminRole = "HRAdmin" from appsettings.json
+```
+
+The role value comes from the identity token claims issued by IdentityServer — the same `role` claim that Angular reads to show/hide buttons. The API and Angular share the same source of truth.
+
+**What the API returns if authorization fails:**
+
+* No token at all → `401 Unauthorized`
+* Valid token but wrong role (Employee or Manager) → `403 Forbidden`
 
 **The complete picture for Delete:**
 
@@ -481,10 +506,16 @@ Employee user                        Manager user                       HRAdmin 
                                                               DELETE /api/v1/Employees/{id}
                                                               Authorization: Bearer <token>
                                                                               │
-                                                                   API validates token
-                                                                   checks write scope
+                                                                   API validates JWT
+                                                                   checks HRAdmin role claim
                                                                               │
                                                                          200 OK
+
+  [bypasses UI, sends raw DELETE]   [bypasses UI, sends raw DELETE]
+  with Employee token               with Manager token
+      │                                    │
+  API: 403 Forbidden               API: 403 Forbidden
+  (authenticated, wrong role)      (authenticated, wrong role)
 ```
 
 **The design principle:** Route guards protect page navigation. Structural directives protect in-page actions. The API protects the data itself. All three are needed — none alone is sufficient.
