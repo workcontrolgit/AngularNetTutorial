@@ -57,10 +57,11 @@
   - **File:** `blogs/series-1-authentication/angular-http-interceptor-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 1.4 — Role-Based UI**
+- [~] **Article 1.4 — Role-Based UI**
   - **Title:** Show the Right Buttons to the Right People: Role-Based UI in Angular
-  - **Subtitle:** Using ngx-permissions to Hide and Show UI Elements Based on Employee, Manager, and HRAdmin Roles
+  - **Subtitle:** How *appHasRole and ngx-permissions Control What Each User Sees — Without Cluttering Your Components
   - **File:** `blogs/series-1-authentication/angular-role-based-ui-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 ---
 
@@ -154,8 +155,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 5
-**Not started:** 13
+**Draft ready:** 6
+**Not started:** 12
 
 ---
 
