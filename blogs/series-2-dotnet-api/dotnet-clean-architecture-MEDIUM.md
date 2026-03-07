@@ -1,0 +1,877 @@
+# How to Structure a .NET 10 API So It Doesn't Become a Mess
+
+## A Walking Tour of Clean Architecture: Domain, Application, Infrastructure, and WebApi Layers
+
+Every .NET API project starts the same way — clean, organized, full of good intentions. Six months later, controllers are calling `DbContext` directly, validation logic is scattered everywhere, and nobody wants to touch the codebase for fear of breaking something invisible.
+
+Clean Architecture solves this by enforcing strict rules about which layer can talk to which. This article walks through the exact structure used in the **TalentManagement API** — a real, production-style .NET 10 Web API from the AngularNetTutorial series. You'll see every layer, every pattern, and exactly why each decision was made.
+
+![Swagger API Endpoints](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/webapi/swagger-api-endpoints.png)
+
+---
+
+## 📚 What You'll Learn
+
+* Why Clean Architecture prevents the "big ball of mud" problem
+* The four-layer structure: Domain, Application, Infrastructure, and WebApi
+* How CQRS and MediatR keep command logic separate from query logic
+* How the Repository and Specification patterns eliminate raw LINQ in handlers
+* How FluentValidation, Value Objects, and Domain Events fit into the picture
+* The complete dependency flow — and why it only points one direction
+
+---
+
+## 🎯 What Is Clean Architecture?
+
+Clean Architecture (introduced by Robert C. Martin) organizes code into concentric circles. The key rule: **dependencies only point inward**. Outer layers depend on inner layers — never the reverse.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    WebApi (Presentation)                 │
+│    Controllers, Middleware, Swagger, Program.cs          │
+│ ┌───────────────────────────────────────────────────┐   │
+│ │              Infrastructure                        │   │
+│ │   EF Core DbContext, Repositories, Email, Cache   │   │
+│ │ ┌─────────────────────────────────────────────┐   │   │
+│ │ │             Application                      │   │   │
+│ │ │  Commands, Queries, Validators, Mappings    │   │   │
+│ │ │ ┌───────────────────────────────────────┐   │   │   │
+│ │ │ │            Domain                     │   │   │   │
+│ │ │ │  Entities, Value Objects, Interfaces  │   │   │   │
+│ │ │ └───────────────────────────────────────┘   │   │   │
+│ │ └─────────────────────────────────────────────┘   │   │
+│ └───────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+
+Dependency rule: arrows point INWARD only
+Domain knows nothing about Application, Infrastructure, or WebApi
+```
+
+**What this buys you:**
+
+* Swap SQL Server for PostgreSQL without touching a single handler
+* Add new features without fear of breaking unrelated code
+* Test business logic in isolation without a running database
+
+The TalentManagement API has six projects mapping cleanly to this structure:
+
+```
+TalentManagementAPI/
+├── src/
+│   ├── Core/
+│   │   ├── TalentManagementAPI.Domain
+│   │   └── TalentManagementAPI.Application
+│   ├── Infrastructure/
+│   │   ├── TalentManagementAPI.Infrastructure.Persistence
+│   │   └── TalentManagementAPI.Infrastructure.Shared
+│   └── Presentation/
+│       └── TalentManagementAPI.WebApi
+└── tests/
+    ├── TalentManagementAPI.Application.Tests
+    ├── TalentManagementAPI.Infrastructure.Tests
+    └── TalentManagementAPI.WebApi.Tests
+```
+
+---
+
+## 🧩 Layer 1: Domain — The Heart of the System
+
+The Domain layer is the innermost ring. It has **zero dependencies on any NuGet package** (except the .NET base class library). No EF Core. No MediatR. No HTTP.
+
+This layer answers one question: **what is the business?**
+
+### Base Entities
+
+Every entity in the system inherits from `BaseEntity`, which provides a `Guid` primary key:
+
+```csharp
+public abstract class BaseEntity
+{
+    public virtual Guid Id { get; set; }
+}
+```
+
+Entities that need audit tracking inherit from `AuditableBaseEntity`:
+
+```csharp
+public abstract class AuditableBaseEntity : BaseEntity
+{
+    public string CreatedBy { get; set; }
+    public DateTime Created { get; set; }
+    public string LastModifiedBy { get; set; }
+    public DateTime? LastModified { get; set; }
+}
+```
+
+The timestamps are populated automatically by `ApplicationDbContext.SaveChanges()` — more on that in the Infrastructure section.
+
+### The Employee Entity
+
+`Employee` is the main aggregate. Notice it doesn't hold `FirstName` and `LastName` as plain strings — it uses a **Value Object**:
+
+```csharp
+public class Employee : AuditableBaseEntity
+{
+    public PersonName Name { get; set; }  // Value Object
+
+    [NotMapped]
+    public string FirstName => Name?.FirstName;
+
+    [NotMapped]
+    public string FullName => Name?.FullName;
+
+    public Guid PositionId { get; set; }
+    public virtual Position Position { get; set; }
+
+    public Guid DepartmentId { get; set; }
+    public virtual Department Department { get; set; }
+
+    public decimal Salary { get; set; }
+    public DateTime Birthday { get; set; }
+    public string Email { get; set; }
+    public Gender Gender { get; set; }
+    public string EmployeeNumber { get; set; }
+    public string Prefix { get; set; }
+    public string Phone { get; set; }
+}
+```
+
+### Value Objects: Domain Integrity Built In
+
+A Value Object enforces business rules at construction time. You **cannot create an invalid `PersonName`** — the constructor throws if the rules are violated:
+
+```csharp
+public sealed class PersonName
+{
+    public string FirstName { get; private set; }
+    public string MiddleName { get; private set; }
+    public string LastName { get; private set; }
+
+    public PersonName(string firstName, string middleName, string lastName)
+    {
+        FirstName = Normalize(firstName);
+        LastName = Normalize(lastName);
+        MiddleName = string.IsNullOrWhiteSpace(middleName)
+            ? null
+            : Normalize(middleName);
+
+        if (FirstName.Length == 0 || LastName.Length == 0)
+            throw new ArgumentException("First and last name are required.");
+    }
+
+    public string FullName =>
+        string.IsNullOrWhiteSpace(MiddleName)
+            ? $"{FirstName} {LastName}"
+            : $"{FirstName} {MiddleName} {LastName}";
+
+    private static string Normalize(string value) =>
+        string.Join(' ',
+            (value ?? "").Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries));
+}
+```
+
+**Why this matters:** validation lives in the domain, not scattered across controllers or services. Any code that creates an `Employee` must produce a valid `PersonName` — the compiler and runtime enforce it.
+
+The Domain layer also defines **interfaces** that the Application layer uses as abstractions over the database:
+
+```
+Domain/
+├── Common/
+│   ├── BaseEntity.cs
+│   └── AuditableBaseEntity.cs
+├── Entities/
+│   ├── Employee.cs
+│   ├── Position.cs
+│   ├── Department.cs
+│   └── SalaryRange.cs
+├── ValueObjects/
+│   ├── PersonName.cs
+│   ├── PositionTitle.cs
+│   └── DepartmentName.cs
+└── Enums/
+    └── Gender.cs
+```
+
+---
+
+## ⚙️ Layer 2: Application — Orchestrating Business Logic
+
+The Application layer is where **use cases live**. It knows about the Domain (inner layer) but nothing about EF Core, SQL Server, or HTTP.
+
+This layer uses **CQRS** (Command Query Responsibility Segregation) with **MediatR**. Every operation is either:
+
+* A **Command** — changes state (Create, Update, Delete)
+* A **Query** — reads state (Get, GetById, GetAll)
+
+```
+Application/
+├── Features/
+│   ├── Employees/
+│   │   ├── Commands/
+│   │   │   ├── CreateEmployee/
+│   │   │   │   ├── CreateEmployeeCommand.cs
+│   │   │   │   └── CreateEmployeeCommandValidator.cs
+│   │   │   ├── UpdateEmployee/
+│   │   │   └── DeleteEmployeeById/
+│   │   └── Queries/
+│   │       ├── GetEmployees/
+│   │       └── GetEmployeeById/
+│   ├── Departments/
+│   ├── Positions/
+│   └── SalaryRanges/
+├── Interfaces/
+│   └── Repositories/
+│       └── IEmployeeRepositoryAsync.cs
+├── Specifications/
+│   └── Employees/
+│       └── EmployeesByFiltersSpecification.cs
+├── Behaviours/
+│   └── ValidationBehavior.cs
+└── Mappings/
+    └── GeneralProfile.cs
+```
+
+### Commands: Create, Update, Delete
+
+Each command is a self-contained unit: the **request**, the **handler**, and the **validator** live in the same folder.
+
+Here's `CreateEmployeeCommand`:
+
+```csharp
+public class CreateEmployeeCommand : IRequest<Result<Guid>>
+{
+    public string FirstName { get; set; }
+    public string MiddleName { get; set; }
+    public string LastName { get; set; }
+    public Guid PositionId { get; set; }
+    public Guid DepartmentId { get; set; }
+    public decimal Salary { get; set; }
+    public DateTime Birthday { get; set; }
+    public string Email { get; set; }
+    public Gender Gender { get; set; }
+    public string EmployeeNumber { get; set; }
+    public string Prefix { get; set; }
+    public string Phone { get; set; }
+
+    public class CreateEmployeeCommandHandler
+        : IRequestHandler<CreateEmployeeCommand, Result<Guid>>
+    {
+        private readonly IEmployeeRepositoryAsync _repository;
+        private readonly IMapper _mapper;
+        private readonly IEventDispatcher _eventDispatcher;
+
+        public CreateEmployeeCommandHandler(
+            IEmployeeRepositoryAsync repository,
+            IMapper mapper,
+            IEventDispatcher eventDispatcher)
+        {
+            _repository = repository;
+            _mapper = mapper;
+            _eventDispatcher = eventDispatcher;
+        }
+
+        public async Task<Result<Guid>> Handle(
+            CreateEmployeeCommand request,
+            CancellationToken cancellationToken)
+        {
+            var employee = _mapper.Map<Employee>(request);
+            await _repository.AddAsync(employee);
+            await _eventDispatcher.PublishAsync(
+                new EmployeeChangedEvent(employee.Id), cancellationToken);
+            return Result<Guid>.Success(employee.Id);
+        }
+    }
+}
+```
+
+Notice what the handler does **not** do:
+
+* No `new SqlConnection(...)` — it uses `IEmployeeRepositoryAsync` (an interface)
+* No `if (firstName == null)` — that's the validator's job
+* No cache manipulation — a domain event handles that
+
+### FluentValidation: Rules Without Noise
+
+Every command has a paired validator that MediatR runs automatically via a pipeline behavior:
+
+```csharp
+public class CreateEmployeeCommandValidator
+    : AbstractValidator<CreateEmployeeCommand>
+{
+    public CreateEmployeeCommandValidator()
+    {
+        RuleFor(e => e.FirstName)
+            .NotEmpty().WithMessage("{PropertyName} is required.")
+            .MaximumLength(100);
+
+        RuleFor(e => e.LastName)
+            .NotEmpty().WithMessage("{PropertyName} is required.")
+            .MaximumLength(100);
+
+        RuleFor(e => e.Email)
+            .NotEmpty()
+            .EmailAddress().WithMessage("{PropertyName} must be a valid email.");
+
+        RuleFor(e => e.EmployeeNumber)
+            .NotEmpty()
+            .MaximumLength(20);
+
+        RuleFor(e => e.PositionId)
+            .NotEmpty();
+
+        RuleFor(e => e.DepartmentId)
+            .NotEmpty();
+
+        RuleFor(e => e.Salary)
+            .GreaterThanOrEqualTo(0);
+
+        RuleFor(e => e.Birthday)
+            .LessThan(DateTime.UtcNow);
+    }
+}
+```
+
+The `ValidationBehavior<TRequest, TResponse>` pipeline behavior intercepts every `Mediator.Send()` call, runs all registered validators for that request type, and throws a `ValidationException` if any rule fails — **before the handler ever runs**.
+
+### Specification Pattern: No Raw LINQ in Handlers
+
+Instead of writing LINQ queries inside handlers (which mixes query logic with business logic), all query logic lives in **Specification** classes using the Ardalis.Specification library:
+
+```csharp
+public class EmployeesByFiltersSpecification : Specification<Employee>
+{
+    public EmployeesByFiltersSpecification(
+        GetEmployeesQuery request, bool applyPaging = true)
+    {
+        // Multi-field filter (OR logic)
+        var hasLastName = !string.IsNullOrWhiteSpace(request.LastName);
+        var hasFirstName = !string.IsNullOrWhiteSpace(request.FirstName);
+        var hasEmail = !string.IsNullOrWhiteSpace(request.Email);
+
+        if (hasLastName || hasFirstName || hasEmail)
+        {
+            var lastName = request.LastName?.ToLower().Trim() ?? "";
+            var firstName = request.FirstName?.ToLower().Trim() ?? "";
+            var email = request.Email?.ToLower().Trim() ?? "";
+
+            Query.Where(e =>
+                (hasLastName && e.Name.LastName.ToLower().Contains(lastName)) ||
+                (hasFirstName && e.Name.FirstName.ToLower().Contains(firstName)) ||
+                (hasEmail && e.Email.ToLower().Contains(email))
+            );
+        }
+
+        // Eager loading
+        Query.Include(e => e.Position);
+
+        // Sorting
+        Query.OrderBy(e => e.Name.LastName);
+
+        // Pagination
+        if (applyPaging && request.PageSize > 0)
+        {
+            Query.Skip((request.PageNumber - 1) * request.PageSize)
+                 .Take(request.PageSize);
+        }
+
+        Query.AsNoTracking().TagWith("GetEmployeesByFilters");
+    }
+}
+```
+
+The handler just passes the specification to the repository — no SQL, no LINQ, no DbContext reference:
+
+```csharp
+var pagedSpec = new EmployeesByFiltersSpecification(request);
+var employees = await _repository.ListAsync(pagedSpec);
+```
+
+### Repository Interfaces
+
+The Application layer defines the contracts. Infrastructure provides the implementations:
+
+```csharp
+public interface IGenericRepositoryAsync<T> where T : class
+{
+    Task<T> GetByIdAsync(Guid id);
+    Task<T> AddAsync(T entity);
+    Task UpdateAsync(T entity);
+    Task DeleteAsync(T entity);
+    Task<IReadOnlyList<T>> ListAsync(ISpecification<T> specification);
+    Task<int> CountAsync(ISpecification<T> specification);
+}
+
+public interface IEmployeeRepositoryAsync
+    : IGenericRepositoryAsync<Employee>
+{
+    Task<(IEnumerable<Entity> data, RecordsCount recordsCount)>
+        GetEmployeeResponseAsync(GetEmployeesQuery requestParameters);
+}
+```
+
+### Domain Events: Decoupled Side Effects
+
+After an employee is created or updated, a **domain event** notifies other parts of the system (such as the cache layer) without the handler needing to know who's listening:
+
+```csharp
+// Sealed record — immutable by design
+public sealed record EmployeeChangedEvent(Guid EmployeeId) : IDomainEvent;
+```
+
+The `EventDispatcher` resolves all registered handlers for the event type and invokes them:
+
+```csharp
+public async Task PublishAsync<TEvent>(TEvent domainEvent, CancellationToken ct = default)
+    where TEvent : IDomainEvent
+{
+    var handlers = _serviceProvider.GetServices<IDomainEventHandler<TEvent>>();
+    foreach (var handler in handlers)
+    {
+        await handler.HandleAsync(domainEvent, ct);
+    }
+}
+```
+
+The `CacheInvalidationEventHandler` listens for `EmployeeChangedEvent` and clears the employee list cache — no direct dependency between the command handler and the cache layer.
+
+### Object Mapping with Mapster
+
+Commands arrive as flat DTOs. The domain uses value objects. **Mapster** bridges the gap:
+
+```csharp
+config.NewConfig<CreateEmployeeCommand, Employee>()
+    .MapWith(src => new Employee
+    {
+        Name = new PersonName(src.FirstName, src.MiddleName, src.LastName),
+        PositionId = src.PositionId,
+        DepartmentId = src.DepartmentId,
+        Salary = src.Salary,
+        // ...
+    });
+
+config.NewConfig<Employee, GetEmployeesViewModel>()
+    .Map(dest => dest.FirstName, src => src.Name.FirstName)
+    .Map(dest => dest.LastName, src => src.Name.LastName);
+```
+
+---
+
+## 🗄️ Layer 3: Infrastructure — Where Data Lives
+
+The Infrastructure layer implements the Application layer's interfaces. It knows about EF Core, SQL Server, and caching — but nothing in the Application or Domain layers references Infrastructure directly.
+
+```
+Infrastructure.Persistence/
+├── Contexts/
+│   └── ApplicationDbContext.cs
+├── Repositories/
+│   ├── GenericRepositoryAsync.cs
+│   └── EmployeeRepositoryAsync.cs
+├── SeedData/
+│   └── DbInitializer.cs
+└── ServiceRegistration.cs
+```
+
+### ApplicationDbContext: Auto Audit Timestamps
+
+The `DbContext` intercepts every `SaveChanges()` call to stamp audit fields automatically — no handler ever has to set `Created` or `LastModified` manually:
+
+```csharp
+public class ApplicationDbContext : DbContext
+{
+    private readonly IDateTimeService _dateTime;
+
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Department> Departments { get; set; }
+    public DbSet<Position> Positions { get; set; }
+    public DbSet<SalaryRange> SalaryRanges { get; set; }
+
+    public override Task<int> SaveChangesAsync(
+        CancellationToken cancellationToken = default)
+    {
+        AssignIds();
+        UpdateAuditFields();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private void AssignIds()
+    {
+        foreach (var entry in ChangeTracker.Entries<BaseEntity>()
+            .Where(e => e.State == EntityState.Added))
+        {
+            if (entry.Entity.Id == Guid.Empty)
+                entry.Entity.Id = Guid.NewGuid();
+        }
+    }
+
+    private void UpdateAuditFields()
+    {
+        foreach (var entry in ChangeTracker.Entries<AuditableBaseEntity>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.Created = _dateTime.NowUtc;
+                    break;
+                case EntityState.Modified:
+                    entry.Entity.LastModified = _dateTime.NowUtc;
+                    break;
+            }
+        }
+    }
+}
+```
+
+**Two small decisions with big impact:**
+
+* `IDateTimeService` instead of `DateTime.UtcNow` — makes unit tests deterministic
+* No-tracking by default (`QueryTrackingBehavior.NoTracking`) — improves read performance
+
+### GenericRepositoryAsync: One Implementation for All Entities
+
+The generic repository handles CRUD for any entity. The Ardalis.Specification `SpecificationEvaluator` translates Specification objects into EF Core LINQ queries:
+
+```csharp
+public class GenericRepositoryAsync<T> : IGenericRepositoryAsync<T>
+    where T : class
+{
+    private readonly ApplicationDbContext _dbContext;
+    private readonly DbSet<T> _dbSet;
+
+    public GenericRepositoryAsync(ApplicationDbContext dbContext)
+    {
+        _dbContext = dbContext;
+        _dbSet = dbContext.Set<T>();
+    }
+
+    public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> specification)
+    {
+        return await SpecificationEvaluator.Default
+            .GetQuery(_dbSet.AsQueryable(), specification)
+            .ToListAsync();
+    }
+
+    public async Task<T> AddAsync(T entity)
+    {
+        await _dbSet.AddAsync(entity);
+        await _dbContext.SaveChangesAsync();
+        return entity;
+    }
+
+    public async Task UpdateAsync(T entity)
+    {
+        _dbContext.Entry(entity).State = EntityState.Modified;
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(T entity)
+    {
+        _dbSet.Remove(entity);
+        await _dbContext.SaveChangesAsync();
+    }
+}
+```
+
+### EmployeeRepositoryAsync: Specialized Queries
+
+`EmployeeRepositoryAsync` extends the generic repository to add employee-specific behavior — data shaping (dynamic field projection):
+
+```csharp
+public class EmployeeRepositoryAsync
+    : GenericRepositoryAsync<Employee>, IEmployeeRepositoryAsync
+{
+    private readonly IDataShapeHelper<Employee> _dataShaper;
+
+    public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)>
+        GetEmployeeResponseAsync(GetEmployeesQuery request)
+    {
+        var recordsTotal = await _repository.CountAsync();
+
+        // Specification without paging (for filtered count)
+        var filteredSpec = new EmployeesByFiltersSpecification(
+            request, applyPaging: false);
+
+        // Specification with paging (for page data)
+        var pagedSpec = new EmployeesByFiltersSpecification(request);
+
+        var recordsFiltered = await CountAsync(filteredSpec);
+        var resultData = await ListAsync(pagedSpec);
+
+        // Dynamic field projection: only return requested fields
+        var shapedData = _dataShaper.ShapeData(
+            resultData, request.Fields);
+
+        return (shapedData, new RecordsCount
+        {
+            RecordsTotal = recordsTotal,
+            RecordsFiltered = recordsFiltered
+        });
+    }
+}
+```
+
+**Data shaping** lets the client request only the fields it needs: `GET /api/v1/employees?fields=firstName,lastName,email`. The `IDataShapeHelper` validates the requested field names against the view model before applying projection — preventing field name fishing attacks.
+
+### ServiceRegistration: Feature-Flagged Database
+
+A standout feature: the database provider is controlled by a **feature flag** in `appsettings.json`. This makes local development and CI testing trivially easy — no SQL Server required:
+
+```csharp
+public static void AddPersistenceInfrastructure(
+    this IServiceCollection services,
+    IConfiguration configuration)
+{
+    var useInMemory = configuration
+        .GetSection("FeatureManagement")
+        .GetValue<bool?>("UseInMemoryDatabase") ?? false;
+
+    if (useInMemory)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseInMemoryDatabase("ApplicationDb"));
+    }
+    else
+    {
+        services.AddDbContextPool<ApplicationDbContext>((provider, options) =>
+            options.UseSqlServer(
+                configuration.GetConnectionString("DefaultConnection"),
+                sql => sql.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(15),
+                    errorNumbersToAdd: null)));
+    }
+
+    // Auto-register all repositories via Scrutor
+    services.Scan(selector => selector
+        .FromAssemblies(Assembly.GetExecutingAssembly())
+        .AddClasses(c => c.AssignableTo(typeof(IGenericRepositoryAsync<>)))
+        .AsImplementedInterfaces()
+        .WithTransientLifetime());
+}
+```
+
+**Scrutor** auto-registers every class that implements `IGenericRepositoryAsync<T>` — adding a new entity requires zero changes to the DI wiring.
+
+---
+
+## 🌐 Layer 4: WebApi — The API Endpoints
+
+The WebApi (Presentation) layer is the entry point for HTTP requests. Controllers are deliberately thin — they delegate immediately to MediatR:
+
+```
+WebApi/
+├── Controllers/
+│   ├── BaseApiController.cs
+│   └── v1/
+│       ├── EmployeesController.cs
+│       ├── DepartmentsController.cs
+│       ├── PositionsController.cs
+│       └── SalaryRangesController.cs
+├── Authorization/
+│   ├── AuthorizationConsts.cs
+│   └── AuthEnabledRequirement.cs
+├── Middlewares/
+│   ├── ErrorHandlingMiddleware.cs
+│   └── RequestTimingMiddleware.cs
+└── Program.cs
+```
+
+### BaseApiController: MediatR Wired In
+
+Every controller inherits from `BaseApiController`, which gives them access to MediatR without constructor injection boilerplate:
+
+```csharp
+[ApiController]
+[Route("api/v{version:apiVersion}/[controller]")]
+public abstract class BaseApiController : ControllerBase
+{
+    private IMediator _mediator;
+
+    protected IMediator Mediator =>
+        _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
+}
+```
+
+### EmployeesController: One Line Per Endpoint
+
+The controller's only job is mapping HTTP verbs to MediatR messages. Notice the entire `Get` action is a single line:
+
+```csharp
+[ApiVersion("1.0")]
+public class EmployeesController : BaseApiController
+{
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> Get([FromQuery] GetEmployeesQuery filter)
+        => Ok(await Mediator.Send(filter));
+
+    [HttpGet("{id}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Get(Guid id)
+        => Ok(await Mediator.Send(new GetEmployeeByIdQuery { Id = id }));
+
+    [HttpPost]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<IActionResult> Post(CreateEmployeeCommand command)
+    {
+        var result = await Mediator.Send(command);
+        return CreatedAtAction(nameof(Get), new { id = result.Value }, result);
+    }
+
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<IActionResult> Put(Guid id, UpdateEmployeeCommand command)
+    {
+        if (id != command.Id) return BadRequest();
+        return Ok(await Mediator.Send(command));
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize(Policy = AuthorizationConsts.AdminPolicy)]
+    public async Task<IActionResult> Delete(Guid id)
+        => Ok(await Mediator.Send(new DeleteEmployeeByIdCommand { Id = id }));
+}
+```
+
+**Authorization at a glance:**
+
+* `[AllowAnonymous]` — GET endpoints are public (read-only data)
+* `[Authorize]` — POST and PUT require a valid Bearer token (any authenticated user)
+* `[Authorize(Policy = "AdminPolicy")]` — DELETE requires the `HRAdmin` role
+
+### Role-Based Authorization: Feature-Flagged
+
+Authorization policies are defined in `Program.cs` and are feature-flagged — set `AuthEnabled: false` in `appsettings.Development.json` to bypass auth entirely during development:
+
+```csharp
+var authEnabled = configuration
+    .GetSection("FeatureManagement")
+    .GetValue<bool>("AuthEnabled");
+
+var adminRole = configuration["ApiRoles:AdminRole"];   // "HRAdmin"
+var managerRole = configuration["ApiRoles:ManagerRole"]; // "Manager"
+
+builder.Services.AddAuthorization(options =>
+{
+    if (authEnabled)
+    {
+        options.AddPolicy("AdminPolicy",
+            policy => policy.RequireRole(adminRole));
+
+        options.AddPolicy("ManagerPolicy",
+            policy => policy.RequireRole(managerRole, adminRole));
+    }
+    else
+    {
+        // Dev mode: all policies pass
+        options.AddPolicy("AdminPolicy",
+            policy => policy.RequireAssertion(_ => true));
+    }
+});
+```
+
+The role names come from `appsettings.json` — changing from `"HRAdmin"` to `"Administrator"` requires a config change, not a code change.
+
+### Program.cs: Wiring the Layers
+
+The entry point calls one extension method per layer:
+
+```csharp
+builder.Services.AddApplicationLayer();              // Commands, queries, validators
+builder.Services.AddPersistenceInfrastructure(cfg);  // EF Core, repositories
+builder.Services.AddSharedInfrastructure(cfg);       // DateTime, email services
+builder.Services.AddEasyCachingInfrastructure(cfg);  // Caching layer
+```
+
+Each layer registers its own dependencies. `Program.cs` doesn't need to know which repositories or handlers exist — the layers self-register via Scrutor scanning.
+
+---
+
+## 🔗 How a Request Flows Through All Four Layers
+
+Following a `POST /api/v1/employees` request end-to-end:
+
+```
+HTTP POST /api/v1/employees
+        │
+        ▼
+[WebApi] EmployeesController.Post()
+   └─► Mediator.Send(CreateEmployeeCommand)
+        │
+        ▼
+[Application] ValidationBehavior (MediatR pipeline)
+   └─► CreateEmployeeCommandValidator — validates fields
+        │
+        ▼
+[Application] CreateEmployeeCommandHandler
+   └─► IMapper.Map<Employee>(command)
+        │  (Mapster creates new Employee with PersonName value object)
+        ▼
+[Application] IEmployeeRepositoryAsync.AddAsync(employee)
+        │
+        ▼
+[Infrastructure] EmployeeRepositoryAsync.AddAsync()
+   └─► DbContext.SaveChangesAsync()
+        │  (auto-assigns Guid, stamps Created timestamp)
+        ▼
+[Infrastructure] SQL INSERT INTO Employees
+        │
+        ▼
+[Application] IEventDispatcher.PublishAsync(EmployeeChangedEvent)
+   └─► CacheInvalidationEventHandler — clears employee cache
+        │
+        ▼
+[WebApi] Returns 201 Created with new employee ID
+```
+
+No layer skips a step. No controller accesses the database directly. No handler knows about HTTP.
+
+---
+
+## ✅ Why This Architecture Pays Off
+
+**Testability** — Application layer handlers can be tested with mock repositories. No test database required for business logic tests.
+
+**Replaceability** — The SQL Server implementation can be swapped for PostgreSQL or Cosmos DB by replacing `Infrastructure.Persistence`. The Application layer is unchanged.
+
+**Feature flags** — `UseInMemoryDatabase` and `AuthEnabled` flags in `appsettings.json` mean developers can run the full API locally with no SQL Server and no IdentityServer.
+
+**Zero-boilerplate DI** — Scrutor auto-registers all repositories. Adding a new entity (`SalaryRange`) requires no changes to `ServiceRegistration.cs`.
+
+**Self-documenting structure** — Finding the "create employee" logic means navigating to `Features/Employees/Commands/CreateEmployee/`. No guessing.
+
+---
+
+## 🔑 Patterns at a Glance
+
+* **Clean Architecture** — Dependency rule: Domain ← Application ← Infrastructure ← WebApi
+* **CQRS** — Commands (write) and Queries (read) in separate classes, separate handlers
+* **MediatR** — Single dispatcher decouples controllers from handlers; pipeline behaviors add cross-cutting concerns
+* **Repository Pattern** — `IGenericRepositoryAsync<T>` abstracts EF Core; Infrastructure layer provides implementations
+* **Specification Pattern** — Ardalis.Specification encapsulates query logic; handlers pass specs, not LINQ
+* **Value Objects** — `PersonName`, `PositionTitle`, `DepartmentName` enforce domain rules at construction
+* **Domain Events** — `EmployeeChangedEvent` decouples cache invalidation from write handlers
+* **FluentValidation** — Command validators run automatically via MediatR pipeline behavior
+* **Mapster** — Lightweight object mapping with explicit profiles for Value Object conversion
+* **Feature Management** — `AuthEnabled` and `UseInMemoryDatabase` flags for environment-specific behavior
+
+---
+
+## 📖 Series Navigation
+
+**AngularNetTutorial Blog Series:**
+
+* [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56) — Main tutorial
+* [Stop Juggling Multiple Repos: Manage Your Full-Stack App Like a Workspace](#) — Git Submodules
+* [End-to-End Testing Made Simple: How Playwright Transforms Testing](#) — Playwright Overview
+* [Why Your Angular App Needs PKCE: OAuth 2.0 Explained with a Working Demo](#) — OAuth 2.0 PKCE Flow
+* [Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes](#) — Route Guards
+* [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
+* [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
+* **How to Structure a .NET 10 API So It Doesn't Become a Mess** — This article
+* *How Your .NET API Knows to Trust Angular: JWT Validation Explained* — Coming next
+
+---
+
+**📌 Tags:** #dotnet #cleanarchitecture #cqrs #mediatr #aspnetcore #webapi #repository #specification #fluentvalidation #entityframeworkcore #ddd #designpatterns #backend #fullstack #angular

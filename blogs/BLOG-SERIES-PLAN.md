@@ -67,10 +67,11 @@
 
 ## 🔧 Series 2: .NET 10 Web API
 
-- [ ] **Article 2.1 — Clean Architecture**
+- [~] **Article 2.1 — Clean Architecture**
   - **Title:** How to Structure a .NET 10 API So It Doesn't Become a Mess
   - **Subtitle:** A Walking Tour of Clean Architecture: Domain, Application, Infrastructure, and WebApi Layers
   - **File:** `blogs/series-2-dotnet-api/dotnet-clean-architecture-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 2.2 — JWT Token Validation**
   - **Title:** How Your .NET API Knows to Trust Angular — JWT Validation Explained
@@ -155,8 +156,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 6
-**Not started:** 12
+**Draft ready:** 7
+**Not started:** 11
 
 ---
 

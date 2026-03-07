@@ -581,7 +581,7 @@ The combination of `*appHasRole` (reactive, OIDC-driven, DOM-level) and ngx-perm
 * [Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes](#) — Route Guards
 * [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
 * **Show the Right Buttons to the Right People** — This article
-* *How to Structure a .NET 10 API So It Doesn't Become a Mess* — Coming next (Series 2)
+* [How to Structure a .NET 10 API So It Doesn't Become a Mess](#) — Clean Architecture (Series 2)
 
 ---
 
