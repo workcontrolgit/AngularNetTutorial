@@ -45,10 +45,11 @@
   - **File:** `blogs/series-1-authentication/oauth2-pkce-flow-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 1.2 — Angular Route Guards**
+- [~] **Article 1.2 — Angular Route Guards**
   - **Title:** Lock Down Your Angular Routes: Auth Guards with OIDC in 5 Minutes
   - **Subtitle:** How to Protect Pages, Redirect Unauthenticated Users, and Verify It Works with Playwright
   - **File:** `blogs/series-1-authentication/angular-route-guards-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 1.3 — HTTP Interceptor**
   - **Title:** Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained
@@ -152,8 +153,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 3
-**Not started:** 15
+**Draft ready:** 4
+**Not started:** 14
 
 ---
 
