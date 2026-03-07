@@ -514,7 +514,7 @@ error: error => {
 * [Test Your Secured .NET API Without Writing a Single Line of Frontend Code](#) — Swagger with JWT
 * [Build a Production-Ready Data Table in Angular Material: Sort, Filter, Page](#) — Data Tables
 * **Reactive Forms Done Right** — This article
-* *The Right Way to Ask "Are You Sure?" — Angular Material Dialogs for Confirm Actions* — Coming next
+* [The Right Way to Ask "Are You Sure?" — Angular Material Dialogs for Confirm Actions](#) — Dialogs
 
 ---
 

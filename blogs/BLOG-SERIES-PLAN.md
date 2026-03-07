@@ -107,10 +107,11 @@
   - **File:** `blogs/series-3-angular-material/angular-reactive-forms-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 3.3 — Dialogs**
+- [~] **Article 3.3 — Dialogs**
   - **Title:** The Right Way to Ask "Are You Sure?" — Angular Material Dialogs for Confirm Actions
-  - **Subtitle:** Building a Delete Confirmation Dialog with MatDialog, Proper Result Handling, and E2E Tests
+  - **Subtitle:** Building a Delete Confirmation Dialog with MatDialog, Proper Result Handling, and Reuse Across the App
   - **File:** `blogs/series-3-angular-material/angular-material-dialogs-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 ---
 
@@ -161,8 +162,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 12
-**Not started:** 6
+**Draft ready:** 13
+**Not started:** 5
 
 ---
 
