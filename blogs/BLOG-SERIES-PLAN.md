@@ -85,10 +85,11 @@
   - **File:** `blogs/series-2-dotnet-api/dotnet-api-versioning-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 2.4 — Swagger with JWT**
+- [~] **Article 2.4 — Swagger with JWT**
   - **Title:** Test Your Secured .NET API Without Writing a Single Line of Frontend Code
   - **Subtitle:** Configuring Swagger to Accept Bearer Tokens for Interactive API Exploration
   - **File:** `blogs/series-2-dotnet-api/dotnet-swagger-jwt-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 ---
 
@@ -158,8 +159,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 9
-**Not started:** 9
+**Draft ready:** 10
+**Not started:** 8
 
 ---
 

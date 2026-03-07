@@ -403,7 +403,7 @@ All v1 controllers live in `/Controllers/v1/`. When v2 is added, a `/Controllers
 * [How to Structure a .NET 10 API So It Doesn't Become a Mess](#) — Clean Architecture
 * [How Your .NET API Knows to Trust Angular: JWT Validation Explained](#) — JWT Validation
 * **Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients** — This article
-* *Test Your Secured .NET API Without Writing a Single Line of Frontend Code* — Coming next
+* [Test Your Secured .NET API Without Writing a Single Line of Frontend Code](#) — Swagger with JWT
 
 ---
 
