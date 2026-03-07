@@ -73,10 +73,11 @@
   - **File:** `blogs/series-2-dotnet-api/dotnet-clean-architecture-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 2.2 — JWT Token Validation**
+- [~] **Article 2.2 — JWT Token Validation**
   - **Title:** How Your .NET API Knows to Trust Angular — JWT Validation Explained
   - **Subtitle:** Connecting IdentityServer, Access Tokens, and API Authorization in One Clear Flow
   - **File:** `blogs/series-2-dotnet-api/dotnet-jwt-validation-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 2.3 — API Versioning**
   - **Title:** Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients
@@ -156,8 +157,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 7
-**Not started:** 11
+**Draft ready:** 8
+**Not started:** 10
 
 ---
 

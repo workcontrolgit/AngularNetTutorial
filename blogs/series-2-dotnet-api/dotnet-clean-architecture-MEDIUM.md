@@ -870,7 +870,7 @@ No layer skips a step. No controller accesses the database directly. No handler 
 * [Never Forget a Bearer Token Again: Angular's HTTP Interceptor Explained](#) — HTTP Interceptor
 * [Show the Right Buttons to the Right People: Role-Based UI in Angular](#) — Role-Based UI
 * **How to Structure a .NET 10 API So It Doesn't Become a Mess** — This article
-* *How Your .NET API Knows to Trust Angular: JWT Validation Explained* — Coming next
+* [How Your .NET API Knows to Trust Angular: JWT Validation Explained](#) — JWT Validation
 
 ---
 
