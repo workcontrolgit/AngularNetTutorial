@@ -586,7 +586,7 @@ The `takeUntil(this.destroy$)` in `setupAutoSubmit()` uses this subject to unsub
 * [Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients](#) — API Versioning
 * [Test Your Secured .NET API Without Writing a Single Line of Frontend Code](#) — Swagger with JWT
 * **Build a Production-Ready Data Table in Angular Material** — This article
-* *Reactive Forms Done Right: Validation Patterns Every Angular Developer Should Know* — Coming next
+* [Reactive Forms Done Right: Validation Patterns Every Angular Developer Should Know](#) — Reactive Forms
 
 ---
 

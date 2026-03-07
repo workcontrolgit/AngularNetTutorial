@@ -101,10 +101,11 @@
   - **File:** `blogs/series-3-angular-material/angular-material-datatable-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 3.2 — Reactive Forms**
+- [~] **Article 3.2 — Reactive Forms**
   - **Title:** Reactive Forms Done Right: Validation Patterns Every Angular Developer Should Know
-  - **Subtitle:** Required Fields, Email Validation, and Custom Validators with Angular Material — With Playwright Tests
+  - **Subtitle:** Required Fields, Email Validation, and Min Value Rules with Angular Material — One Form for Create and Edit
   - **File:** `blogs/series-3-angular-material/angular-reactive-forms-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 3.3 — Dialogs**
   - **Title:** The Right Way to Ask "Are You Sure?" — Angular Material Dialogs for Confirm Actions
@@ -160,8 +161,8 @@
 
 **Total articles planned:** 19
 **Published:** 1
-**Draft ready:** 11
-**Not started:** 7
+**Draft ready:** 12
+**Not started:** 6
 
 ---
 
