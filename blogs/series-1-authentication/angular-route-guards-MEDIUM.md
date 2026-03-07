@@ -389,6 +389,110 @@ npx playwright test tests/auth/role-based-access.spec.ts --ui
 
 ---
 
+## 🗑️ What About Delete? Route Guards Don't Cover It
+
+You may notice there is no `/employees/delete/:id` route in `app.routes.ts`. That's intentional — Delete is not a page navigation. It's a button action on the list page, and it requires a different protection strategy.
+
+The screenshot below shows the employee list as seen by an HRAdmin user — all three action buttons (view, edit, delete) are visible:
+
+![Employee CRUD operations — delete button visible to HRAdmin](https://raw.githubusercontent.com/workcontrolgit/AngularNetTutorial/master/docs/images/angular/employee-crud-operations.png)
+
+**Delete is protected by three layers working together:**
+
+### Layer 1 — The Button Is Never Rendered for Non-HRAdmin Users
+
+The delete button uses a custom structural directive `*appHasRole` that removes the element from the DOM entirely if the user doesn't have the required role:
+
+```html
+<!-- src/app/routes/employees/employee-list.component.html -->
+<button
+  mat-icon-button
+  color="warn"
+  (click)="deleteEmployee(employee)"
+  *appHasRole="['HRAdmin']"
+  matTooltip="Delete Employee">
+  <mat-icon>delete</mat-icon>
+</button>
+```
+
+The `HasRoleDirective` reads the user's roles directly from the OIDC token via `OidcAuthService`. If the user is not HRAdmin, `ViewContainerRef` never creates the element — it doesn't exist in the DOM at all:
+
+```typescript
+// src/app/shared/directives/has-role.directive.ts
+private updateView(roles: string | string[]): void {
+  this.viewContainer.clear();
+
+  const hasRole = this.checkRole(roles);
+
+  if (hasRole) {
+    this.viewContainer.createEmbeddedView(this.templateRef);
+  }
+  // else: element is simply not rendered
+}
+```
+
+### Layer 2 — A Confirmation Dialog Requires Explicit Intent
+
+Even for HRAdmin users, clicking Delete does not immediately call the API. A Material confirmation dialog opens first:
+
+```typescript
+// src/app/routes/employees/employee-list.component.ts
+deleteEmployee(employee: Employee): void {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    width: '400px',
+    data: {
+      title: 'Delete Employee',
+      message: `Are you sure you want to delete ${name}? This action cannot be undone.`,
+      confirmText: 'Delete',
+      cancelText: 'Cancel',
+    },
+  });
+
+  dialogRef.afterClosed().subscribe(confirmed => {
+    if (!confirmed) return;  // User clicked Cancel — nothing happens
+
+    this.employeeService.delete(employee.id).subscribe({ ... });
+  });
+}
+```
+
+The user must explicitly click the red **Delete** button in the dialog. Closing the dialog or clicking Cancel aborts the operation.
+
+### Layer 3 — The API Validates the Bearer Token
+
+Even if someone bypassed the UI entirely and sent a raw HTTP DELETE request, the .NET Web API validates the access token on every request. A DELETE to `/api/v1/Employees/{id}` without a valid Bearer token — or with a token that doesn't include the `write` scope — returns `401 Unauthorized`.
+
+**The complete picture for Delete:**
+
+```
+Employee user                        Manager user                       HRAdmin user
+      │                                    │                                  │
+  [views list]                        [views list]                       [views list]
+      │                                    │                                  │
+  *appHasRole fails               *appHasRole fails               *appHasRole passes
+  button not rendered             button not rendered             button rendered
+      │                                    │                                  │
+  [cannot click]                  [cannot click]                  [clicks Delete]
+                                                                              │
+                                                                   Confirmation dialog
+                                                                              │
+                                                                   [confirms Delete]
+                                                                              │
+                                                              DELETE /api/v1/Employees/{id}
+                                                              Authorization: Bearer <token>
+                                                                              │
+                                                                   API validates token
+                                                                   checks write scope
+                                                                              │
+                                                                         200 OK
+```
+
+**The design principle:** Route guards protect page navigation. Structural directives protect in-page actions. The API protects the data itself. All three are needed — none alone is sufficient.
+
+This directive-based role protection is covered in depth in the next article: [Show the Right Buttons to the Right People: Role-Based UI in Angular](#).
+
+---
+
 ## 💻 Try It Yourself
 
 **Start All Services:**
