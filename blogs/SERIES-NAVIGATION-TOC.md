@@ -45,7 +45,7 @@
 ## 🎭 Series 4: Playwright Testing Deep Dives
 
 * [4.1 — Your First Playwright Test for an Angular App — From Zero to Green](series-4-playwright-testing/4.1-playwright-first-test.md) — First Test
-* 4.2 — Stop Copy-Pasting Selectors: The Page Object Model for Angular Material *(coming soon)*
+* [4.2 — Stop Copy-Pasting Selectors: The Page Object Model for Angular Material](series-4-playwright-testing/4.2-playwright-page-object-model.md) — Page Object Model
 * 4.3 — One Feature, Three Users: Testing Role-Based Access Control with Playwright *(coming soon)*
 * 4.4 — How to Extract and Verify JWT Tokens in Playwright Tests *(coming soon)*
 * 4.5 — Skip the UI: Test Your .NET API Directly with Playwright's Request Fixture *(coming soon)*

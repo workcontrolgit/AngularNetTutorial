@@ -129,10 +129,11 @@
   - **File:** `blogs/series-4-playwright-testing/4.1-playwright-first-test.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 4.2 — Page Object Model**
+- [~] **Article 4.2 — Page Object Model**
   - **Title:** Stop Copy-Pasting Selectors: The Page Object Model for Angular Material
-  - **Subtitle:** How to Write Playwright Tests That Don't Break Every Time the UI Changes
+  - **Subtitle:** How BaseListPage and BaseFormPage Eliminate Selector Duplication Across Your Entire Test Suite
   - **File:** `blogs/series-4-playwright-testing/4.2-playwright-page-object-model.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 4.3 — Role-Based Testing**
   - **Title:** One Feature, Three Users: Testing Role-Based Access Control with Playwright
@@ -169,8 +170,8 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 15
-**Not started:** 4
+**Draft ready:** 16
+**Not started:** 3
 
 ---
 
