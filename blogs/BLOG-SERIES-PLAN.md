@@ -157,10 +157,11 @@
 
 ## 🛠️ Series 5: DevOps & Data
 
-- [ ] **Article 5.1 — Database Seeding**
+- [~] **Article 5.1 — Database Seeding**
   - **Title:** 1,000 Test Employees in 3 Seconds: Database Seeding for Development and Testing
-  - **Subtitle:** How EF Core's EnsureCreated and a Seeder Give Every Developer an Identical Starting Point
-  - **File:** `blogs/series-5-devops/5.1-dotnet-database-seeding.md`
+  - **Subtitle:** How the Bogus Library Generates Reproducible Fake Data That Makes Your App Look Real From Day One
+  - **File:** `blogs/series-5-devops-data/5.1-database-seeding.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 5.2 — CI/CD with GitHub Actions**
   - **Title:** Run Your Playwright Tests Automatically: CI/CD for a Full-Stack Angular/.NET App
@@ -173,7 +174,7 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 19
+**Draft ready:** 20
 **Not started:** 0
 
 ---
