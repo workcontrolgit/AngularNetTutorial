@@ -113,6 +113,12 @@
   - **File:** `blogs/series-3-angular-material/angular-material-dialogs-MEDIUM.md`
   - **Notes:** Draft complete. Ready for review.
 
+- [~] **Article 3.4 — ng-matero Admin Shell**
+  - **Title:** Why We Didn't Build the Admin Shell from Scratch: ng-matero Explained
+  - **Subtitle:** How a Starter Template Provides the Responsive Layout, Theme Customizer, and Date Adapter — So You Can Focus on Features
+  - **File:** `blogs/series-3-angular-material/ng-matero-admin-shell-MEDIUM.md`
+  - **Notes:** Draft complete. Ready for review.
+
 ---
 
 ## 🎭 Series 4: Playwright Testing Deep Dives
@@ -160,9 +166,9 @@
 
 ## 📊 Publication Tracker
 
-**Total articles planned:** 19
+**Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 13
+**Draft ready:** 14
 **Not started:** 5
 
 ---

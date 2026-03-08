@@ -368,6 +368,7 @@ The dialog is a UX protection — it prevents accidental deletion by requiring d
 * [Build a Production-Ready Data Table in Angular Material: Sort, Filter, Page](#) — Data Tables
 * [Reactive Forms Done Right: Validation Patterns Every Angular Developer Should Know](#) — Reactive Forms
 * **The Right Way to Ask "Are You Sure?"** — This article
+* [Why We Didn't Build the Admin Shell from Scratch: ng-matero Explained](#) — Admin Shell
 
 ---
 
