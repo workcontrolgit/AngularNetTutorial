@@ -147,10 +147,11 @@
   - **File:** `blogs/series-4-playwright-testing/4.4-playwright-jwt-token-testing.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 4.5 — API Testing**
+- [~] **Article 4.5 — API Testing**
   - **Title:** Skip the UI: Test Your .NET API Directly with Playwright's Request Fixture
   - **Subtitle:** Authenticate via Browser, Extract the Token, and Call API Endpoints Programmatically
   - **File:** `blogs/series-4-playwright-testing/4.5-playwright-api-testing.md`
+  - **Notes:** Draft complete. Ready for review.
 
 ---
 
@@ -172,8 +173,8 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 18
-**Not started:** 1
+**Draft ready:** 19
+**Not started:** 0
 
 ---
 

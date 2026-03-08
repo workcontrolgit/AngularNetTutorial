@@ -48,7 +48,7 @@
 * [4.2 — Stop Copy-Pasting Selectors: The Page Object Model for Angular Material](series-4-playwright-testing/4.2-playwright-page-object-model.md) — Page Object Model
 * [4.3 — One Feature, Three Users: Testing Role-Based Access Control with Playwright](series-4-playwright-testing/4.3-playwright-role-based-testing.md) — Role-Based Testing
 * [4.4 — How to Extract and Verify JWT Tokens in Playwright Tests](series-4-playwright-testing/4.4-playwright-jwt-token-testing.md) — JWT Token Testing
-* 4.5 — Skip the UI: Test Your .NET API Directly with Playwright's Request Fixture *(coming soon)*
+* [4.5 — Skip the UI: Test Your .NET API Directly with Playwright's Request Fixture](series-4-playwright-testing/4.5-playwright-api-testing.md) — API Testing
 
 ---
 
