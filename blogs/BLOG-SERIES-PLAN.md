@@ -141,10 +141,11 @@
   - **File:** `blogs/series-4-playwright-testing/4.3-playwright-role-based-testing.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 4.4 — JWT Token Testing**
+- [~] **Article 4.4 — JWT Token Testing**
   - **Title:** How to Extract and Verify JWT Tokens in Playwright Tests
   - **Subtitle:** Decode the Token, Check the Claims, and Confirm the Right Scopes Are Granted
   - **File:** `blogs/series-4-playwright-testing/4.4-playwright-jwt-token-testing.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 4.5 — API Testing**
   - **Title:** Skip the UI: Test Your .NET API Directly with Playwright's Request Fixture
@@ -171,8 +172,8 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 17
-**Not started:** 2
+**Draft ready:** 18
+**Not started:** 1
 
 ---
 
