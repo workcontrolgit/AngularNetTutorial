@@ -10,6 +10,10 @@ Clean Architecture solves this by enforcing strict rules about which layer can t
 
 ---
 
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This article dives deep into how the .NET API is structured using Clean Architecture.**
+
+---
+
 ## 📚 What You'll Learn
 
 * Why Clean Architecture prevents the "big ball of mud" problem

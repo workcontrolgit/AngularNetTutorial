@@ -399,6 +399,12 @@ npm start
 * **User:** `ashtyn1` / **Password:** `Pa$$word123`
 * **Admin:** `admin` / **Password:** `Pa$$word123`
 
+---
+
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This article dives deep into how Git submodules are used to manage a multi-repo full-stack workspace.**
+
+---
+
 ## 🎓 What You'll Learn
 
 **This tutorial teaches you:**

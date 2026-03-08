@@ -12,6 +12,10 @@ This article walks through the complete Swagger setup in the **TalentManagement 
 
 ---
 
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This article dives deep into how Swagger is configured to test secured .NET API endpoints with Bearer tokens.**
+
+---
+
 ## 📚 What You'll Learn
 
 * Why NSwag instead of Swashbuckle — and what changes

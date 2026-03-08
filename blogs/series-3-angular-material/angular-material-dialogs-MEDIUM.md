@@ -10,6 +10,10 @@ This article builds the `ConfirmDialogComponent` from the **TalentManagement** a
 
 ---
 
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This article dives deep into how Angular Material dialogs are used for delete confirmations with proper result handling.**
+
+---
+
 ## 📚 What You'll Learn
 
 * The three structural elements every Material dialog needs: `mat-dialog-title`, `mat-dialog-content`, `mat-dialog-actions`

@@ -12,6 +12,10 @@ This article walks through exactly what ng-matero contributes to the app — the
 
 ---
 
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This article dives deep into how the ng-matero starter template provides the responsive admin shell so you can focus on building features.**
+
+---
+
 ## 📚 What You'll Learn
 
 * What ng-matero is and how it relates to Angular Material

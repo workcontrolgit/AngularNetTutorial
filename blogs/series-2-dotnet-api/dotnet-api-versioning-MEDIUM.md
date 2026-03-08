@@ -12,6 +12,10 @@ This article walks through the exact versioning setup in the **TalentManagement 
 
 ---
 
+This article is part of the **AngularNetTutorial** series. The full-stack tutorial — covering Angular 20, .NET 10 Web API, and OAuth 2.0 with Duende IdentityServer — has been published at [Building Modern Web Applications with Angular, .NET, and OAuth 2.0](https://medium.com/scrum-and-coke/building-modern-web-applications-with-angular-net-and-oauth-2-0-complete-tutorial-series-7ea97ed3fc56). **This article dives deep into how the .NET API supports multiple versions without breaking existing clients.**
+
+---
+
 ## 📚 What You'll Learn
 
 * Why URL-based versioning (`/api/v1/`, `/api/v2/`) is the most practical approach
