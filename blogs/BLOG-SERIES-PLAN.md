@@ -135,10 +135,11 @@
   - **File:** `blogs/series-4-playwright-testing/4.2-playwright-page-object-model.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 4.3 — Role-Based Testing**
+- [~] **Article 4.3 — Role-Based Testing**
   - **Title:** One Feature, Three Users: Testing Role-Based Access Control with Playwright
-  - **Subtitle:** How to Use Fixtures to Test Employee, Manager, and HRAdmin Permissions Systematically
+  - **Subtitle:** How to Verify That Employees See Read-Only Views, Managers Can Create, and HRAdmins Can Delete — Without Guessing
   - **File:** `blogs/series-4-playwright-testing/4.3-playwright-role-based-testing.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 4.4 — JWT Token Testing**
   - **Title:** How to Extract and Verify JWT Tokens in Playwright Tests
@@ -170,8 +171,8 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 16
-**Not started:** 3
+**Draft ready:** 17
+**Not started:** 2
 
 ---
 
