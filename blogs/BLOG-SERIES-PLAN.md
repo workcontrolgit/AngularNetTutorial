@@ -123,10 +123,11 @@
 
 ## 🎭 Series 4: Playwright Testing Deep Dives
 
-- [ ] **Article 4.1 — First Playwright Test**
-  - **Title:** Your First Playwright Test for an Angular App — From Zero to Green in 15 Minutes
+- [~] **Article 4.1 — First Playwright Test**
+  - **Title:** Your First Playwright Test for an Angular App — From Zero to Green
   - **Subtitle:** Step-by-Step: Install Playwright, Write a Login Test, and Run It Against a Real OAuth 2.0 App
   - **File:** `blogs/series-4-playwright-testing/4.1-playwright-first-test.md`
+  - **Notes:** Draft complete. Ready for review.
 
 - [ ] **Article 4.2 — Page Object Model**
   - **Title:** Stop Copy-Pasting Selectors: The Page Object Model for Angular Material
@@ -168,8 +169,8 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 14
-**Not started:** 5
+**Draft ready:** 15
+**Not started:** 4
 
 ---
 
