@@ -55,7 +55,7 @@
 ## 🛠️ Series 5: DevOps & Data
 
 * [5.1 — 1,000 Test Employees in 3 Seconds: Database Seeding for Development and Testing](series-5-devops-data/5.1-database-seeding.md) — Database Seeding
-* 5.2 — Run Your Playwright Tests Automatically: CI/CD for a Full-Stack Angular/.NET App *(coming soon)*
+* [5.2 — Run Your Playwright Tests Automatically: CI/CD for a Full-Stack Angular/.NET App](series-5-devops-data/5.2-cicd-github-actions.md) — CI/CD with GitHub Actions
 
 ---
 

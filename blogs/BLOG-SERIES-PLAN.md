@@ -163,10 +163,11 @@
   - **File:** `blogs/series-5-devops-data/5.1-database-seeding.md`
   - **Notes:** Draft complete. Ready for review.
 
-- [ ] **Article 5.2 — CI/CD with GitHub Actions**
+- [~] **Article 5.2 — CI/CD with GitHub Actions**
   - **Title:** Run Your Playwright Tests Automatically: CI/CD for a Full-Stack Angular/.NET App
-  - **Subtitle:** GitHub Actions Workflow That Starts IdentityServer, API, and Angular — Then Runs All E2E Tests
-  - **File:** `blogs/series-5-devops/5.2-cicd-github-actions.md`
+  - **Subtitle:** GitHub Actions Workflow That Runs All Three Browsers, Publishes JUnit Reports, and Comments Results on Every Pull Request
+  - **File:** `blogs/series-5-devops-data/5.2-cicd-github-actions.md`
+  - **Notes:** Draft complete. Ready for review.
 
 ---
 
@@ -174,7 +175,7 @@
 
 **Total articles planned:** 20
 **Published:** 1
-**Draft ready:** 20
+**Draft ready:** 21
 **Not started:** 0
 
 ---
