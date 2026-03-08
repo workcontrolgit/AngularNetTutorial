@@ -16,6 +16,10 @@ This article is part of the **AngularNetTutorial** series. The full-stack tutori
 
 ---
 
+📦 **Library credit:** The authentication layer is built on [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc) by Manfred Steyer — the most widely used Angular library for OAuth 2.0 and OIDC. It handles the PKCE code flow, token storage, automatic refresh, and silent renew out of the box. Everything this article covers — the `AuthConfig`, `initCodeFlow()`, token callbacks, and the HTTP interceptor — is powered by this library.
+
+---
+
 ## 🎓 What You'll Learn
 
 * **Why PKCE exists** — The security problem it solves for single-page applications
