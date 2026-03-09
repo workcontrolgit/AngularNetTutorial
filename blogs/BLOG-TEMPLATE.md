@@ -95,34 +95,9 @@ export const config = {
 
 ## 💻 Try It Yourself
 
-**Start All Services (required before testing):**
+**Start all three services** — See [Quick Start Setup](../QUICKSTART.md) for startup commands, application URLs, and test credentials.
 
-```bash
-# Terminal 1: IdentityServer (start first)
-cd TokenService/Duende-IdentityServer/src/Duende.STS.Identity
-dotnet run
-
-# Terminal 2: API
-cd ApiResources/TalentManagement-API/TalentManagementAPI.WebApi
-dotnet run
-
-# Terminal 3: Angular Client
-cd Clients/TalentManagement-Angular-Material/talent-management
-npm start
-```
-
-**Application URLs:**
-
-* **Angular Client:** http://localhost:4200 — Main application UI
-* **Web API:** https://localhost:44378 — RESTful API endpoints
-* **Swagger UI:** https://localhost:44378/swagger — Interactive API docs
-* **IdentityServer:** https://localhost:44310 — Authentication server
-
-**Test Credentials:**
-
-* **Manager:** `rosamond33` / `Pa$$word123`
-* **HRAdmin:** `ashtyn1` / `Pa$$word123`
-* **Employee:** `antoinette16` / `Pa$$word123`
+[Add any article-specific steps here, e.g. Playwright commands, browser DevTools observations, etc.]
 
 ---
 
