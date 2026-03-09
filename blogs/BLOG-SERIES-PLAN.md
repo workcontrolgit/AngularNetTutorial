@@ -91,6 +91,12 @@
   - **File:** `blogs/series-2-dotnet-api/2.4-dotnet-swagger-jwt.md`
   - **Notes:** Draft complete. Ready for review.
 
+- [~] **Article 2.5 — Response Caching with EasyCaching**
+  - **Title:** Speed Up Your Dashboard: Easy Response Caching in .NET 10 With EasyCaching
+  - **Subtitle:** How In-Memory Caching, Domain Event Invalidation, and Diagnostic Headers Transform API Performance
+  - **File:** `blogs/series-2-dotnet-api/2.5-dotnet-easycaching.md`
+  - **Notes:** Draft complete. Ready for review.
+
 ---
 
 ## 🎨 Series 3: Angular Material UI
@@ -173,9 +179,9 @@
 
 ## 📊 Publication Tracker
 
-**Total articles planned:** 20
+**Total articles planned:** 21
 **Published:** 1
-**Draft ready:** 21
+**Draft ready:** 22
 **Not started:** 0
 
 ---

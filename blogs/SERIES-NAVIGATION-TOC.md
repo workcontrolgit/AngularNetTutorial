@@ -30,6 +30,7 @@
 * [2.2 — How Your .NET API Knows to Trust Angular: JWT Validation Explained](series-2-dotnet-api/2.2-dotnet-jwt-validation.md) — JWT Validation
 * [2.3 — Future-Proof Your .NET API: Add Versioning Without Breaking Existing Clients](series-2-dotnet-api/2.3-dotnet-api-versioning.md) — API Versioning
 * [2.4 — Test Your Secured .NET API Without Writing a Single Line of Frontend Code](series-2-dotnet-api/2.4-dotnet-swagger-jwt.md) — Swagger with JWT
+* [2.5 — Speed Up Your Dashboard: Easy Response Caching in .NET 10 With EasyCaching](series-2-dotnet-api/2.5-dotnet-easycaching.md) — Response Caching
 
 ---
 
