@@ -4,8 +4,6 @@
 
 [2-3 sentence introduction that hooks the reader. Explain the pain point this tutorial addresses. Make it relatable.]
 
-![Diagram or Screenshot](https://via.placeholder.com/800x400?text=Replace+With+Actual+Image)
-
 📖 **Tutorial Repository:** [AngularNetTutorial on GitHub](https://github.com/workcontrolgit/AngularNetTutorial)
 
 ---
