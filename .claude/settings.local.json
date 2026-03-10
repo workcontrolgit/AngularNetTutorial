@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(node -e \":*)",
+      "Bash(git add blogs/series-2-dotnet-api/2.1-dotnet-clean-architecture.md)",
+      "Bash(git commit -m \"Add brief EasyCaching mention to 2.1 clean architecture article\")",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
