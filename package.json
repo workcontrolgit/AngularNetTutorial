@@ -1,0 +1,25 @@
+{
+  "name": "angularnettutotial",
+  "version": "1.0.0",
+  "description": "This repository demonstrates the **Client, API Resource, and Token Service (CAT)** pattern using Angular and .NET technologies.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workcontrolgit/AngularNetTutorial.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/workcontrolgit/AngularNetTutorial/issues"
+  },
+  "homepage": "https://github.com/workcontrolgit/AngularNetTutorial#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.4.0"
+  }
+}
