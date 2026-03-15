@@ -177,12 +177,90 @@
 
 ---
 
+## 🤖 Series 6: AI App Features
+
+- [ ] **Article 6.1 — .NET AI Foundation**
+  - **Title:** Run a Local LLM in Your .NET 10 API with Ollama
+  - **Subtitle:** How Microsoft.Extensions.AI Makes Your API AI-Ready Without Locking You Into One Provider
+  - **File:** `blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md`
+  - **Branch:** `feature/6.1-dotnet-ai-foundation`
+  - **Notes:** Not started.
+
+- [ ] **Article 6.2 — HR AI Assistant**
+  - **Title:** Build an HR AI Assistant That Knows Your Data
+  - **Subtitle:** Feed Real Employee Metrics Into a Local LLM and Get Meaningful Insights Back
+  - **File:** `blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md`
+  - **Branch:** `feature/6.2-dotnet-ai-hr-assistant`
+  - **Notes:** Not started.
+
+- [ ] **Article 6.3 — Angular AI Chat Widget**
+  - **Title:** Add an AI Chat Widget to Angular with Streaming
+  - **Subtitle:** Build a Real-Time Chat UI with SSE Streaming, Angular Signals, and Angular Material
+  - **File:** `blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md`
+  - **Branch:** `feature/6.3-angular-ai-chat-widget`
+  - **Notes:** Not started.
+
+- [ ] **Article 6.4 — AI Dashboard Insights**
+  - **Title:** AI-Generated Dashboard Insights in Angular Material
+  - **Subtitle:** How to Prompt an LLM With Live Metrics and Display Smart Summaries on the Dashboard
+  - **File:** `blogs/series-6-ai-app-features/6.4-angular-ai-dashboard-insights.md`
+  - **Branch:** `feature/6.4-angular-ai-dashboard-insights`
+  - **Notes:** Not started.
+
+- [ ] **Article 6.5 — Natural Language Search**
+  - **Title:** Natural Language Employee Search with LLM Query Parsing
+  - **Subtitle:** Replace Keyword Filters With Plain-English Queries — The LLM Translates Intent Into API Parameters
+  - **File:** `blogs/series-6-ai-app-features/6.5-dotnet-natural-language-search.md`
+  - **Branch:** `feature/6.5-natural-language-search`
+  - **Notes:** Not started.
+
+- [ ] **Article 6.6 — AI Response Caching**
+  - **Title:** Cache Your AI Responses: Save Time and API Costs
+  - **Subtitle:** How EasyCaching Cache-Aside Eliminates Duplicate LLM Calls and Adds Cache Observability Headers
+  - **File:** `blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md`
+  - **Branch:** `feature/6.6-ai-response-caching`
+  - **Notes:** Not started.
+
+---
+
+## 🛠️ Series 7: Developer Productivity AI
+
+- [ ] **Article 7.1 — Claude Code Workflow**
+  - **Title:** How We Built 22 Articles with Claude Code
+  - **Subtitle:** The Prompting Patterns, CLAUDE.md Conventions, and Session Workflows That Made It Possible
+  - **File:** `blogs/series-7-developer-productivity-ai/7.1-claude-code-workflow.md`
+  - **Branch:** `feature/7.1-claude-code-workflow`
+  - **Notes:** Not started.
+
+- [ ] **Article 7.2 — Copilot for Clean Architecture**
+  - **Title:** GitHub Copilot for .NET Clean Architecture
+  - **Subtitle:** Prompt Patterns for Generating CQRS Handlers, FluentValidation Rules, and Mapster Mappings
+  - **File:** `blogs/series-7-developer-productivity-ai/7.2-copilot-clean-architecture.md`
+  - **Branch:** `feature/7.2-copilot-clean-architecture`
+  - **Notes:** Not started.
+
+- [ ] **Article 7.3 — AI-Generated Playwright Tests**
+  - **Title:** Generate Playwright Tests from User Stories with AI
+  - **Subtitle:** From Requirements to Running Tests — How to Prompt Your Way to a Full E2E Test Suite
+  - **File:** `blogs/series-7-developer-productivity-ai/7.3-ai-generated-playwright-tests.md`
+  - **Branch:** `feature/7.3-ai-generated-playwright-tests`
+  - **Notes:** Not started.
+
+- [ ] **Article 7.4 — AI Code Review in GitHub Actions**
+  - **Title:** AI Code Review in GitHub Actions
+  - **Subtitle:** Add an Automated AI Reviewer to Every Pull Request Using the Anthropic API
+  - **File:** `blogs/series-7-developer-productivity-ai/7.4-ai-code-review-github-actions.md`
+  - **Branch:** `feature/7.4-ai-code-review-ci`
+  - **Notes:** Not started.
+
+---
+
 ## 📊 Publication Tracker
 
-**Total articles planned:** 21
+**Total articles planned:** 31
 **Published:** 1
 **Draft ready:** 22
-**Not started:** 0
+**Not started:** 10 (Series 6 & 7)
 
 ---
 
