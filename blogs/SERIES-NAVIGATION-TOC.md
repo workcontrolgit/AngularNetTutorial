@@ -60,8 +60,6 @@
 
 ---
 
----
-
 ## 🤖 Series 6: AI App Features
 
 * [6.1 — Run a Local LLM in Your .NET 10 API with Ollama](series-6-ai-app-features/6.1-dotnet-ai-foundation.md) — .NET AI Foundation
