@@ -1,0 +1,84 @@
+name: Deploy .NET API to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ApiResources/TalentManagement-API/**'
+      - '.github/workflows/deploy-api.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # Required for OIDC token request
+  contents: read
+
+env:
+  DOTNET_VERSION: '10.x'
+  PROJECT_PATH: 'ApiResources/TalentManagement-API/TalentManagementAPI.WebApi/TalentManagementAPI.WebApi.csproj'
+  SOLUTION_PATH: 'ApiResources/TalentManagement-API/TalentManagementAPI.slnx'
+  PUBLISH_DIR: '${{ github.workspace }}/publish/api'
+  APP_SERVICE_NAME: 'app-talent-api-dev'
+  RESOURCE_GROUP: 'rg-talent-dev'
+
+jobs:
+  build-and-deploy:
+    name: Build, Test, and Deploy API
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.SOLUTION_PATH }}
+
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION_PATH }} --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test ${{ env.SOLUTION_PATH }} --configuration Release --no-build --verbosity normal
+
+      - name: Publish
+        run: |
+          dotnet publish ${{ env.PROJECT_PATH }} \
+            --configuration Release \
+            --no-build \
+            --output ${{ env.PUBLISH_DIR }}
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Configure App Service settings
+        run: |
+          az webapp config appsettings set \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --settings \
+              "ConnectionStrings__DefaultConnection=${{ secrets.API_DB_CONNECTION_STRING }}" \
+              "Sts__ServerUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
+              "Sts__ValidIssuer=${{ secrets.IDENTITY_SERVER_URL }}" \
+              "Sts__Audience=app.api.talentmanagement" \
+              "JWTSettings__Key=${{ secrets.JWT_KEY }}" \
+              "JWTSettings__Issuer=CoreIdentity" \
+              "JWTSettings__Audience=CoreIdentityUser" \
+              "JWTSettings__DurationInMinutes=60" \
+              "FeatureManagement__AuthEnabled=true" \
+              "ASPNETCORE_ENVIRONMENT=Production"
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.APP_SERVICE_NAME }}
+          package: ${{ env.PUBLISH_DIR }}

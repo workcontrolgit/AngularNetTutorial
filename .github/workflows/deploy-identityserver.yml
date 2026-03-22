@@ -1,0 +1,76 @@
+name: Deploy IdentityServer to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'TokenService/Duende-IdentityServer/**'
+      - '.github/workflows/deploy-identityserver.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # Required for OIDC token request
+  contents: read
+
+env:
+  DOTNET_VERSION: '8.x'
+  STS_PROJECT_PATH: 'TokenService/Duende-IdentityServer/src/DuendeIdentityServer.STS.Identity/DuendeIdentityServer.STS.Identity.csproj'
+  ADMIN_PROJECT_PATH: 'TokenService/Duende-IdentityServer/src/DuendeIdentityServer.Admin/DuendeIdentityServer.Admin.csproj'
+  PUBLISH_DIR: '${{ github.workspace }}/publish/ids'
+  APP_SERVICE_NAME: 'app-talent-ids-dev'
+  RESOURCE_GROUP: 'rg-talent-dev'
+
+jobs:
+  build-and-deploy:
+    name: Build, Test, and Deploy IdentityServer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.STS_PROJECT_PATH }}
+
+      - name: Build
+        run: dotnet build ${{ env.STS_PROJECT_PATH }} --configuration Release --no-restore
+
+      - name: Publish
+        run: |
+          dotnet publish ${{ env.STS_PROJECT_PATH }} \
+            --configuration Release \
+            --no-build \
+            --output ${{ env.PUBLISH_DIR }}
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Configure App Service settings
+        run: |
+          az webapp config appsettings set \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --name ${{ env.APP_SERVICE_NAME }} \
+            --settings \
+              "ConnectionStrings__ConfigurationDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__PersistedGrantDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__IdentityDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "AdminConfiguration__IdentityServerBaseUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
+              "ASPNETCORE_ENVIRONMENT=Production"
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.APP_SERVICE_NAME }}
+          package: ${{ env.PUBLISH_DIR }}
