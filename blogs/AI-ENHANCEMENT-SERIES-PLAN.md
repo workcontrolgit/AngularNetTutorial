@@ -132,29 +132,32 @@ git push --set-upstream origin feature/[N.N]-[slug]
 
 - [x] Ollama running at `http://localhost:11434` ✅
 - [x] `blogs/AI-ENHANCEMENT-SERIES-PLAN.md` created ✅
-- [ ] Create `blogs/series-6-ai-app-features/` folder
-- [ ] Create `blogs/series-7-developer-productivity-ai/` folder
-- [ ] Create `docs/images/ai/` folder for screenshots
-- [ ] Update `blogs/BLOG-SERIES-PLAN.md` with Series 6 & 7 entries
-- [ ] Update `blogs/SERIES-NAVIGATION-TOC.md` to include new series
+- [x] Create `blogs/series-6-ai-app-features/` folder ✅
+- [x] Create `blogs/series-7-developer-productivity-ai/` folder ✅
+- [x] Create `docs/images/ai/` folder for screenshots ✅
+- [x] Update `blogs/BLOG-SERIES-PLAN.md` with Series 6 & 7 entries ✅
+- [x] Update `blogs/SERIES-NAVIGATION-TOC.md` to include new series ✅
 
 ### Phase 1: Series 6 — Backend Foundation
 
-- [ ] **6.1 — .NET AI Foundation**
-  - [ ] `git checkout -b feature/6.1-dotnet-ai-foundation` in ApiResources submodule
-  - [ ] `git checkout -b feature/6.1-dotnet-ai-foundation` in parent repo
-  - [ ] Write article draft (`6.1-dotnet-ai-foundation.md`)
-  - [ ] Add to WebApi.csproj: `Microsoft.Extensions.AI`, `Microsoft.Extensions.AI.Ollama`
-  - [ ] Add `"FeatureManagement": { "AiEnabled": false }` to `appsettings.json`
-  - [ ] Add `aiEnabled: false` to `environment.ts`
-  - [ ] Create `Application/Interfaces/IAiChatService.cs`
-  - [ ] Create `Infrastructure.Shared/Services/OllamaAiService.cs`
-  - [ ] Create `WebApi/Controllers/v1/AiController.cs` with `[FeatureGate("AiEnabled")]`
-  - [ ] Screenshot: Swagger AI endpoint → `docs/images/ai/`
-  - [ ] Commit + push submodule feature branch
-  - [ ] Commit + push parent feature branch (blog + submodule ref)
-  - [ ] Open PR: ApiResources `feature/6.1-dotnet-ai-foundation` → `develop`
-  - [ ] Open PR: Parent `feature/6.1-dotnet-ai-foundation` → `develop`
+- [x] **6.1 — .NET AI Foundation** ✅
+  - [x] `git checkout -b feature/6.1-dotnet-ai-foundation` in ApiResources submodule ✅
+  - [x] `git checkout -b feature/6.1-dotnet-ai-foundation` in parent repo ✅
+  - [x] Write article draft (`6.1-dotnet-ai-foundation.md`) ✅
+  - [x] Add to WebApi.csproj: `Microsoft.Extensions.AI.Ollama` ✅
+  - [x] Add to Infrastructure.Shared.csproj: `Microsoft.Extensions.AI` ✅
+  - [x] Add `"AiEnabled": false` to `FeatureManagement` in `appsettings.json` ✅
+  - [x] Add `"Ollama"` config block to `appsettings.json` ✅
+  - [x] Create `Application/Interfaces/IAiChatService.cs` ✅
+  - [x] Create `Infrastructure.Shared/Services/OllamaAiService.cs` ✅
+  - [x] Create `WebApi/Controllers/v1/AiController.cs` with `[FeatureGate("AiEnabled")]` ✅
+  - [x] Register `AddOllamaChatClient()` in `Program.cs` ✅
+  - [x] Register `IAiChatService` → `OllamaAiService` in `ServiceRegistration.cs` ✅
+  - [ ] Screenshot: Swagger AI endpoint → `docs/images/ai/` *(manual step)*
+  - [x] Commit + push ApiResources `feature/6.1-dotnet-ai-foundation` ✅
+  - [x] Commit + push parent `feature/6.1-dotnet-ai-foundation` ✅
+  - [ ] Open PR: ApiResources `feature/6.1-dotnet-ai-foundation` → `develop` — https://github.com/workcontrolgit/TalentManagement-API/pull/new/feature/6.1-dotnet-ai-foundation
+  - [ ] Open PR: Parent `feature/6.1-dotnet-ai-foundation` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/new/feature/6.1-dotnet-ai-foundation
 
 - [ ] **6.2 — HR AI Assistant (data-aware)**
   - [ ] `git checkout -b feature/6.2-dotnet-ai-hr-assistant` in ApiResources submodule

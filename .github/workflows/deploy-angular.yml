@@ -1,0 +1,80 @@
+name: Deploy Angular to Azure Static Web Apps
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Clients/TalentManagement-Angular-Material/**'
+      - '.github/workflows/deploy-angular.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # Required for OIDC token request
+  contents: read
+
+env:
+  ANGULAR_APP_DIR: 'Clients/TalentManagement-Angular-Material/talent-management'
+  STATIC_WEB_APP_NAME: 'swa-talent-ui-dev'
+  RESOURCE_GROUP: 'rg-talent-dev'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy Angular
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+          cache-dependency-path: '${{ env.ANGULAR_APP_DIR }}/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ${{ env.ANGULAR_APP_DIR }}
+        run: npm ci
+
+      - name: Inject production environment variables
+        working-directory: ${{ env.ANGULAR_APP_DIR }}
+        env:
+          API_URL: ${{ secrets.API_APP_URL }}
+          IDENTITY_SERVER_URL: ${{ secrets.IDENTITY_SERVER_URL }}
+        run: |
+          sed -i "s|https://your-production-api.com/api/v1|${API_URL}/api/v1|g" src/environments/environment.prod.ts
+          sed -i "s|https://localhost:44310|${IDENTITY_SERVER_URL}|g" src/environments/environment.prod.ts
+
+      - name: Build Angular (production)
+        working-directory: ${{ env.ANGULAR_APP_DIR }}
+        run: npm run build -- --configuration production
+
+      - name: Log in to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Get Static Web App deployment token
+        id: swa-token
+        run: |
+          SWA_TOKEN=$(az staticwebapp secrets list \
+            --name ${{ env.STATIC_WEB_APP_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query properties.apiKey \
+            --output tsv)
+          echo "token=${SWA_TOKEN}" >> $GITHUB_OUTPUT
+
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ steps.swa-token.outputs.token }}
+          action: upload
+          app_location: 'Clients/TalentManagement-Angular-Material/talent-management'
+          output_location: 'dist/talent-management/browser'
+          skip_app_build: true

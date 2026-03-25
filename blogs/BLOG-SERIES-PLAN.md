@@ -175,6 +175,56 @@
   - **File:** `blogs/series-5-devops-data/5.2-cicd-github-actions.md`
   - **Notes:** Draft complete. Ready for review.
 
+### ☁️ Series 5 Azure Deployment Sub-Series
+
+*Target audience: developers new to Azure with a Visual Studio Professional subscription ($50/month credit). Each article ships with real, runnable Bicep templates and GitHub Actions workflows.*
+
+- [ ] **Article 5.3 — Azure Subscription Setup**
+  - **Title:** Your First Azure Deployment: Setting Up a Visual Studio Subscription
+  - **Subtitle:** Activate Your $50 Monthly Credit, Install the Azure CLI, and Understand What Fits in Your Budget
+  - **File:** `blogs/series-5-devops-data/5.3-azure-subscription-setup.md`
+  - **Branch:** `feature/5.3-5.8-azure-deployment-series`
+  - **Notes:** Blog only — no code files. Setup guide for new Azure users.
+
+- [ ] **Article 5.4 — Bicep Infrastructure**
+  - **Title:** Infrastructure as Code: Provision All Azure Resources with One Bicep Command
+  - **Subtitle:** From Empty Subscription to a Running App Service Plan, SQL Server, and Static Web App in Minutes
+  - **File:** `blogs/series-5-devops-data/5.4-azure-bicep-infrastructure.md`
+  - **Code:** `infra/main.bicep`, `infra/modules/*.bicep`, `infra/parameters/dev.bicepparam`
+  - **Branch:** `feature/5.3-5.8-azure-deployment-series`
+  - **Notes:** Writes real Bicep templates that can be run against an actual Azure subscription.
+
+- [ ] **Article 5.5 — OIDC GitHub Actions Setup**
+  - **Title:** Secure CI/CD: Connect GitHub Actions to Azure Without Storing Passwords
+  - **Subtitle:** How Federated Identity Credentials Replace Long-Lived Secrets With Short-Lived OIDC Tokens
+  - **File:** `blogs/series-5-devops-data/5.5-azure-oidc-github-actions.md`
+  - **Code:** Walkthrough of `infra/scripts/setup-oidc.sh` (already written)
+  - **Branch:** `feature/5.3-5.8-azure-deployment-series`
+  - **Notes:** Explains the existing setup-oidc.sh script step by step; covers 4 GitHub Secrets.
+
+- [ ] **Article 5.6 — Deploy .NET Apps**
+  - **Title:** Deploy .NET API and IdentityServer to Azure App Service with GitHub Actions
+  - **Subtitle:** Restore, Build, Test, Publish, and Deploy — Automatically on Every Push to Main
+  - **File:** `blogs/series-5-devops-data/5.6-azure-deploy-dotnet-apps.md`
+  - **Code:** `.github/workflows/deploy-api.yml`, `.github/workflows/deploy-identityserver.yml`
+  - **Branch:** `feature/5.3-5.8-azure-deployment-series`
+  - **Notes:** Covers deployment order (IdentityServer first), App Service config, EF Core migrations.
+
+- [ ] **Article 5.7 — Deploy Angular**
+  - **Title:** Deploy Angular to Azure Static Web Apps: Zero Cost, Global CDN, Auto PR Previews
+  - **Subtitle:** Inject Environment URLs at Build Time and Let GitHub Actions Handle the Rest
+  - **File:** `blogs/series-5-devops-data/5.7-azure-deploy-angular-swa.md`
+  - **Code:** `.github/workflows/deploy-angular.yml`, `staticwebapp.config.json`
+  - **Branch:** `feature/5.3-5.8-azure-deployment-series`
+  - **Notes:** Covers environment URL injection at build time and SPA fallback routing config.
+
+- [ ] **Article 5.8 — Post-Deployment Configuration and Validation**
+  - **Title:** Connect the Stack: Post-Deployment Configuration and Validation
+  - **Subtitle:** Wire Up IdentityServer Redirect URIs, CORS, and Validate the Full Login Flow on Azure
+  - **File:** `blogs/series-5-devops-data/5.8-azure-post-deployment-config.md`
+  - **Branch:** `feature/5.3-5.8-azure-deployment-series`
+  - **Notes:** Blog only — configuration checklist, common failure patterns, end-to-end validation steps.
+
 ---
 
 ## 🤖 Series 6: AI App Features
@@ -257,10 +307,10 @@
 
 ## 📊 Publication Tracker
 
-**Total articles planned:** 31
+**Total articles planned:** 37
 **Published:** 1
 **Draft ready:** 22
-**Not started:** 10 (Series 6 & 7)
+**Not started:** 16 (Series 5 Azure sub-series × 6, Series 6 × 6, Series 7 × 4)
 
 ---
 
