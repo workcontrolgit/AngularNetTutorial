@@ -78,11 +78,12 @@ module identityApp 'modules/webApp.bicep' = {
 }
 
 // ─── Angular Static Web App ───────────────────────────────────────────────────
+// Static Web Apps are not available in eastus — use eastus2
 module angularSwa 'modules/staticWebApp.bicep' = {
   name: 'angularSwa'
   params: {
     staticWebAppName: staticWebAppName
-    location: location
+    location: 'westus2'
   }
 }
 
@@ -104,5 +105,3 @@ output apiAppUrl string = apiApp.outputs.url
 output identityAppUrl string = identityApp.outputs.url
 output angularAppUrl string = angularSwa.outputs.url
 output sqlServerFqdn string = sqlServer.outputs.sqlServerFqdn
-output apiDbConnectionString string = sqlServer.outputs.apiDbConnectionString
-output identityDbConnectionString string = sqlServer.outputs.identityDbConnectionString

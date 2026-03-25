@@ -7,9 +7,6 @@ param location string
 @description('Resource ID of the App Service Plan')
 param appServicePlanId string
 
-@description('Stack: dotnet, node, python, etc.')
-param linuxFxVersion string = ''
-
 resource webApp 'Microsoft.Web/sites@2023-01-01' = {
   name: webAppName
   location: location
