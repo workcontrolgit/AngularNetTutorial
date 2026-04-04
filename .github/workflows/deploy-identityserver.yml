@@ -3,7 +3,7 @@ name: Deploy IdentityServer to Azure App Service
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'TokenService/Duende-IdentityServer/**'
       - '.github/workflows/deploy-identityserver.yml'
