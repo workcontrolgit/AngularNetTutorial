@@ -28,7 +28,7 @@ RESOURCE_GROUP="rg-talent-dev"         # Resource group the deployment identity 
 LOCATION="eastus"                       # Azure region for the resource group
 GITHUB_ORG="workcontrolgit"            # GitHub organisation or username
 GITHUB_REPO="AngularNetTutorial"       # GitHub repository name (no owner prefix)
-BRANCH="main"                           # Branch that triggers deployments
+BRANCH="master"                         # Branch that triggers deployments
 # ──────────────────────────────────────────────────────────────────────────────
 
 echo ""
