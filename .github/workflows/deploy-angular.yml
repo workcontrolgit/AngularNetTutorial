@@ -3,7 +3,7 @@ name: Deploy Angular to Azure Static Web Apps
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'Clients/TalentManagement-Angular-Material/**'
       - '.github/workflows/deploy-angular.yml'
