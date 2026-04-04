@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(dotnet restore:*)",
-      "Bash(dotnet build:*)"
+      "Bash(dotnet build:*)",
+      "Bash(az webapp:*)",
+      "Bash(kill %1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://app-talent-ids-dev.azurewebsites.net)",
+      "Bash(az sql:*)",
+      "Bash(gh workflow:*)"
     ]
   }
 }
