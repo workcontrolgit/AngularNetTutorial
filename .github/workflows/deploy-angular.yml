@@ -75,6 +75,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ steps.swa-token.outputs.token }}
           action: upload
-          app_location: 'Clients/TalentManagement-Angular-Material/talent-management'
-          output_location: 'dist/talent-management/browser'
+          app_location: 'Clients/TalentManagement-Angular-Material/talent-management/dist/talent-management/browser'
           skip_app_build: true
