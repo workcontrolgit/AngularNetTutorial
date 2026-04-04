@@ -44,6 +44,9 @@ node_modules/
 *.userosscache
 *.sln.docstates
 
+# Scripts with secrets
+infra/scripts/setup-azure.ps1
+
 # Playwright
 /test-results/
 /playwright-report/
