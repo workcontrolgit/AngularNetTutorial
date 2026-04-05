@@ -61,21 +61,26 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Configure App Service settings
+        env:
+          API_CONN: ${{ secrets.API_DB_CONNECTION_STRING }}
+          IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
+          JWT_KEY: ${{ secrets.JWT_KEY }}
+          ANGULAR_URL: ${{ secrets.ANGULAR_APP_URL }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --name ${{ env.APP_SERVICE_NAME }} \
             --settings \
-              "ConnectionStrings__DefaultConnection=${{ secrets.API_DB_CONNECTION_STRING }}" \
-              "Sts__ServerUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
-              "Sts__ValidIssuer=${{ secrets.IDENTITY_SERVER_URL }}" \
+              "ConnectionStrings__DefaultConnection=$API_CONN" \
+              "Sts__ServerUrl=$IDS_URL" \
+              "Sts__ValidIssuer=$IDS_URL" \
               "Sts__Audience=app.api.talentmanagement" \
-              "JWTSettings__Key=${{ secrets.JWT_KEY }}" \
+              "JWTSettings__Key=$JWT_KEY" \
               "JWTSettings__Issuer=CoreIdentity" \
               "JWTSettings__Audience=CoreIdentityUser" \
               "JWTSettings__DurationInMinutes=60" \
               "FeatureManagement__AuthEnabled=true" \
-              "Cors__AllowedOrigins__0=${{ secrets.ANGULAR_APP_URL }}" \
+              "Cors__AllowedOrigins__0=$ANGULAR_URL" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
       - name: Deploy to Azure App Service

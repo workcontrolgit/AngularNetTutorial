@@ -71,32 +71,39 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Configure STS App Service settings
+        env:
+          IDS_CONN: ${{ secrets.IDS_DB_CONNECTION_STRING }}
+          IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --name ${{ env.APP_SERVICE_NAME }} \
             --settings \
-              "ConnectionStrings__ConfigurationDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__PersistedGrantDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__IdentityDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__DataProtectionDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "AdminConfiguration__IdentityServerBaseUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
+              "ConnectionStrings__ConfigurationDbConnection=$IDS_CONN" \
+              "ConnectionStrings__PersistedGrantDbConnection=$IDS_CONN" \
+              "ConnectionStrings__IdentityDbConnection=$IDS_CONN" \
+              "ConnectionStrings__DataProtectionDbConnection=$IDS_CONN" \
+              "AdminConfiguration__IdentityServerBaseUrl=$IDS_URL" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
       - name: Configure Admin App Service settings
+        env:
+          IDS_CONN: ${{ secrets.IDS_DB_CONNECTION_STRING }}
+          IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
+          ADMIN_URL: ${{ secrets.IDENTITY_ADMIN_URL }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --name ${{ env.ADMIN_APP_SERVICE_NAME }} \
             --settings \
-              "ConnectionStrings__ConfigurationDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__PersistedGrantDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__IdentityDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__AdminLogDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__AdminAuditLogDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "ConnectionStrings__DataProtectionDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
-              "AdminConfiguration__IdentityServerBaseUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
-              "AdminConfiguration__IdentityAdminRedirectUri=${{ secrets.IDENTITY_ADMIN_URL }}/signin-oidc" \
+              "ConnectionStrings__ConfigurationDbConnection=$IDS_CONN" \
+              "ConnectionStrings__PersistedGrantDbConnection=$IDS_CONN" \
+              "ConnectionStrings__IdentityDbConnection=$IDS_CONN" \
+              "ConnectionStrings__AdminLogDbConnection=$IDS_CONN" \
+              "ConnectionStrings__AdminAuditLogDbConnection=$IDS_CONN" \
+              "ConnectionStrings__DataProtectionDbConnection=$IDS_CONN" \
+              "AdminConfiguration__IdentityServerBaseUrl=$IDS_URL" \
+              "AdminConfiguration__IdentityAdminRedirectUri=$ADMIN_URL/signin-oidc" \
               "SeedConfiguration__ApplySeed=false" \
               "DatabaseMigrationsConfiguration__ApplyDatabaseMigrations=false" \
               "ASPNETCORE_ENVIRONMENT=Production"
