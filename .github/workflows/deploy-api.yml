@@ -81,6 +81,7 @@ jobs:
               "JWTSettings__DurationInMinutes=60" \
               "FeatureManagement__AuthEnabled=true" \
               "Cors__AllowedOrigins__0=$ANGULAR_URL" \
+              "Cors__AllowedOrigins__1=https://workcontrolgit.github.io" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
       - name: Deploy to Azure App Service
