@@ -70,6 +70,12 @@
 
 * [5.1 — 1,000 Test Employees in 3 Seconds: Database Seeding for Development and Testing](series-5-devops-data/5.1-database-seeding.md) — Database Seeding
 * [5.2 — Run Your Playwright Tests Automatically: CI/CD for a Full-Stack Angular/.NET App](series-5-devops-data/5.2-cicd-github-actions.md) — CI/CD with GitHub Actions
+* [5.3 — Your First Azure Deployment: Setting Up a Visual Studio Subscription](series-5-devops-data/5.3-azure-subscription-setup.md) — Azure Subscription Setup
+* [5.4 — Infrastructure as Code: Provision All Azure Resources with One Bicep Command](series-5-devops-data/5.4-azure-bicep-infrastructure.md) — Azure Bicep Infrastructure
+* [5.5 — Secure CI/CD: Connect GitHub Actions to Azure Without Passwords](series-5-devops-data/5.5-azure-oidc-github-actions.md) — OIDC Federated Identity
+* [5.6 — Deploy .NET API and IdentityServer to Azure App Service](series-5-devops-data/5.6-azure-deploy-dotnet-apps.md) — Deploy .NET Apps
+* [5.7 — Deploy Angular to Azure Static Web Apps](series-5-devops-data/5.7-azure-deploy-angular-swa.md) — Deploy Angular SWA
+* [5.8 — Connect the Stack: Post-Deployment Configuration and Validation](series-5-devops-data/5.8-azure-post-deployment-config.md) — Post-Deployment Config
 
 ---
 
