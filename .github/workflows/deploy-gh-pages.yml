@@ -1,0 +1,60 @@
+name: Deploy Angular to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  ANGULAR_APP_DIR: 'Clients/TalentManagement-Angular-Material/talent-management'
+  BASE_HREF: '/AngularNetTutorial/'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+          cache-dependency-path: '${{ env.ANGULAR_APP_DIR }}/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ${{ env.ANGULAR_APP_DIR }}
+        run: npm ci
+
+      - name: Inject production environment variables
+        working-directory: ${{ env.ANGULAR_APP_DIR }}
+        env:
+          API_URL: ${{ secrets.API_APP_URL }}
+          IDENTITY_SERVER_URL: ${{ secrets.IDENTITY_SERVER_URL }}
+        run: |
+          sed -i "s|https://your-production-api.com/api/v1|${API_URL}/api/v1|g" src/environments/environment.prod.ts
+          sed -i "s|https://localhost:44310|${IDENTITY_SERVER_URL}|g" src/environments/environment.prod.ts
+
+      - name: Build Angular for GitHub Pages
+        working-directory: ${{ env.ANGULAR_APP_DIR }}
+        run: npm run build -- --configuration production --base-href "${{ env.BASE_HREF }}"
+
+      - name: Add 404.html for SPA deep-link routing
+        working-directory: ${{ env.ANGULAR_APP_DIR }}/dist/talent-management/browser
+        run: cp index.html 404.html
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ${{ env.ANGULAR_APP_DIR }}/dist/talent-management/browser
+          branch: gh-pages
+          clean: true
