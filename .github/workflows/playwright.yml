@@ -27,6 +27,10 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       working-directory: ${{ env.PLAYWRIGHT_DIR }}
+      env:
+        ANGULAR_APP_URL: ${{ secrets.ANGULAR_APP_URL }}
+        API_APP_URL: ${{ secrets.API_APP_URL }}
+        IDENTITY_SERVER_URL: ${{ secrets.IDENTITY_SERVER_URL }}
       run: npx playwright test --project=smoke
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
