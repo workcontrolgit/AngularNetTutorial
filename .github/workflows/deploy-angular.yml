@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'Clients/TalentManagement-Angular-Material/**'
-      - '.github/workflows/deploy-angular.yml'
   workflow_dispatch:
 
 permissions:
