@@ -74,6 +74,7 @@ jobs:
         env:
           IDS_CONN: ${{ secrets.IDS_DB_CONNECTION_STRING }}
           IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
+          ADMIN_URL: ${{ secrets.IDENTITY_ADMIN_URL }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
@@ -84,6 +85,7 @@ jobs:
               "ConnectionStrings__IdentityDbConnection=$IDS_CONN" \
               "ConnectionStrings__DataProtectionDbConnection=$IDS_CONN" \
               "AdminConfiguration__IdentityServerBaseUrl=$IDS_URL" \
+              "AdminConfiguration__IdentityAdminBaseUrl=$ADMIN_URL" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
       - name: Configure Admin App Service settings
