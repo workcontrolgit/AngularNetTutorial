@@ -86,6 +86,11 @@ jobs:
               "ConnectionStrings__DataProtectionDbConnection=$IDS_CONN" \
               "AdminConfiguration__IdentityServerBaseUrl=$IDS_URL" \
               "AdminConfiguration__IdentityAdminBaseUrl=$ADMIN_URL" \
+              "CspTrustedDomains__0=www.gravatar.com" \
+              "CspTrustedDomains__1=fonts.googleapis.com" \
+              "CspTrustedDomains__2=fonts.gstatic.com" \
+              "CspTrustedDomains__3=workcontrolgit.github.io" \
+              "CspTrustedDomains__4=mango-flower-0ced4011e.4.azurestaticapps.net" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
       - name: Configure Admin App Service settings
