@@ -8,6 +8,19 @@
 
 ---
 
+## 🌐 Live Demo URLs
+
+### Azure
+* **Angular UI (Static Web App):** https://mango-flower-0ced4011e.4.azurestaticapps.net
+* **Web API:** https://app-talent-api-dev.azurewebsites.net
+* **IdentityServer STS:** https://app-talent-ids-dev.azurewebsites.net
+* **IdentityServer Admin:** https://app-talent-admin-dev.azurewebsites.net
+
+### GitHub Pages
+* **Angular UI:** https://workcontrolgit.github.io/AngularNetTutorial/
+
+---
+
 ## 📝 Series 0: Architecture & Workspace
 
 * [0.1 — Stop Juggling Multiple Repos: Manage Your Full-Stack App Like a Workspace](series-0-architecture/0.1-git-submodule-workspace.md) — Git Submodules
