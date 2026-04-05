@@ -75,6 +75,7 @@ jobs:
               "JWTSettings__Audience=CoreIdentityUser" \
               "JWTSettings__DurationInMinutes=60" \
               "FeatureManagement__AuthEnabled=true" \
+              "Cors__AllowedOrigins__0=${{ secrets.ANGULAR_APP_URL }}" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
       - name: Deploy to Azure App Service
