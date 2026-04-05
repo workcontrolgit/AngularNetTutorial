@@ -17,13 +17,15 @@ env:
   DOTNET_VERSION: '8.x'
   STS_PROJECT_PATH: 'TokenService/Duende-IdentityServer/src/DuendeIdentityServer.STS.Identity/DuendeIdentityServer.STS.Identity.csproj'
   ADMIN_PROJECT_PATH: 'TokenService/Duende-IdentityServer/src/DuendeIdentityServer.Admin/DuendeIdentityServer.Admin.csproj'
-  PUBLISH_DIR: '${{ github.workspace }}/publish/ids'
+  STS_PUBLISH_DIR: '${{ github.workspace }}/publish/ids'
+  ADMIN_PUBLISH_DIR: '${{ github.workspace }}/publish/admin'
   APP_SERVICE_NAME: 'app-talent-ids-dev'
+  ADMIN_APP_SERVICE_NAME: 'app-talent-admin-dev'
   RESOURCE_GROUP: 'rg-talent-dev'
 
 jobs:
   build-and-deploy:
-    name: Build, Test, and Deploy IdentityServer
+    name: Build and Deploy IdentityServer
     runs-on: ubuntu-latest
 
     steps:
@@ -38,17 +40,28 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore dependencies
-        run: dotnet restore ${{ env.STS_PROJECT_PATH }}
+        run: |
+          dotnet restore ${{ env.STS_PROJECT_PATH }}
+          dotnet restore ${{ env.ADMIN_PROJECT_PATH }}
 
       - name: Build
-        run: dotnet build ${{ env.STS_PROJECT_PATH }} --configuration Release --no-restore
+        run: |
+          dotnet build ${{ env.STS_PROJECT_PATH }} --configuration Release --no-restore
+          dotnet build ${{ env.ADMIN_PROJECT_PATH }} --configuration Release --no-restore
 
-      - name: Publish
+      - name: Publish STS
         run: |
           dotnet publish ${{ env.STS_PROJECT_PATH }} \
             --configuration Release \
             --no-build \
-            --output ${{ env.PUBLISH_DIR }}
+            --output ${{ env.STS_PUBLISH_DIR }}
+
+      - name: Publish Admin
+        run: |
+          dotnet publish ${{ env.ADMIN_PROJECT_PATH }} \
+            --configuration Release \
+            --no-build \
+            --output ${{ env.ADMIN_PUBLISH_DIR }}
 
       - name: Log in to Azure
         uses: azure/login@v2
@@ -57,7 +70,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Configure App Service settings
+      - name: Configure STS App Service settings
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
@@ -66,11 +79,36 @@ jobs:
               "ConnectionStrings__ConfigurationDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
               "ConnectionStrings__PersistedGrantDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
               "ConnectionStrings__IdentityDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__DataProtectionDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
               "AdminConfiguration__IdentityServerBaseUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
               "ASPNETCORE_ENVIRONMENT=Production"
 
-      - name: Deploy to Azure App Service
+      - name: Configure Admin App Service settings
+        run: |
+          az webapp config appsettings set \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --name ${{ env.ADMIN_APP_SERVICE_NAME }} \
+            --settings \
+              "ConnectionStrings__ConfigurationDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__PersistedGrantDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__IdentityDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__AdminLogDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__AdminAuditLogDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "ConnectionStrings__DataProtectionDbConnection=${{ secrets.IDS_DB_CONNECTION_STRING }}" \
+              "AdminConfiguration__IdentityServerBaseUrl=${{ secrets.IDENTITY_SERVER_URL }}" \
+              "AdminConfiguration__IdentityAdminRedirectUri=${{ secrets.IDENTITY_ADMIN_URL }}/signin-oidc" \
+              "SeedConfiguration__ApplySeed=false" \
+              "DatabaseMigrationsConfiguration__ApplyDatabaseMigrations=false" \
+              "ASPNETCORE_ENVIRONMENT=Production"
+
+      - name: Deploy STS to Azure App Service
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.APP_SERVICE_NAME }}
-          package: ${{ env.PUBLISH_DIR }}
+          package: ${{ env.STS_PUBLISH_DIR }}
+
+      - name: Deploy Admin to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.ADMIN_APP_SERVICE_NAME }}
+          package: ${{ env.ADMIN_PUBLISH_DIR }}

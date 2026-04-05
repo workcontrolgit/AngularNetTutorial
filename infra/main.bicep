@@ -30,6 +30,9 @@ param apiAppName string
 @description('Name of the IdentityServer Web App')
 param identityAppName string
 
+@description('Name of the IdentityServer Admin Web App')
+param identityAdminAppName string
+
 @description('Name of the Angular Static Web App')
 param staticWebAppName string
 
@@ -77,6 +80,15 @@ module identityApp 'modules/webApp.bicep' = {
   }
 }
 
+module identityAdminApp 'modules/webApp.bicep' = {
+  name: 'identityAdminApp'
+  params: {
+    webAppName: identityAdminAppName
+    location: location
+    appServicePlanId: appServicePlan.outputs.id
+  }
+}
+
 // ─── Angular Static Web App ───────────────────────────────────────────────────
 // Static Web Apps are not available in eastus — use eastus2
 module angularSwa 'modules/staticWebApp.bicep' = {
@@ -103,5 +115,6 @@ module sqlServer 'modules/sqlServer.bicep' = {
 // ─── Outputs (used by deployment workflows and post-deployment config) ─────────
 output apiAppUrl string = apiApp.outputs.url
 output identityAppUrl string = identityApp.outputs.url
+output identityAdminAppUrl string = identityAdminApp.outputs.url
 output angularAppUrl string = angularSwa.outputs.url
 output sqlServerFqdn string = sqlServer.outputs.sqlServerFqdn
