@@ -52,6 +52,9 @@ param sqlAdminLogin string
 @secure()
 param sqlAdminPassword string
 
+@description('Name of the Azure Key Vault')
+param keyVaultName string
+
 // ─── App Service Plan ─────────────────────────────────────────────────────────
 module appServicePlan 'modules/appServicePlan.bicep' = {
   name: 'appServicePlan'
@@ -112,9 +115,24 @@ module sqlServer 'modules/sqlServer.bicep' = {
   }
 }
 
+// ─── Key Vault ────────────────────────────────────────────────────────────────
+module keyVault 'modules/keyVault.bicep' = {
+  name: 'keyVault'
+  params: {
+    keyVaultName: keyVaultName
+    location: location
+    readerPrincipalIds: [
+      apiApp.outputs.principalId
+      identityApp.outputs.principalId
+      identityAdminApp.outputs.principalId
+    ]
+  }
+}
+
 // ─── Outputs (used by deployment workflows and post-deployment config) ─────────
 output apiAppUrl string = apiApp.outputs.url
 output identityAppUrl string = identityApp.outputs.url
 output identityAdminAppUrl string = identityAdminApp.outputs.url
 output angularAppUrl string = angularSwa.outputs.url
 output sqlServerFqdn string = sqlServer.outputs.sqlServerFqdn
+output keyVaultUri string = keyVault.outputs.uri
