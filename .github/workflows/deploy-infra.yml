@@ -38,11 +38,11 @@ jobs:
 
       - name: Deploy Bicep
         env:
-          SQL_PASSWORD: ${{ secrets.SQL_ADMIN_PASSWORD }}
+          # readEnvironmentVariable('SQL_ADMIN_PASSWORD') in dev.bicepparam reads this
+          SQL_ADMIN_PASSWORD: ${{ secrets.SQL_ADMIN_PASSWORD }}
         run: |
           az deployment group create \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --template-file ${{ env.BICEP_FILE }} \
             --parameters ${{ env.PARAMS_FILE }} \
-            --parameters sqlAdminPassword="$SQL_PASSWORD" \
             --output json
