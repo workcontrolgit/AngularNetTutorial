@@ -76,6 +76,7 @@
 * [5.6 — Deploy .NET API and IdentityServer to Azure App Service](series-5-devops-data/5.6-azure-deploy-dotnet-apps.md) — Deploy .NET Apps
 * [5.7 — Deploy Angular to Azure Static Web Apps](series-5-devops-data/5.7-azure-deploy-angular-swa.md) — Deploy Angular SWA
 * [5.8 — Connect the Stack: Post-Deployment Configuration and Validation](series-5-devops-data/5.8-azure-post-deployment-config.md) — Post-Deployment Config
+* [5.9 — Zero Secrets in Config: Azure Key Vault for App Service and .NET Code](series-5-devops-data/5.9-azure-key-vault-secrets.md) — Key Vault Secrets Management
 
 ---
 
