@@ -8,8 +8,8 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
   name: appServicePlanName
   location: location
   sku: {
-    name: 'F1'
-    tier: 'Free'
+    name: 'B1'
+    tier: 'Basic'
   }
   properties: {
     reserved: false // Windows
