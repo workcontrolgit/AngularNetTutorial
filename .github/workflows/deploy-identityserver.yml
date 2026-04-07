@@ -72,18 +72,18 @@ jobs:
 
       - name: Configure STS App Service settings
         env:
-          IDS_CONN: ${{ secrets.IDS_DB_CONNECTION_STRING }}
           IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
           ADMIN_URL: ${{ secrets.IDENTITY_ADMIN_URL }}
+          KV_URI: ${{ secrets.KEY_VAULT_URI }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --name ${{ env.APP_SERVICE_NAME }} \
             --settings \
-              "ConnectionStrings__ConfigurationDbConnection=$IDS_CONN" \
-              "ConnectionStrings__PersistedGrantDbConnection=$IDS_CONN" \
-              "ConnectionStrings__IdentityDbConnection=$IDS_CONN" \
-              "ConnectionStrings__DataProtectionDbConnection=$IDS_CONN" \
+              "ConnectionStrings__ConfigurationDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__PersistedGrantDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__IdentityDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__DataProtectionDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
               "AdminConfiguration__IdentityServerBaseUrl=$IDS_URL" \
               "AdminConfiguration__IdentityAdminBaseUrl=$ADMIN_URL" \
               "CspTrustedDomains__0=www.gravatar.com" \
@@ -95,20 +95,20 @@ jobs:
 
       - name: Configure Admin App Service settings
         env:
-          IDS_CONN: ${{ secrets.IDS_DB_CONNECTION_STRING }}
           IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
           ADMIN_URL: ${{ secrets.IDENTITY_ADMIN_URL }}
+          KV_URI: ${{ secrets.KEY_VAULT_URI }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --name ${{ env.ADMIN_APP_SERVICE_NAME }} \
             --settings \
-              "ConnectionStrings__ConfigurationDbConnection=$IDS_CONN" \
-              "ConnectionStrings__PersistedGrantDbConnection=$IDS_CONN" \
-              "ConnectionStrings__IdentityDbConnection=$IDS_CONN" \
-              "ConnectionStrings__AdminLogDbConnection=$IDS_CONN" \
-              "ConnectionStrings__AdminAuditLogDbConnection=$IDS_CONN" \
-              "ConnectionStrings__DataProtectionDbConnection=$IDS_CONN" \
+              "ConnectionStrings__ConfigurationDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__PersistedGrantDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__IdentityDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__AdminLogDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__AdminAuditLogDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
+              "ConnectionStrings__DataProtectionDbConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--IdsDbConnection)" \
               "AdminConfiguration__IdentityServerBaseUrl=$IDS_URL" \
               "AdminConfiguration__IdentityAdminRedirectUri=$ADMIN_URL/signin-oidc" \
               "SeedConfiguration__ApplySeed=false" \

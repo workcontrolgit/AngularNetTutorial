@@ -62,20 +62,19 @@ jobs:
 
       - name: Configure App Service settings
         env:
-          API_CONN: ${{ secrets.API_DB_CONNECTION_STRING }}
           IDS_URL: ${{ secrets.IDENTITY_SERVER_URL }}
-          JWT_KEY: ${{ secrets.JWT_KEY }}
           ANGULAR_URL: ${{ secrets.ANGULAR_APP_URL }}
+          KV_URI: ${{ secrets.KEY_VAULT_URI }}
         run: |
           az webapp config appsettings set \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --name ${{ env.APP_SERVICE_NAME }} \
             --settings \
-              "ConnectionStrings__DefaultConnection=$API_CONN" \
+              "ConnectionStrings__DefaultConnection=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/ConnectionStrings--DefaultConnection)" \
+              "JWTSettings__Key=@Microsoft.KeyVault(SecretUri=${KV_URI}secrets/JWTSettings--Key)" \
               "Sts__ServerUrl=$IDS_URL" \
               "Sts__ValidIssuer=$IDS_URL" \
               "Sts__Audience=app.api.talentmanagement" \
-              "JWTSettings__Key=$JWT_KEY" \
               "JWTSettings__Issuer=CoreIdentity" \
               "JWTSettings__Audience=CoreIdentityUser" \
               "JWTSettings__DurationInMinutes=60" \
