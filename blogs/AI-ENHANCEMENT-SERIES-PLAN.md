@@ -159,17 +159,19 @@ git push --set-upstream origin feature/[N.N]-[slug]
   - [ ] Open PR: ApiResources `feature/6.1-dotnet-ai-foundation` → `develop` — https://github.com/workcontrolgit/TalentManagement-API/pull/new/feature/6.1-dotnet-ai-foundation
   - [ ] Open PR: Parent `feature/6.1-dotnet-ai-foundation` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/new/feature/6.1-dotnet-ai-foundation
 
-- [ ] **6.2 — HR AI Assistant (data-aware)**
-  - [ ] `git checkout -b feature/6.2-dotnet-ai-hr-assistant` in ApiResources submodule
-  - [ ] `git checkout -b feature/6.2-dotnet-ai-hr-assistant` in parent repo
-  - [ ] Write article draft (`6.2-dotnet-ai-hr-assistant.md`)
-  - [ ] Create `Application/Features/AI/Queries/GetHrInsightQuery.cs` (MediatR)
-  - [ ] Inject DashboardMetrics context into prompt
-  - [ ] Screenshot: AI answer about employee data → `docs/images/ai/`
-  - [ ] Commit + push submodule feature branch
-  - [ ] Commit + push parent feature branch
-  - [ ] Open PR: ApiResources `feature/6.2-dotnet-ai-hr-assistant` → `develop`
-  - [ ] Open PR: Parent `feature/6.2-dotnet-ai-hr-assistant` → `develop`
+- [x] **6.2 — HR AI Assistant (data-aware)** ✅
+  - [x] `git checkout -b feature/6.2-dotnet-ai-hr-assistant` in ApiResources submodule ✅
+  - [x] `git checkout -b feature/6.2-dotnet-ai-hr-assistant` in parent repo ✅
+  - [x] Write article draft (`6.2-dotnet-ai-hr-assistant.md`) ✅
+  - [x] Create `Application/Features/AI/Queries/GetHrInsight/GetHrInsightQuery.cs` (MediatR) ✅
+  - [x] Create `Application/Features/AI/Queries/GetHrInsight/HrInsightDto.cs` ✅
+  - [x] Add `POST /api/v1/ai/hr-insight` endpoint to `AiController` ✅
+  - [x] Inject DashboardMetrics context into prompt ✅
+  - [ ] Screenshot: AI answer about employee data → `docs/images/ai/` *(manual step)*
+  - [x] Commit + push submodule feature branch ✅
+  - [x] Commit + push parent feature branch ✅
+  - [x] Open PR: ApiResources `feature/6.2-dotnet-ai-hr-assistant` → `develop` — https://github.com/workcontrolgit/TalentManagement-API/pull/3 ✅
+  - [x] Open PR: Parent `feature/6.2-dotnet-ai-hr-assistant` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/17 ✅
 
 ### Phase 2: Series 6 — Angular Frontend
 
