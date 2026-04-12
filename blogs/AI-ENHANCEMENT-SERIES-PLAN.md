@@ -175,19 +175,20 @@ git push --set-upstream origin feature/[N.N]-[slug]
 
 ### Phase 2: Series 6 — Angular Frontend
 
-- [ ] **6.3 — Angular AI Chat Widget**
-  - [ ] `git checkout -b feature/6.3-angular-ai-chat-widget` in Clients submodule
-  - [ ] `git checkout -b feature/6.3-angular-ai-chat-widget` in parent repo
-  - [ ] Write article draft (`6.3-angular-ai-chat-widget.md`)
-  - [ ] Create `src/app/services/api/ai.service.ts`
-  - [ ] Create `src/app/routes/ai-chat/` (component + template + SCSS)
-  - [ ] Implement SSE streaming with `HttpClient` + `EventSource`
-  - [ ] Add to sidebar navigation (guarded by `environment.aiEnabled`)
-  - [ ] Screenshot: Chat widget in Angular UI → `docs/images/ai/`
-  - [ ] Commit + push Clients feature branch
-  - [ ] Commit + push parent feature branch
-  - [ ] Open PR: Clients `feature/6.3-angular-ai-chat-widget` → `develop`
-  - [ ] Open PR: Parent `feature/6.3-angular-ai-chat-widget` → `develop`
+- [x] **6.3 — Angular AI Chat Widget** ✅
+  - [x] `git checkout -b feature/6.3-angular-ai-chat-widget` in Clients submodule ✅
+  - [x] `git checkout -b feature/6.3-angular-ai-chat-widget` in parent repo ✅
+  - [x] Write article draft (`6.3-angular-ai-chat-widget.md`) ✅
+  - [x] Create `src/app/services/api/ai.service.ts` ✅
+  - [x] Create `src/app/routes/ai-chat/` (component + template + SCSS) ✅
+  - [x] Add `aiEnabled: false` to environment files ✅
+  - [x] Add to sidebar navigation (`menu.json` + `en-US.json` translation key) ✅
+  - [x] Register route in `app.routes.ts` ✅
+  - [ ] Screenshot: Chat widget in Angular UI → `docs/images/ai/` *(manual step)*
+  - [x] Commit + push Clients feature branch ✅
+  - [x] Commit + push parent feature branch ✅
+  - [x] Open PR: Clients `feature/6.3-angular-ai-chat-widget` → `develop` — https://github.com/workcontrolgit/TalentManagement-Angular-Material/pull/3 ✅
+  - [x] Open PR: Parent `feature/6.3-angular-ai-chat-widget` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/18 ✅
 
 - [ ] **6.4 — AI Dashboard Insights**
   - [ ] `git checkout -b feature/6.4-angular-ai-dashboard-insights` in Clients submodule
