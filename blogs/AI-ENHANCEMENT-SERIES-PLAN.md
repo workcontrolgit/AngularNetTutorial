@@ -190,17 +190,17 @@ git push --set-upstream origin feature/[N.N]-[slug]
   - [x] Open PR: Clients `feature/6.3-angular-ai-chat-widget` → `develop` — https://github.com/workcontrolgit/TalentManagement-Angular-Material/pull/3 ✅
   - [x] Open PR: Parent `feature/6.3-angular-ai-chat-widget` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/18 ✅
 
-- [ ] **6.4 — AI Dashboard Insights**
-  - [ ] `git checkout -b feature/6.4-angular-ai-dashboard-insights` in Clients submodule
-  - [ ] `git checkout -b feature/6.4-angular-ai-dashboard-insights` in parent repo
-  - [ ] Write article draft (`6.4-angular-ai-dashboard-insights.md`)
-  - [ ] Modify `dashboard.ts` — add AI insights call after metrics load
-  - [ ] Add "AI Insights" `mat-card` to `dashboard.html` (guarded by `aiEnabled`)
-  - [ ] Screenshot: Dashboard with AI insights card → `docs/images/ai/`
-  - [ ] Commit + push Clients feature branch
-  - [ ] Commit + push parent feature branch
-  - [ ] Open PR: Clients `feature/6.4-angular-ai-dashboard-insights` → `develop`
-  - [ ] Open PR: Parent `feature/6.4-angular-ai-dashboard-insights` → `develop`
+- [x] **6.4 — AI Dashboard Insights** ✅
+  - [x] `git checkout -b feature/6.4-angular-ai-dashboard-insights` in Clients submodule ✅
+  - [x] `git checkout -b feature/6.4-angular-ai-dashboard-insights` in parent repo ✅
+  - [x] Write article draft (`6.4-angular-ai-dashboard-insights.md`) ✅
+  - [x] Modify `dashboard.ts` — add AI insights call after metrics load ✅
+  - [x] Add "AI Insights" `mat-card` to `dashboard.html` (guarded by `aiEnabled`) ✅
+  - [ ] Screenshot: Dashboard with AI insights card → `docs/images/ai/` *(manual step)*
+  - [x] Commit + push Clients feature branch ✅
+  - [x] Commit + push parent feature branch ✅
+  - [x] Open PR: Clients `feature/6.4-angular-ai-dashboard-insights` → `develop` — https://github.com/workcontrolgit/TalentManagement-Angular-Material/pull/4 ✅
+  - [x] Open PR: Parent `feature/6.4-angular-ai-dashboard-insights` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/19 ✅
 
 ### Phase 3: Series 6 — Advanced
 
