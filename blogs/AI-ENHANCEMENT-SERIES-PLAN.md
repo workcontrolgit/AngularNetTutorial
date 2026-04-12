@@ -199,8 +199,8 @@ git push --set-upstream origin feature/[N.N]-[slug]
   - [ ] Screenshot: Dashboard with AI insights card → `docs/images/ai/` *(manual step)*
   - [x] Commit + push Clients feature branch ✅
   - [x] Commit + push parent feature branch ✅
-  - [ ] Open PR: Clients `feature/6.4-angular-ai-dashboard-insights` → `develop`
-  - [ ] Open PR: Parent `feature/6.4-angular-ai-dashboard-insights` → `develop`
+  - [x] Open PR: Clients `feature/6.4-angular-ai-dashboard-insights` → `develop` — https://github.com/workcontrolgit/TalentManagement-Angular-Material/pull/4 ✅
+  - [x] Open PR: Parent `feature/6.4-angular-ai-dashboard-insights` → `develop` — https://github.com/workcontrolgit/AngularNetTutorial/pull/19 ✅
 
 ### Phase 3: Series 6 — Advanced
 
