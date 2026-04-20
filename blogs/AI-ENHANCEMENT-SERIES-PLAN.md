@@ -64,6 +64,8 @@ All Series 6 code merges into `develop` via feature branches. `AiEnabled` defaul
   * Code: `NlSearchQuery` handler (.NET) + NL search bar (Angular)
 * **6.6** — `6.6-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs
   * Code: EasyCaching cache-aside in `OllamaAiService`, `X-AI-Cache` response header
+* **6.7** — `6.7-dotnet-mssql-vector-search.md` — Semantic Employee Search with MSSQL 2025 Native Vector Search
+  * Code: `vector(768)` column on Employee entity, `IEmbeddingService`/`OllamaEmbeddingService`, `SemanticSearchQuery` MediatR handler using `VECTOR_DISTANCE`, `POST /api/v1/employees/semantic-search` endpoint, Angular semantic search tab on employee list
 
 ---
 
@@ -96,6 +98,7 @@ All Series 6 code merges into `develop` via feature branches. `AiEnabled` defaul
 * **6.4** — Parent: `feature/6.4-angular-ai-dashboard-insights` | Clients: `feature/6.4-angular-ai-dashboard-insights`
 * **6.5** — Parent: `feature/6.5-natural-language-search` | ApiResources + Clients: `feature/6.5-natural-language-search`
 * **6.6** — Parent: `feature/6.6-ai-response-caching` | ApiResources: `feature/6.6-ai-response-caching`
+* **6.7** — Parent: `feature/6.7-mssql-vector-search` | ApiResources + Clients: `feature/6.7-mssql-vector-search`
 * **7.1–7.4** — Parent only (blog articles, no submodule code changes)
 
 ### Gitflow Steps Per Article (with submodule code)
@@ -203,7 +206,7 @@ git push --set-upstream origin feature/[N.N]-[slug]
 
 - [ ] **6.5 — Natural Language Search**
   - [ ] `git checkout -b feature/6.5-natural-language-search` in ApiResources + Clients + parent
-  - [ ] Write article draft (`6.5-dotnet-natural-language-search.md`)
+  - [x] Write article draft (`6.5-dotnet-natural-language-search.md`) ✅
   - [ ] .NET: Create `NlSearchQuery` MediatR handler (LLM → structured filter)
   - [ ] Angular: Add NL search bar above employee table
   - [ ] Screenshot: NL query → filtered employee list → `docs/images/ai/`
@@ -218,6 +221,23 @@ git push --set-upstream origin feature/[N.N]-[slug]
   - [ ] Screenshot: Swagger response headers showing cache → `docs/images/ai/`
   - [ ] Commit + push feature branches
   - [ ] Open PRs: ApiResources + Parent → `develop`
+
+- [ ] **6.7 — Semantic Search with MSSQL 2025 Vector Search**
+  - [ ] `git checkout -b feature/6.7-mssql-vector-search` in ApiResources + Clients + parent
+  - [ ] Write article draft (`6.7-dotnet-mssql-vector-search.md`)
+  - [ ] .NET: Add `SearchEmbedding vector(768)` column to Employee entity + EF migration
+  - [ ] .NET: Create `Application/Interfaces/IEmbeddingService.cs`
+  - [ ] .NET: Create `Infrastructure.Shared/Services/OllamaEmbeddingService.cs` (calls `nomic-embed-text` via Ollama `/api/embeddings`)
+  - [ ] .NET: Create `Application/Features/Employees/Queries/SemanticSearch/SemanticSearchQuery.cs` (MediatR)
+  - [ ] .NET: Create `SemanticSearchQueryHandler.cs` — embed query → `VECTOR_DISTANCE` raw SQL → ranked results
+  - [ ] .NET: Add `POST /api/v1/employees/semantic-search` endpoint to `EmployeesController`
+  - [ ] .NET: Seed/backfill embeddings for existing employee seed data
+  - [ ] Angular: Add `semanticSearch()` method to `ai.service.ts`
+  - [ ] Angular: Add semantic search tab/toggle on employee list (alongside existing NL search bar)
+  - [ ] Add `VectorSearchEnabled` feature flag to `appsettings.json` and `environment.ts`
+  - [ ] Screenshot: Semantic search results vs keyword results → `docs/images/ai/`
+  - [ ] Commit + push all feature branches
+  - [ ] Open PRs: ApiResources + Clients + Parent → `develop`
 
 ### Phase 4: Series 7 — Developer Productivity (parent repo only)
 
@@ -251,7 +271,8 @@ git push --set-upstream origin feature/[N.N]-[slug]
 4. 6.4 — dashboard insights (builds on 6.2 + existing dashboard)
 5. 6.5 — NL search (builds on 6.1 + existing employee list)
 6. 6.6 — AI caching (builds on 6.1 + EasyCaching from article 2.5)
-7. 7.1–7.4 — independent, any order
+7. 6.7 — MSSQL 2025 vector search (builds on 6.5 — contrasts LLM translator with semantic similarity; requires SQL Server 2025 CTP or later)
+8. 7.1–7.4 — independent, any order
 
 ---
 
