@@ -89,6 +89,12 @@
           }
         }
       ]
+    },
+    {
+      "route": "ai-chat",
+      "name": "aiChat",
+      "type": "link",
+      "icon": "smart_toy"
     }
   ]
 }
