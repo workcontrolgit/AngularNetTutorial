@@ -18,8 +18,11 @@
     "url": "https://github.com/workcontrolgit/AngularNetTutorial/issues"
   },
   "homepage": "https://github.com/workcontrolgit/AngularNetTutorial#readme",
+  "workspaces": [
+    "Tests/AngularNetTutorial-Playwright"
+  ],
   "devDependencies": {
-    "@playwright/test": "^1.59.1",
+    "@playwright/test": "1.59.1",
     "@types/node": "^25.4.0"
   }
 }
