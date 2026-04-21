@@ -91,10 +91,32 @@
       ]
     },
     {
-      "route": "ai-chat",
-      "name": "aiChat",
-      "type": "link",
-      "icon": "smart_toy"
+      "route": "ai",
+      "name": "ai",
+      "type": "sub",
+      "icon": "smart_toy",
+      "children": [
+        {
+          "route": "assistant",
+          "name": "ai.aiAssistant",
+          "type": "link"
+        },
+        {
+          "route": "hr-insight",
+          "name": "ai.aiHrInsight",
+          "type": "link"
+        },
+        {
+          "route": "nl-search",
+          "name": "ai.aiNlSearch",
+          "type": "link"
+        },
+        {
+          "route": "vector-search",
+          "name": "ai.aiVectorSearch",
+          "type": "link"
+        }
+      ]
     }
   ]
 }
