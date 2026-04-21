@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "bugs": [
+    {
+      "id": "bug-001",
+      "timestamp": "2026-04-21T17:17:05.870Z",
+      "error_message": "Type error",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-21T17:17:05.870Z"
+    }
+  ]
+}
