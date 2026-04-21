@@ -35,7 +35,7 @@ AI  (sub menu, icon: psychology)
 
 ## Phase 0: Remove Embedded AI from Existing CRUD Components
 
-> **Goal:** Restore `employee-list` and `position-list` to their original Series 0–5 state so those blog articles remain accurate. AI features for these entities move to dedicated `/ai/*` pages instead.
+> **Goal:** Restore `employee-list`, `position-list`, and `dashboard` to their original Series 0–5 state so those blog articles remain accurate. AI features move to dedicated `/ai/*` pages instead.
 
 ### Gitflow — Start
 
@@ -86,16 +86,32 @@ git checkout -b feature/ai-submenu-phase0-crud-cleanup
 - [ ] Remove the entire `<mat-card class="nl-search-card" *ngIf="aiEnabled">` block (semantic search bar above position table)
 - [ ] Verify the table and surrounding markup is unchanged from the Series 3 state
 
-### 0.5 — Confirm Dashboard AI Card is Intentionally Kept
-The `dashboard.ts` / `dashboard.html` AI Insights card is from **article 6.4** (an AI article, not a CRUD article) — it stays in place.
+### 0.5 — dashboard.ts
+**File:** `Clients/.../src/app/routes/dashboard/dashboard.ts`
 
-- [ ] Confirm `dashboard.ts` and `dashboard.html` are NOT touched in this cleanup phase
+- [ ] Change `import { DashboardService, AiService } from '../../services/api'` → `import { DashboardService } from '../../services/api'`
+- [ ] Remove `import { environment } from '../../../environments/environment'`
+- [ ] Remove `OnDestroy` from the `@angular/core` import and from the `implements` clause
+- [ ] Remove `import { Subject } from 'rxjs'` and `import { takeUntil } from 'rxjs/operators'`
+- [ ] Remove `private aiService = inject(AiService)` field
+- [ ] Remove `private destroy$ = new Subject<void>()` field
+- [ ] Remove AI state fields: `aiEnabled`, `aiInsight`, `aiInsightLoading`, `aiInsightError`
+- [ ] Remove the `if (this.aiEnabled) { this.loadAiInsight(metrics); }` call inside `loadDashboardMetrics`
+- [ ] Remove the entire `private loadAiInsight(metrics: DashboardMetrics): void` method
+- [ ] Remove the `ngOnDestroy()` method
+
+### 0.6 — dashboard.html
+**File:** `Clients/.../src/app/routes/dashboard/dashboard.html`
+
+- [ ] Remove the entire `<mat-card *ngIf="aiEnabled" class="ai-insights-card">` block (lines 3–30, the AI Workforce Insights card)
+- [ ] Verify the dashboard metrics cards and charts below are unchanged
 
 ### Phase 0 Verification
 
 - [ ] Employee List page has no AI/NL search bar — matches Series 3 article exactly
 - [ ] Position List page has no semantic search bar — matches Series 3 article exactly
-- [ ] No `AiService` import in `employee-list.component.ts` or `position-list.component.ts`
+- [ ] Dashboard page has no AI Workforce Insights card — matches Series 5 article exactly
+- [ ] No `AiService` import in `employee-list.component.ts`, `position-list.component.ts`, or `dashboard.ts`
 - [ ] `ng build` compiles with no errors
 - [ ] All existing Series 0–5 CRUD features still work (manual smoke test)
 
@@ -107,8 +123,10 @@ cd Clients/TalentManagement-Angular-Material
 git add src/app/routes/employees/employee-list.component.ts \
         src/app/routes/employees/employee-list.component.html \
         src/app/routes/positions/position-list.component.ts \
-        src/app/routes/positions/position-list.component.html
-git commit -m "Remove embedded AI features from employee-list and position-list"
+        src/app/routes/positions/position-list.component.html \
+        src/app/routes/dashboard/dashboard.ts \
+        src/app/routes/dashboard/dashboard.html
+git commit -m "Remove embedded AI features from employee-list, position-list, and dashboard"
 git push --set-upstream origin feature/ai-submenu-phase0-crud-cleanup
 
 # Update submodule pointer + commit in parent repo
@@ -118,8 +136,8 @@ git commit -m "Phase 0: remove AI from CRUD components — update Clients submod
 git push --set-upstream origin feature/ai-submenu-phase0-crud-cleanup
 
 # Open PRs
-gh pr create --base develop --title "Phase 0: Remove embedded AI from CRUD components" \
-  --body "Restores employee-list and position-list to Series 0-5 state. AI features will live under the /ai submenu." \
+gh pr create --base develop --title "Phase 0: Remove embedded AI from CRUD components and dashboard" \
+  --body "Restores employee-list, position-list, and dashboard to Series 0-5 state. AI features will live under the /ai submenu." \
   --repo workcontrolgit/TalentManagement-Angular-Material
 
 gh pr create --base develop --title "Phase 0: Remove embedded AI from CRUD components" \
