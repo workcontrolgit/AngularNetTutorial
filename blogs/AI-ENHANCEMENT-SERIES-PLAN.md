@@ -56,12 +56,12 @@ All Series 6 code merges into `develop` via feature branches. `AiEnabled` defaul
   * Code: `IChatClient` DI setup, `POST /api/v1/ai/chat` endpoint, feature flag setup
 * **6.2** — `6.2-dotnet-ai-hr-assistant.md` — Build an HR AI Assistant That Knows Your Data
   * Code: `GetHrInsightQuery` (MediatR), inject DashboardMetrics context into prompt
-* **6.3** — `6.3-angular-ai-chat-widget.md` — Add an AI Chat Widget to Angular with Streaming
-  * Code: `AiChatComponent`, SSE streaming with RxJS
-* **6.4** — `6.4-angular-ai-dashboard-insights.md` — AI-Generated Dashboard Insights in Angular Material
-  * Code: AI Insights `mat-card` on dashboard, prompt engineering patterns
-* **6.5** — `6.5-dotnet-natural-language-search.md` — Natural Language Employee Search with LLM Query Parsing
-  * Code: `NlSearchQuery` handler (.NET) + NL search bar (Angular)
+* **6.3** — `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation
+  * Code: AI submenu (menu.json, en-US.json), 4 standalone components under `routes/ai/`, nested child routes, backward-compat redirect
+* **6.4** — `6.4-angular-ai-nl-search.md` — Natural Language Employee Search in Angular Material
+  * Code: `AiNlSearchComponent` — debounce → LLM parse → employee API, parsed expression display
+* **6.5** — `6.5-angular-ai-vector-search.md` — Semantic Position Search with Vector Embeddings
+  * Code: `AiVectorSearchComponent` — debounce → vector search API, score badge, results table
 * **6.6** — `6.6-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs
   * Code: EasyCaching cache-aside in `OllamaAiService`, `X-AI-Cache` response header
 * **6.7** — `6.7-dotnet-mssql-vector-search.md` — Semantic Employee Search with MSSQL 2025 Native Vector Search

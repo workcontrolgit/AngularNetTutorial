@@ -1,79 +1,133 @@
+/**
+ * Root Playwright Configuration
+ *
+ * Delegates to the Playwright submodule test suite at:
+ *   Tests/AngularNetTutorial-Playwright/tests/
+ *
+ * NOTE: Values are inlined here (not imported from the submodule) to avoid a
+ * dual-instance Playwright conflict. The root node_modules and the submodule
+ * node_modules contain different Playwright versions; cross-importing between
+ * them causes a runtime crash. Keep values in sync with:
+ *   Tests/AngularNetTutorial-Playwright/config/test-config.ts
+ *
+ * Prefer running from the submodule for development:
+ *   cd Tests/AngularNetTutorial-Playwright && npx playwright test
+ *
+ * Running from the repo root (CI / convenience):
+ *   npx playwright test
+ *   npx playwright test --project=screenshots
+ *   npx playwright test --project=smoke
+ */
+
 import { defineConfig, devices } from '@playwright/test';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+const ANGULAR_URL       = process.env.ANGULAR_APP_URL       || 'http://localhost:4200';
+const API_URL           = process.env.API_APP_URL            || 'https://localhost:44378/api/v1';
+const IDENTITY_URL      = process.env.IDENTITY_SERVER_URL    || 'https://localhost:44310';
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
+const TESTS_DIR = './Tests/AngularNetTutorial-Playwright/tests';
+const REPORT_DIR = './Tests/AngularNetTutorial-Playwright/playwright-report';
+const RESULTS_DIR = './Tests/AngularNetTutorial-Playwright/test-results';
+
 export default defineConfig({
-  testDir: './e2e',
-  /* Run tests in files in parallel */
+  testDir: TESTS_DIR,
+
+  timeout: 30000,
+  expect: { timeout: 5000 },
+
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'http://localhost:3000',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
-  },
-
-  /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+  reporter: [
+    ['html', { outputFolder: REPORT_DIR, open: 'never' }],
+    ['json', { outputFile: `${RESULTS_DIR}/results.json` }],
+    ['junit', { outputFile: `${RESULTS_DIR}/junit.xml` }],
+    ['list'],
   ],
 
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  use: {
+    baseURL: ANGULAR_URL,
+    trace: 'on-first-retry',
+    video: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    viewport: { width: 1366, height: 768 },
+    ignoreHTTPSErrors: true,
+    actionTimeout: 10000,
+  },
+
+  projects: [
+    {
+      name: 'setup',
+      testMatch: /.*\.setup\.ts/,
+    },
+
+    // Smoke — critical path only (CI)
+    {
+      name: 'smoke',
+      testMatch: /.*smoke\.spec\.ts/,
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1366, height: 768 } },
+      dependencies: ['setup'],
+    },
+
+    // E2E — Chromium
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1366, height: 768 },
+        launchOptions: {
+          args: ['--enable-precise-memory-info', '--disable-animations'],
+        },
+      },
+      dependencies: ['setup'],
+    },
+
+    // E2E — Firefox
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'], viewport: { width: 1366, height: 768 } },
+      dependencies: ['setup'],
+    },
+
+    // E2E — WebKit
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], viewport: { width: 1366, height: 768 } },
+      dependencies: ['setup'],
+    },
+
+    // API Integration Tests
+    {
+      name: 'api',
+      testMatch: /tests\/api\/.*\.spec\.ts/,
+      testIgnore: [
+        /tests\/api\/auth-api\.spec\.ts/,
+        /tests\/api\/cache-api\.spec\.ts/,
+        /tests\/api\/departments-api\.spec\.ts/,
+        /tests\/api\/employees-api\.spec\.ts/,
+      ],
+      use: {
+        baseURL: API_URL,
+        extraHTTPHeaders: { Accept: 'application/json' },
+      },
+    },
+
+    // Blog Screenshots — captures key UI states for blog posts and documentation
+    // video: 'on' records the browser session as a .webm file per test.
+    // Run scripts/build-video.ps1 after the test to combine the PNG+WAV pairs
+    // into a single narrated MP4 slideshow (requires FFmpeg on PATH).
+    {
+      name: 'screenshots',
+      testMatch: /tests\/screenshots\/.*\.spec\.ts/,
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1366, height: 768 },
+        video: 'on',
+        screenshot: 'off',
+        launchOptions: { slowMo: 150 },
+      },
+    },
+  ],
 });

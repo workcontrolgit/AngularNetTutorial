@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "created_at": "2026-04-21T17:14:01.919Z",
+  "lifetime": {
+    "total_tokens_estimated": 2896,
+    "total_reads": 1,
+    "total_writes": 1,
+    "total_sessions": 0,
+    "anatomy_hits": 0,
+    "anatomy_misses": 1,
+    "repeated_reads_blocked": 1,
+    "estimated_savings_vs_bare_cli": 0
+  },
+  "sessions": [
+    {
+      "id": "",
+      "started": "",
+      "ended": "2026-04-21T17:33:06.824Z",
+      "reads": [
+        {
+          "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+          "tokens_estimated": 2896,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 0,
+        "output_tokens_estimated": 2896,
+        "reads_count": 1,
+        "writes_count": 1,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 0
+      }
+    }
+  ],
+  "daemon_usage": [],
+  "waste_flags": [],
+  "optimization_report": {
+    "last_generated": null,
+    "patterns": []
+  }
+}
