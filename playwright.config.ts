@@ -1,35 +1,39 @@
 /**
  * Root Playwright Configuration
  *
- * Delegates to the full test configuration in the Playwright submodule:
- *   Tests/AngularNetTutorial-Playwright/
+ * Delegates to the Playwright submodule test suite at:
+ *   Tests/AngularNetTutorial-Playwright/tests/
  *
- * Running `npx playwright test` from the repo root uses this config,
- * which points testDir at the submodule's tests/ folder and imports
- * all shared settings (timeouts, viewports, reporters, projects) from
- * the submodule config.
+ * NOTE: Values are inlined here (not imported from the submodule) to avoid a
+ * dual-instance Playwright conflict. The root node_modules and the submodule
+ * node_modules contain different Playwright versions; cross-importing between
+ * them causes a runtime crash. Keep values in sync with:
+ *   Tests/AngularNetTutorial-Playwright/config/test-config.ts
  *
- * To run from the submodule directly (recommended for development):
- *   cd Tests/AngularNetTutorial-Playwright
- *   npx playwright test
+ * Prefer running from the submodule for development:
+ *   cd Tests/AngularNetTutorial-Playwright && npx playwright test
  *
- * To run from the repo root (CI / convenience):
+ * Running from the repo root (CI / convenience):
  *   npx playwright test
  *   npx playwright test --project=screenshots
  *   npx playwright test --project=smoke
  */
 
 import { defineConfig, devices } from '@playwright/test';
-import { APP_URLS, TIMEOUTS, VIEWPORTS } from './Tests/AngularNetTutorial-Playwright/config/test-config';
+
+const ANGULAR_URL       = process.env.ANGULAR_APP_URL       || 'http://localhost:4200';
+const API_URL           = process.env.API_APP_URL            || 'https://localhost:44378/api/v1';
+const IDENTITY_URL      = process.env.IDENTITY_SERVER_URL    || 'https://localhost:44310';
+
+const TESTS_DIR = './Tests/AngularNetTutorial-Playwright/tests';
+const REPORT_DIR = './Tests/AngularNetTutorial-Playwright/playwright-report';
+const RESULTS_DIR = './Tests/AngularNetTutorial-Playwright/test-results';
 
 export default defineConfig({
-  /* Point at the submodule's test folder */
-  testDir: './Tests/AngularNetTutorial-Playwright/tests',
+  testDir: TESTS_DIR,
 
-  timeout: TIMEOUTS.standard,
-  expect: {
-    timeout: TIMEOUTS.short,
-  },
+  timeout: 30000,
+  expect: { timeout: 5000 },
 
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -37,18 +41,18 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   reporter: [
-    ['html', { outputFolder: 'Tests/AngularNetTutorial-Playwright/playwright-report', open: 'never' }],
-    ['json', { outputFile: 'Tests/AngularNetTutorial-Playwright/test-results/results.json' }],
-    ['junit', { outputFile: 'Tests/AngularNetTutorial-Playwright/test-results/junit.xml' }],
+    ['html', { outputFolder: REPORT_DIR, open: 'never' }],
+    ['json', { outputFile: `${RESULTS_DIR}/results.json` }],
+    ['junit', { outputFile: `${RESULTS_DIR}/junit.xml` }],
     ['list'],
   ],
 
   use: {
-    baseURL: APP_URLS.angular,
+    baseURL: ANGULAR_URL,
     trace: 'on-first-retry',
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    viewport: VIEWPORTS.laptop,
+    viewport: { width: 1366, height: 768 },
     ignoreHTTPSErrors: true,
     actionTimeout: 10000,
   },
@@ -59,23 +63,20 @@ export default defineConfig({
       testMatch: /.*\.setup\.ts/,
     },
 
-    // Smoke Tests — critical path only (used in CI)
+    // Smoke — critical path only (CI)
     {
       name: 'smoke',
       testMatch: /.*smoke\.spec\.ts/,
-      use: {
-        ...devices['Desktop Chrome'],
-        viewport: VIEWPORTS.laptop,
-      },
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1366, height: 768 } },
       dependencies: ['setup'],
     },
 
-    // E2E Browser Tests
+    // E2E — Chromium
     {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        viewport: VIEWPORTS.laptop,
+        viewport: { width: 1366, height: 768 },
         launchOptions: {
           args: ['--enable-precise-memory-info', '--disable-animations'],
         },
@@ -83,28 +84,24 @@ export default defineConfig({
       dependencies: ['setup'],
     },
 
+    // E2E — Firefox
     {
       name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        viewport: VIEWPORTS.laptop,
-      },
+      use: { ...devices['Desktop Firefox'], viewport: { width: 1366, height: 768 } },
       dependencies: ['setup'],
     },
 
+    // E2E — WebKit
     {
       name: 'webkit',
-      use: {
-        ...devices['Desktop Safari'],
-        viewport: VIEWPORTS.laptop,
-      },
+      use: { ...devices['Desktop Safari'], viewport: { width: 1366, height: 768 } },
       dependencies: ['setup'],
     },
 
     // API Integration Tests
     {
       name: 'api',
-      testMatch: /Tests\/AngularNetTutorial-Playwright\/tests\/api\/.*\.spec\.ts/,
+      testMatch: /tests\/api\/.*\.spec\.ts/,
       testIgnore: [
         /tests\/api\/auth-api\.spec\.ts/,
         /tests\/api\/cache-api\.spec\.ts/,
@@ -112,23 +109,24 @@ export default defineConfig({
         /tests\/api\/employees-api\.spec\.ts/,
       ],
       use: {
-        baseURL: APP_URLS.api,
+        baseURL: API_URL,
         extraHTTPHeaders: { Accept: 'application/json' },
       },
     },
 
     // Blog Screenshots — captures key UI states for blog posts and documentation
+    // video: 'on' records the browser session as a .webm file per test.
+    // Run scripts/build-video.ps1 after the test to combine the PNG+WAV pairs
+    // into a single narrated MP4 slideshow (requires FFmpeg on PATH).
     {
       name: 'screenshots',
-      testMatch: /Tests\/AngularNetTutorial-Playwright\/tests\/screenshots\/.*\.spec\.ts/,
+      testMatch: /tests\/screenshots\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
-        viewport: VIEWPORTS.laptop,
-        video: 'off',
+        viewport: { width: 1366, height: 768 },
+        video: 'on',
         screenshot: 'off',
-        launchOptions: {
-          slowMo: 150,
-        },
+        launchOptions: { slowMo: 150 },
       },
     },
   ],
