@@ -97,3 +97,39 @@
 | 07:51 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | modified chat() | ~498 |
 | 07:51 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 5→6 lines | ~254 |
 | 08:44 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 08:45 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 09:53 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 09:54 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 09:55 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 09:59 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 10:01 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 10:04 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 10:05 | Session end: 21 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 25 reads | ~47848 tok |
+| 10:07 | Edited ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/TalentManagementAPI.Infrastructure.Shared.csproj | 1→2 lines | ~37 |
+| 10:07 | Created ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/OllamaAiService.cs | — | ~258 |
+| 10:07 | Edited ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/ServiceRegistration.cs | 6→10 lines | ~186 |
+| 10:07 | Edited ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/TalentManagementAPI.Infrastructure.Shared.csproj | inline fix | ~25 |
+| 10:07 | Created ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/OllamaAiService.cs | — | ~297 |
+| 10:07 | Edited ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/ServiceRegistration.cs | 3→4 lines | ~53 |
+| 10:14 | Edited ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/TalentManagementAPI.Infrastructure.Shared.csproj | 2→2 lines | ~41 |
+| 10:14 | Created ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/OllamaAiService.cs | — | ~261 |
+| 10:14 | Created ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/OllamaAiService.cs | — | ~274 |
+| 10:15 | Created ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Tests/Services/OllamaAiServiceTests.cs | — | ~671 |
+| 10:15 | Edited ApiResources/TalentManagement-API/TalentManagementAPI.WebApi.Tests/Controllers/AiControllerTests.cs | modified AiControllerTests() | ~148 |
+
+## Session: 2026-04-22 10:17
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 10:18 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | inline fix | ~29 |
+| 14:13 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | 5→6 lines | ~220 |
+| 14:13 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | 7→9 lines | ~467 |
+| 14:13 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | 6→7 lines | ~154 |
+| 14:13 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | expanded (+7 lines) | ~331 |
+| 14:14 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | modified OllamaAiService() | ~481 |
+| 14:14 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | modified AddSharedInfrastructure() | ~982 |
+| 14:14 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | 3→5 lines | ~326 |
+| 14:14 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | 5→6 lines | ~174 |
+| 14:15 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | inline fix | ~53 |
+| 14:21 | Session end: 10 writes across 1 files (6.1-dotnet-ai-foundation.md) | 2 reads | ~9021 tok |
+| 14:25 | Session end: 10 writes across 1 files (6.1-dotnet-ai-foundation.md) | 2 reads | ~9021 tok |
