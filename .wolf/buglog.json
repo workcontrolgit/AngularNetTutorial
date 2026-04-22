@@ -16,6 +16,102 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-21T17:17:05.870Z"
+    },
+    {
+      "id": "bug-002",
+      "timestamp": "2026-04-22T02:40:07.617Z",
+      "error_message": "Incorrect value in code",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json",
+      "root_cause": "Had \"psychology\"",
+      "fix": "Changed to \"memory\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-22T02:41:41.298Z"
+    },
+    {
+      "id": "bug-003",
+      "timestamp": "2026-04-22T02:41:36.799Z",
+      "error_message": "Incorrect value in code",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/src/index.html",
+      "root_cause": "Had \"https://fonts.googleapis.com/icon?family=Material",
+      "fix": "Changed to \"preconnect\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T02:41:36.799Z"
+    },
+    {
+      "id": "bug-004",
+      "timestamp": "2026-04-22T02:52:28.052Z",
+      "error_message": "Wrong return value",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts",
+      "root_cause": "Was returning: this.http.post<HrInsightResponse>(`${this.apiUrl}/",
+      "fix": "Now returns: this.http.post<ApiResult<HrInsightResponse>>(`${th",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T02:52:28.052Z"
+    },
+    {
+      "id": "bug-005",
+      "timestamp": "2026-04-22T02:58:35.635Z",
+      "error_message": "Wrong return value",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts",
+      "root_cause": "Was returning: this.http.post<NlEmployeeFilter>(`${this.apiUrl}/a",
+      "fix": "Now returns: this.http.post<ApiResult<NlEmployeeFilter>>(`${thi",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-22T03:02:43.517Z"
+    },
+    {
+      "id": "bug-006",
+      "timestamp": "2026-04-22T02:58:44.709Z",
+      "error_message": "Null/undefined access in ",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.html",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "html"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T02:58:44.709Z"
+    },
+    {
+      "id": "bug-007",
+      "timestamp": "2026-04-22T03:04:54.340Z",
+      "error_message": "Null/undefined access in ",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T03:04:54.340Z"
     }
   ]
 }
