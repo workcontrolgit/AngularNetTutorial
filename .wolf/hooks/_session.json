@@ -1,260 +1,158 @@
 {
-  "session_id": "session-2026-04-22-2223",
-  "started": "2026-04-22T02:23:25.298Z",
+  "session_id": "session-2026-04-22-0648",
+  "started": "2026-04-22T10:48:19.694Z",
   "files_read": {
     "c:/apps/AngularNetTutotial/.wolf/anatomy.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-22T02:29:34.278Z"
+      "first_read": "2026-04-22T11:05:00.469Z"
     },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/core/bootstrap/menu.service.ts": {
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/screenshot-catalog.json": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-22T11:05:15.190Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-22T11:05:15.870Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-22T11:05:28.964Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md": {
+      "count": 1,
+      "tokens": 4911,
+      "first_read": "2026-04-22T11:05:29.454Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md": {
+      "count": 1,
+      "tokens": 4923,
+      "first_read": "2026-04-22T11:05:32.724Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-22T11:05:33.117Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md": {
       "count": 2,
       "tokens": 0,
-      "first_read": "2026-04-22T02:29:43.916Z"
+      "first_read": "2026-04-22T11:06:45.278Z"
     },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/core/bootstrap/startup.service.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:29:52.905Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json": {
-      "count": 3,
-      "tokens": 730,
-      "first_read": "2026-04-22T02:29:59.403Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/i18n/en-US.json": {
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md": {
       "count": 2,
       "tokens": 0,
-      "first_read": "2026-04-22T02:30:05.168Z"
+      "first_read": "2026-04-22T11:06:45.288Z"
     },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/theme/sidemenu/nav-accordion.ts": {
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md": {
+      "count": 1,
+      "tokens": 7407,
+      "first_read": "2026-04-22T11:08:45.744Z"
+    },
+    "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-22T02:30:08.589Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/theme/sidebar/sidebar.html": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:30:08.952Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/theme/sidemenu/sidemenu.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:30:15.046Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/theme/sidemenu/sidemenu.html": {
-      "count": 2,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:30:15.126Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/i18n/zh-CN.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:30:24.411Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/index.html": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:39:04.969Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/fonts/Material_Icons.css": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:39:32.064Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/ai-assistant.component.html": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:42:46.506Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/ai-assistant.component.scss": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:42:49.272Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-hr-insight/ai-hr-insight.component.html": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:44:37.421Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-hr-insight/ai-hr-insight.component.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:51:53.310Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts": {
-      "count": 5,
-      "tokens": 793,
-      "first_read": "2026-04-22T02:51:59.802Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:57:19.490Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.html": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:57:35.950Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/models/employee.model.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:57:38.916Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/employee.service.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:57:48.160Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/base-api.service.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:57:51.966Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/models/common.model.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T02:58:13.358Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/models/department.model.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T03:03:54.009Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/employees/employee-list.component.html": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T03:04:06.302Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/department.service.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T03:04:34.240Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/index.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T03:05:01.691Z"
+      "first_read": "2026-04-22T11:14:01.752Z"
     }
   },
   "files_written": [
     {
-      "file": "C:/Users/Fuji Nguyen/.claude/plans/serene-dreaming-sedgewick.md",
-      "action": "create",
-      "tokens": 902,
-      "at": "2026-04-22T02:32:17.266Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
       "action": "edit",
-      "tokens": 145,
-      "at": "2026-04-22T02:36:48.002Z"
+      "tokens": 169,
+      "at": "2026-04-22T11:07:35.167Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
       "action": "edit",
-      "tokens": 5,
-      "at": "2026-04-22T02:40:07.615Z"
+      "tokens": 71,
+      "at": "2026-04-22T11:07:47.116Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/index.html",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
       "action": "edit",
-      "tokens": 42,
-      "at": "2026-04-22T02:41:36.797Z"
+      "tokens": 68,
+      "at": "2026-04-22T11:07:57.943Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
       "action": "edit",
-      "tokens": 6,
-      "at": "2026-04-22T02:41:41.296Z"
+      "tokens": 335,
+      "at": "2026-04-22T11:08:10.819Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/ai-assistant.component.html",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md",
       "action": "edit",
-      "tokens": 26,
-      "at": "2026-04-22T02:43:18.109Z"
+      "tokens": 62,
+      "at": "2026-04-22T11:08:26.339Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-hr-insight/ai-hr-insight.component.html",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md",
       "action": "edit",
-      "tokens": 26,
-      "at": "2026-04-22T02:44:40.408Z"
+      "tokens": 72,
+      "at": "2026-04-22T11:08:59.939Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md",
       "action": "edit",
-      "tokens": 92,
-      "at": "2026-04-22T02:52:23.298Z"
+      "tokens": 64,
+      "at": "2026-04-22T11:09:11.383Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md",
       "action": "edit",
-      "tokens": 59,
-      "at": "2026-04-22T02:52:28.049Z"
+      "tokens": 73,
+      "at": "2026-04-22T11:09:27.910Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts",
-      "action": "edit",
-      "tokens": 60,
-      "at": "2026-04-22T02:58:35.631Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.html",
-      "action": "edit",
-      "tokens": 147,
-      "at": "2026-04-22T02:58:44.707Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.html",
-      "action": "create",
-      "tokens": 1332,
-      "at": "2026-04-22T02:59:06.192Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts",
-      "action": "edit",
-      "tokens": 48,
-      "at": "2026-04-22T03:02:43.514Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.ts",
-      "action": "edit",
-      "tokens": 88,
-      "at": "2026-04-22T03:04:41.871Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.ts",
-      "action": "edit",
-      "tokens": 233,
-      "at": "2026-04-22T03:04:49.259Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.ts",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md",
       "action": "edit",
       "tokens": 76,
-      "at": "2026-04-22T03:04:54.338Z"
+      "at": "2026-04-22T11:09:33.690Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.html",
+      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
+      "action": "create",
+      "tokens": 571,
+      "at": "2026-04-22T11:14:14.836Z"
+    },
+    {
+      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
       "action": "edit",
-      "tokens": 24,
-      "at": "2026-04-22T03:05:05.264Z"
+      "tokens": 131,
+      "at": "2026-04-22T11:14:19.822Z"
+    },
+    {
+      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
+      "action": "edit",
+      "tokens": 901,
+      "at": "2026-04-22T11:15:22.922Z"
+    },
+    {
+      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+      "action": "edit",
+      "tokens": 92,
+      "at": "2026-04-22T11:15:29.440Z"
     }
   ],
   "edit_counts": {
-    "../../Users/Fuji Nguyen/.claude/plans/serene-dreaming-sedgewick.md": 1,
-    "Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json": 3,
-    "Clients/TalentManagement-Angular-Material/talent-management/src/index.html": 1,
-    "Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/ai-assistant.component.html": 1,
-    "Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-hr-insight/ai-hr-insight.component.html": 1,
-    "Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts": 4,
-    "Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.html": 3,
-    "Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/ai-nl-search.component.ts": 3
+    "blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md": 1,
+    "blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md": 1,
+    "blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md": 2,
+    "blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md": 1,
+    "blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md": 1,
+    "blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md": 1,
+    "blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md": 1,
+    "blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md": 1,
+    "../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md": 2,
+    "../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md": 2
   },
-  "anatomy_hits": 0,
-  "anatomy_misses": 27,
-  "repeated_reads_warned": 9,
+  "anatomy_hits": 3,
+  "anatomy_misses": 8,
+  "repeated_reads_warned": 2,
   "cerebrum_warnings": 0,
-  "stop_count": 13
+  "stop_count": 3
 }

@@ -49,3 +49,38 @@
 | 23:08 | Session end: 17 writes across 8 files (serene-dreaming-sedgewick.md, menu.json, index.html, ai-assistant.component.html, ai-hr-insight.component.html) | 27 reads | ~4834 tok |
 | 23:11 | Session end: 17 writes across 8 files (serene-dreaming-sedgewick.md, menu.json, index.html, ai-assistant.component.html, ai-hr-insight.component.html) | 27 reads | ~4834 tok |
 | 23:12 | Session end: 17 writes across 8 files (serene-dreaming-sedgewick.md, menu.json, index.html, ai-assistant.component.html, ai-hr-insight.component.html) | 27 reads | ~4834 tok |
+| 23:21 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 3→3 lines | ~108 |
+| 23:21 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 3→3 lines | ~28 |
+| 23:21 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 5→5 lines | ~122 |
+| 23:21 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 3→3 lines | ~58 |
+| 23:21 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 14→14 lines | ~194 |
+| 23:23 | Edited blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md | 4→4 lines | ~125 |
+| 23:23 | Edited blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md | 4→4 lines | ~129 |
+| 23:24 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | 3→4 lines | ~126 |
+| 23:24 | Session end: 25 writes across 11 files (serene-dreaming-sedgewick.md, menu.json, index.html, ai-assistant.component.html, ai-hr-insight.component.html) | 38 reads | ~5056 tok |
+
+## Session: 2026-04-22 06:48
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-22 06:48
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 07:07 | Edited blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md | 3→7 lines | ~158 |
+| 07:07 | Edited blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md | inline fix | ~66 |
+| 07:07 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | inline fix | ~64 |
+| 07:08 | Edited blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md | modified Assistant() | ~313 |
+| 07:08 | Edited blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md | inline fix | ~58 |
+| 07:08 | Edited blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md | inline fix | ~67 |
+| 07:09 | Edited blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md | inline fix | ~60 |
+| 07:09 | Edited blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md | inline fix | ~68 |
+| 07:09 | Edited blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md | inline fix | ~71 |
+| 07:09 | Session end: 9 writes across 8 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 10 reads | ~18231 tok |
+| 07:14 | Created ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md | — | ~533 |
+| 07:14 | Edited ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md | 3→4 lines | ~123 |
+| 07:14 | Session end: 11 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 11 reads | ~18933 tok |
+| 07:15 | Edited ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md | expanded (+32 lines) | ~841 |
+| 07:15 | Edited ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md | inline fix | ~86 |
+| 07:15 | Session end: 13 writes across 10 files (6.1-dotnet-ai-foundation.md, 6.2-dotnet-ai-hr-assistant.md, 6.3-angular-ai-chat-widget.md, 6.4-angular-ai-nl-search.md, 6.4.1-dotnet-natural-language-search.md) | 11 reads | ~19926 tok |

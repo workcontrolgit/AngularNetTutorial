@@ -112,6 +112,54 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-22T03:04:54.340Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-04-22T03:21:14.869Z",
+      "error_message": "Incorrect value in code",
+      "file": "blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "root_cause": "Had 's AI features from a single `",
+      "fix": "Changed to `ai`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-22T03:21:36.132Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-04-22T11:15:22.923Z",
+      "error_message": "Significant refactor of ",
+      "file": "../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
+      "root_cause": "19 lines replaced/restructured",
+      "fix": "Rewrote 51→83 lines (19 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T11:15:22.923Z"
+    },
+    {
+      "id": "bug-010",
+      "timestamp": "2026-04-22T11:15:29.442Z",
+      "error_message": "Incorrect value in code",
+      "file": "../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+      "root_cause": "Had `../../Tests/AngularNetTutorial-Playwright/screens",
+      "fix": "Changed to `../../Tests/AngularNetTutorial-Playwright/screens",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T11:15:29.442Z"
     }
   ]
 }

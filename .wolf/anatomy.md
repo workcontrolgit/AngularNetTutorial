@@ -1,11 +1,15 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T03:05:05.255Z
-> Files: 8 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T11:15:29.432Z
+> Files: 10 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
 
-- `serene-dreaming-sedgewick.md` — Plan: Fix AI Menu Icon and Submenu Labels (~789 tok)
+
+## ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/
+
+- `MEMORY.md` — Memory Index (~122 tok)
+- `project_blog_image_paths.md` — Screenshot catalog (~789 tok)
 
 ## ./
 
@@ -396,28 +400,32 @@
 
 ## Clients/TalentManagement-Angular-Material/talent-management/public/data/
 
-- `menu.json` (~730 tok)
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/
 
-- `index.html` — Talent Management (~546 tok)
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/
 
-- `ai-assistant.component.html` (~751 tok)
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-hr-insight/
 
-- `ai-hr-insight.component.html` (~960 tok)
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-nl-search/
 
-- `ai-nl-search.component.html` (~1236 tok)
-- `ai-nl-search.component.ts` — Exports AiNlSearchComponent (~1345 tok)
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/
 
-- `ai.service.ts` — AI API Service (~781 tok)
 
 ## Tests/AngularNetTutorial-Playwright/tests/screenshots/
 
+
+## blogs/series-6-ai-app-features/
+
+- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~5310 tok)
+- `6.2-dotnet-ai-hr-assistant.md` — Build an HR AI Assistant That Knows Your Data (~4773 tok)
+- `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation (~5147 tok)
+- `6.4-angular-ai-nl-search.md` — Natural Language Employee Search in Angular Material (~4924 tok)
+- `6.4.1-dotnet-natural-language-search.md` — Natural Language Employee Search with LLM Query Parsing (~7418 tok)
+- `6.5-angular-ai-vector-search.md` — Semantic Position Search with Vector Embeddings in Angular Material (~4193 tok)
+- `6.6-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs (~4256 tok)
+- `6.7-dotnet-mssql-vector-search.md` — Semantic Position Search with SQL Server Native Vector Search (~6690 tok)
