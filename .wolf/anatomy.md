@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T11:15:29.432Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T11:51:47.391Z
 > Files: 10 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
@@ -421,9 +421,9 @@
 
 ## blogs/series-6-ai-app-features/
 
-- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~5310 tok)
+- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~5574 tok)
 - `6.2-dotnet-ai-hr-assistant.md` — Build an HR AI Assistant That Knows Your Data (~4773 tok)
-- `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation (~5147 tok)
+- `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation (~5312 tok)
 - `6.4-angular-ai-nl-search.md` — Natural Language Employee Search in Angular Material (~4924 tok)
 - `6.4.1-dotnet-natural-language-search.md` — Natural Language Employee Search with LLM Query Parsing (~7418 tok)
 - `6.5-angular-ai-vector-search.md` — Semantic Position Search with Vector Embeddings in Angular Material (~4193 tok)
