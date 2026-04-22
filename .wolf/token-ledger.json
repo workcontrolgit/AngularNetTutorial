@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-21T17:14:01.919Z",
   "lifetime": {
-    "total_tokens_estimated": 109919,
-    "total_reads": 332,
-    "total_writes": 201,
+    "total_tokens_estimated": 129845,
+    "total_reads": 343,
+    "total_writes": 214,
     "total_sessions": 3,
-    "anatomy_hits": 9,
-    "anatomy_misses": 323,
-    "repeated_reads_blocked": 119,
-    "estimated_savings_vs_bare_cli": 47682
+    "anatomy_hits": 12,
+    "anatomy_misses": 331,
+    "repeated_reads_blocked": 121,
+    "estimated_savings_vs_bare_cli": 48282
   },
   "sessions": [
     {
@@ -3171,6 +3171,154 @@
       "id": "session-2026-04-22-0648",
       "started": "2026-04-22T10:48:19.694Z",
       "ended": "2026-04-22T11:15:32.621Z",
+      "reads": [
+        {
+          "file": "c:/apps/AngularNetTutotial/.wolf/anatomy.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/screenshot-catalog.json",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+          "tokens_estimated": 4911,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md",
+          "tokens_estimated": 4923,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md",
+          "tokens_estimated": 7407,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+          "tokens_estimated": 169,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
+          "tokens_estimated": 71,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+          "tokens_estimated": 68,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+          "tokens_estimated": 335,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md",
+          "tokens_estimated": 62,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md",
+          "tokens_estimated": 72,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md",
+          "tokens_estimated": 64,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md",
+          "tokens_estimated": 73,
+          "action": "edit"
+        },
+        {
+          "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md",
+          "tokens_estimated": 76,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
+          "tokens_estimated": 571,
+          "action": "create"
+        },
+        {
+          "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+          "tokens_estimated": 131,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
+          "tokens_estimated": 901,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+          "tokens_estimated": 92,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 17241,
+        "output_tokens_estimated": 2685,
+        "reads_count": 11,
+        "writes_count": 13,
+        "repeated_reads_blocked": 2,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-04-22-0648",
+      "started": "2026-04-22T10:48:19.694Z",
+      "ended": "2026-04-22T11:33:33.048Z",
       "reads": [
         {
           "file": "c:/apps/AngularNetTutotial/.wolf/anatomy.md",
