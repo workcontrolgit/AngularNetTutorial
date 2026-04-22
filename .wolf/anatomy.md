@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T11:51:47.391Z
-> Files: 10 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T18:15:05.522Z
+> Files: 15 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
 
@@ -398,6 +398,23 @@
 ## ApiResources/TalentManagement-API/.nuget/packages/microsoft.codeanalysis.analyzers/3.11.0/buildTransitive/config/
 
 
+## ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/
+
+- `ServiceRegistration.cs` — Class: ServiceRegistration (~644 tok)
+- `TalentManagementAPI.Infrastructure.Shared.csproj` (~264 tok)
+
+## ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/
+
+- `OllamaAiService.cs` — nullable enable (~274 tok)
+
+## ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Tests/Services/
+
+- `OllamaAiServiceTests.cs` — Class: OllamaAiServiceTests (~671 tok)
+
+## ApiResources/TalentManagement-API/TalentManagementAPI.WebApi.Tests/Controllers/
+
+- `AiControllerTests.cs` — Class: AiControllerTests (~611 tok)
+
 ## Clients/TalentManagement-Angular-Material/talent-management/public/data/
 
 
@@ -421,7 +438,7 @@
 
 ## blogs/series-6-ai-app-features/
 
-- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~5574 tok)
+- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~6336 tok)
 - `6.2-dotnet-ai-hr-assistant.md` — Build an HR AI Assistant That Knows Your Data (~4773 tok)
 - `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation (~5312 tok)
 - `6.4-angular-ai-nl-search.md` — Natural Language Employee Search in Angular Material (~4924 tok)

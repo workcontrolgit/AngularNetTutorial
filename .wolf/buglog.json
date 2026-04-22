@@ -176,6 +176,70 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-04-22T11:48:18.706Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-04-22T14:07:06.877Z",
+      "error_message": "Incorrect value in code",
+      "file": "ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/TalentManagementAPI.Infrastructure.Shared.csproj",
+      "root_cause": "Had \"OllamaSharp\"",
+      "fix": "Changed to \"Microsoft.Extensions.AI\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "csproj"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-22T14:07:32.511Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-04-22T14:14:23.091Z",
+      "error_message": "Incorrect value in code",
+      "file": "ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/TalentManagementAPI.Infrastructure.Shared.csproj",
+      "root_cause": "Had \"Microsoft.Extensions.AI\"",
+      "fix": "Changed to \"Microsoft.Extensions.AI.Abstractions\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "csproj"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T14:14:23.091Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-04-22T18:13:22.809Z",
+      "error_message": "Significant refactor of ",
+      "file": "blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 7→9 lines (3 removed) | Also: Add OllamaSharp to the Infrastructure.Shared proje; **Why OllamaSharp instead of `Microsoft.Extensions | Also: In `Infrastructure.Shared/ServiceRegistration.cs`,; // Register the Ollama client as a singleton — one | Also: OllamaSharp's native `IAsyncEnumerable<>` streamin; The custom `IAiChatService` interface pattern is t",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 4,
+      "last_seen": "2026-04-22T18:14:46.417Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-04-22T18:15:05.533Z",
+      "error_message": "Incorrect value in code",
+      "file": "blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "root_cause": "Had `404`",
+      "fix": "Changed to `503 Service Unavailable`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T18:15:05.533Z"
     }
   ]
 }
