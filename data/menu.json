@@ -98,22 +98,22 @@
       "children": [
         {
           "route": "assistant",
-          "name": "ai.aiAssistant",
+          "name": "aiAssistant",
           "type": "link"
         },
         {
           "route": "hr-insight",
-          "name": "ai.aiHrInsight",
+          "name": "aiHrInsight",
           "type": "link"
         },
         {
           "route": "nl-search",
-          "name": "ai.aiNlSearch",
+          "name": "aiNlSearch",
           "type": "link"
         },
         {
           "route": "vector-search",
-          "name": "ai.aiVectorSearch",
+          "name": "aiVectorSearch",
           "type": "link"
         }
       ]
