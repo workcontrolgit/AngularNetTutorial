@@ -85,9 +85,11 @@
 * [6.1 — Run a Local LLM in Your .NET 10 API with Ollama](series-6-ai-app-features/6.1-dotnet-ai-foundation.md) — .NET AI Foundation
 * [6.2 — Build an HR AI Assistant That Knows Your Data](series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md) — HR AI Assistant
 * [6.3 — Build a Dedicated AI Section in Angular with Submenu Navigation](series-6-ai-app-features/6.3-angular-ai-chat-widget.md) — AI Submenu Refactor
-* [6.4 — Natural Language Employee Search in Angular Material](series-6-ai-app-features/6.4-angular-ai-nl-search.md) — NL Search Page
-* [6.5 — Semantic Position Search with Vector Embeddings](series-6-ai-app-features/6.5-angular-ai-vector-search.md) — Vector Search Page
-* [6.6 — Cache Your AI Responses: Save Time and API Costs](series-6-ai-app-features/6.6-dotnet-ai-response-caching.md) — AI Response Caching
+* [6.4 — Natural Language Employee Search in Angular Material](series-6-ai-app-features/6.4-angular-ai-nl-search.md) — NL Search Angular
+* [6.5 — Natural Language Employee Search with LLM Query Parsing](series-6-ai-app-features/6.5-dotnet-natural-language-search.md) — NL Search .NET Backend
+* [6.6 — Semantic Position Search with Vector Embeddings in Angular Material](series-6-ai-app-features/6.6-angular-ai-vector-search.md) — Vector Search Angular
+* [6.7 — Semantic Position Search with SQL Server Native Vector Search](series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md) — Vector Search .NET Backend
+* [6.8 — Cache Your AI Responses: Save Time and API Costs](series-6-ai-app-features/6.8-dotnet-ai-response-caching.md) — AI Response Caching
 
 ---
 

@@ -1,276 +1,362 @@
 {
-  "session_id": "session-2026-04-22-0648",
-  "started": "2026-04-22T10:48:19.694Z",
+  "session_id": "session-2026-04-22-1017",
+  "started": "2026-04-22T14:17:52.320Z",
   "files_read": {
-    "c:/apps/AngularNetTutotial/.wolf/anatomy.md": {
+    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-22T11:05:00.469Z"
-    },
-    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/screenshot-catalog.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:05:15.190Z"
+      "first_read": "2026-04-22T14:17:56.081Z"
     },
     "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md": {
-      "count": 3,
-      "tokens": 5574,
-      "first_read": "2026-04-22T11:05:15.870Z"
+      "count": 2,
+      "tokens": 6416,
+      "first_read": "2026-04-22T14:18:00.728Z"
+    },
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts": {
+      "count": 2,
+      "tokens": 10460,
+      "first_read": "2026-04-22T18:52:02.272Z"
     },
     "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md": {
-      "count": 2,
-      "tokens": 4773,
-      "first_read": "2026-04-22T11:05:28.964Z"
-    },
-    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md": {
-      "count": 2,
-      "tokens": 5147,
-      "first_read": "2026-04-22T11:05:29.454Z"
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-22T20:14:55.598Z"
     },
     "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md": {
       "count": 2,
-      "tokens": 4924,
-      "first_read": "2026-04-22T11:05:32.724Z"
+      "tokens": 0,
+      "first_read": "2026-04-22T20:27:37.061Z"
+    },
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md": {
+      "count": 3,
+      "tokens": 0,
+      "first_read": "2026-04-22T20:27:37.941Z"
     },
     "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md": {
       "count": 2,
-      "tokens": 4193,
-      "first_read": "2026-04-22T11:05:33.117Z"
+      "tokens": 4133,
+      "first_read": "2026-04-22T20:27:39.048Z"
     },
     "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md": {
-      "count": 3,
-      "tokens": 4256,
-      "first_read": "2026-04-22T11:06:45.278Z"
+      "count": 2,
+      "tokens": 0,
+      "first_read": "2026-04-22T20:27:39.731Z"
     },
     "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md": {
       "count": 3,
-      "tokens": 6690,
-      "first_read": "2026-04-22T11:06:45.288Z"
+      "tokens": 6543,
+      "first_read": "2026-04-22T20:27:40.227Z"
     },
-    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md": {
-      "count": 2,
-      "tokens": 7407,
-      "first_read": "2026-04-22T11:08:45.744Z"
-    },
-    "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md": {
+    "c:/apps/AngularNetTutotial/blogs/SERIES-NAVIGATION-TOC.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-22T11:14:01.752Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.Application/Interfaces/IAiChatService.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:25.486Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/OllamaAiService.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:25.879Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.WebApi/Controllers/v1/AiController.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:26.571Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.WebApi/appsettings.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:26.578Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.Application/Features/AI/Queries/GetHrInsight/HrInsightDto.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:34.027Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/CachingAiChatService.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:34.422Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.Application/Interfaces/IAiResponseMetadata.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:34.498Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/ai.service.ts": {
-      "count": 2,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:39.419Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/environments/environment.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:39.632Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/ai-assistant.component.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:39.943Z"
-    },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/data/menu.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:45.507Z"
+      "first_read": "2026-04-22T20:34:37.304Z"
     },
     "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/app.routes.ts": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-22T11:50:45.939Z"
+      "first_read": "2026-04-23T02:33:24.154Z"
     },
-    "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/public/i18n/en-US.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:46.150Z"
-    },
-    "c:/apps/AngularNetTutotial/ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/ServiceRegistration.cs": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-22T11:50:49.346Z"
+    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md": {
+      "count": 3,
+      "tokens": 5069,
+      "first_read": "2026-04-23T02:33:24.936Z"
     }
   },
   "files_written": [
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
       "action": "edit",
-      "tokens": 169,
-      "at": "2026-04-22T11:07:35.167Z"
+      "tokens": 31,
+      "at": "2026-04-22T14:18:14.629Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 236,
+      "at": "2026-04-22T18:13:04.094Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 501,
+      "at": "2026-04-22T18:13:22.806Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 165,
+      "at": "2026-04-22T18:13:32.485Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 355,
+      "at": "2026-04-22T18:13:47.257Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 515,
+      "at": "2026-04-22T18:14:03.652Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 1052,
+      "at": "2026-04-22T18:14:29.754Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 350,
+      "at": "2026-04-22T18:14:46.414Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 186,
+      "at": "2026-04-22T18:14:57.119Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 56,
+      "at": "2026-04-22T18:15:05.530Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 179,
+      "at": "2026-04-22T18:41:50.254Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 31,
+      "at": "2026-04-22T18:46:38.038Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 18,
+      "at": "2026-04-22T18:48:08.040Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 19,
+      "at": "2026-04-22T18:50:08.818Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 20,
+      "at": "2026-04-22T18:50:13.217Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 21,
+      "at": "2026-04-22T18:50:18.202Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 48,
+      "at": "2026-04-22T18:52:28.060Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 36,
+      "at": "2026-04-22T18:52:32.674Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 160,
+      "at": "2026-04-22T18:52:49.566Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 32,
+      "at": "2026-04-22T18:53:34.246Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 23,
+      "at": "2026-04-22T18:53:38.203Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 6,
+      "at": "2026-04-22T18:56:28.259Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "action": "edit",
+      "tokens": 14,
+      "at": "2026-04-22T18:56:38.180Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "action": "edit",
+      "tokens": 5,
+      "at": "2026-04-22T18:56:42.802Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
       "action": "edit",
-      "tokens": 71,
-      "at": "2026-04-22T11:07:47.116Z"
+      "tokens": 60,
+      "at": "2026-04-22T20:15:26.916Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
       "action": "edit",
-      "tokens": 68,
-      "at": "2026-04-22T11:07:57.943Z"
+      "tokens": 125,
+      "at": "2026-04-22T20:15:33.949Z"
     },
     {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
       "action": "edit",
-      "tokens": 335,
-      "at": "2026-04-22T11:08:10.819Z"
+      "tokens": 77,
+      "at": "2026-04-22T20:15:39.463Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md",
+      "action": "edit",
+      "tokens": 76,
+      "at": "2026-04-22T20:15:46.536Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md",
       "action": "edit",
-      "tokens": 62,
-      "at": "2026-04-22T11:08:26.339Z"
+      "tokens": 76,
+      "at": "2026-04-22T20:27:53.800Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md",
+      "action": "edit",
+      "tokens": 73,
+      "at": "2026-04-22T20:27:58.846Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md",
       "action": "edit",
-      "tokens": 72,
-      "at": "2026-04-22T11:08:59.939Z"
+      "tokens": 84,
+      "at": "2026-04-22T20:28:12.822Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md",
       "action": "edit",
-      "tokens": 64,
-      "at": "2026-04-22T11:09:11.383Z"
+      "tokens": 76,
+      "at": "2026-04-22T20:28:18.816Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md",
+      "action": "edit",
+      "tokens": 78,
+      "at": "2026-04-22T20:28:31.833Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md",
       "action": "edit",
-      "tokens": 73,
-      "at": "2026-04-22T11:09:27.910Z"
+      "tokens": 84,
+      "at": "2026-04-22T20:28:43.809Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md",
       "action": "edit",
-      "tokens": 76,
-      "at": "2026-04-22T11:09:33.690Z"
+      "tokens": 81,
+      "at": "2026-04-22T20:28:52.668Z"
     },
     {
-      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
-      "action": "create",
-      "tokens": 571,
-      "at": "2026-04-22T11:14:14.836Z"
-    },
-    {
-      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md",
       "action": "edit",
-      "tokens": 131,
-      "at": "2026-04-22T11:14:19.822Z"
+      "tokens": 90,
+      "at": "2026-04-22T20:29:03.899Z"
     },
     {
-      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md",
+      "file": "c:/apps/AngularNetTutotial/blogs/SERIES-NAVIGATION-TOC.md",
       "action": "edit",
-      "tokens": 901,
-      "at": "2026-04-22T11:15:22.922Z"
+      "tokens": 344,
+      "at": "2026-04-22T20:34:48.778Z"
     },
     {
-      "file": "C:/Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md",
+      "file": "c:/apps/AngularNetTutotial/Clients/TalentManagement-Angular-Material/talent-management/src/app/app.routes.ts",
       "action": "edit",
-      "tokens": 92,
-      "at": "2026-04-22T11:15:29.440Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
-      "action": "edit",
-      "tokens": 157,
-      "at": "2026-04-22T11:47:28.615Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
-      "action": "edit",
-      "tokens": 192,
-      "at": "2026-04-22T11:47:38.378Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
-      "action": "edit",
-      "tokens": 450,
-      "at": "2026-04-22T11:47:54.674Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
-      "action": "edit",
-      "tokens": 80,
-      "at": "2026-04-22T11:48:02.319Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
-      "action": "edit",
-      "tokens": 464,
-      "at": "2026-04-22T11:48:18.704Z"
-    },
-    {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
-      "action": "edit",
-      "tokens": 50,
-      "at": "2026-04-22T11:48:29.159Z"
+      "tokens": 13,
+      "at": "2026-04-23T02:33:32.402Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
       "action": "edit",
-      "tokens": 534,
-      "at": "2026-04-22T11:51:36.633Z"
+      "tokens": 36,
+      "at": "2026-04-23T02:33:38.424Z"
     },
     {
       "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
       "action": "edit",
-      "tokens": 272,
-      "at": "2026-04-22T11:51:47.399Z"
+      "tokens": 1,
+      "at": "2026-04-23T02:33:43.895Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "action": "edit",
+      "tokens": 0,
+      "at": "2026-04-23T02:33:56.185Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "action": "edit",
+      "tokens": 18,
+      "at": "2026-04-23T02:34:00.666Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "action": "edit",
+      "tokens": 16,
+      "at": "2026-04-23T02:34:04.545Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "action": "edit",
+      "tokens": 8,
+      "at": "2026-04-23T02:34:08.782Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "action": "edit",
+      "tokens": 14,
+      "at": "2026-04-23T02:34:13.216Z"
+    },
+    {
+      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "action": "edit",
+      "tokens": 1,
+      "at": "2026-04-23T02:34:17.595Z"
     }
   ],
   "edit_counts": {
-    "blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md": 7,
-    "blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md": 1,
-    "blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md": 4,
-    "blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md": 1,
+    "blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md": 17,
+    "Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts": 7,
+    "blogs/series-6-ai-app-features/6.2-dotnet-ai-hr-assistant.md": 4,
+    "blogs/series-6-ai-app-features/6.4-angular-ai-nl-search.md": 2,
     "blogs/series-6-ai-app-features/6.4.1-dotnet-natural-language-search.md": 1,
-    "blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md": 1,
+    "blogs/series-6-ai-app-features/6.5-angular-ai-vector-search.md": 2,
     "blogs/series-6-ai-app-features/6.6-dotnet-ai-response-caching.md": 1,
-    "blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md": 1,
-    "../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/project_blog_image_paths.md": 2,
-    "../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/MEMORY.md": 2
+    "blogs/series-6-ai-app-features/6.7-dotnet-mssql-vector-search.md": 2,
+    "blogs/SERIES-NAVIGATION-TOC.md": 1,
+    "Clients/TalentManagement-Angular-Material/talent-management/src/app/app.routes.ts": 1,
+    "blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md": 8
   },
-  "anatomy_hits": 3,
-  "anatomy_misses": 22,
-  "repeated_reads_warned": 12,
+  "anatomy_hits": 2,
+  "anatomy_misses": 10,
+  "repeated_reads_warned": 11,
   "cerebrum_warnings": 0,
-  "stop_count": 8
+  "stop_count": 19
 }

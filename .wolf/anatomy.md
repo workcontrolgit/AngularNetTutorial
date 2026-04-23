@@ -1,15 +1,13 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T11:51:47.391Z
-> Files: 10 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-23T02:34:17.587Z
+> Files: 11 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
 
 
 ## ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/
 
-- `MEMORY.md` — Memory Index (~122 tok)
-- `project_blog_image_paths.md` — Screenshot catalog (~789 tok)
 
 ## ./
 
@@ -398,11 +396,27 @@
 ## ApiResources/TalentManagement-API/.nuget/packages/microsoft.codeanalysis.analyzers/3.11.0/buildTransitive/config/
 
 
+## ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/
+
+
+## ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Shared/Services/
+
+
+## ApiResources/TalentManagement-API/TalentManagementAPI.Infrastructure.Tests/Services/
+
+
+## ApiResources/TalentManagement-API/TalentManagementAPI.WebApi.Tests/Controllers/
+
+
 ## Clients/TalentManagement-Angular-Material/talent-management/public/data/
 
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/
 
+
+## Clients/TalentManagement-Angular-Material/talent-management/src/app/
+
+- `app.routes.ts` — Exports routes (~1443 tok)
 
 ## Clients/TalentManagement-Angular-Material/talent-management/src/app/routes/ai/ai-assistant/
 
@@ -418,14 +432,19 @@
 
 ## Tests/AngularNetTutorial-Playwright/tests/screenshots/
 
+- `blog-screenshots.spec.ts` — Blog Screenshots (~10494 tok)
+
+## blogs/
+
+- `SERIES-NAVIGATION-TOC.md` — AngularNetTutorial — Series Navigation (~1927 tok)
 
 ## blogs/series-6-ai-app-features/
 
-- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~5574 tok)
-- `6.2-dotnet-ai-hr-assistant.md` — Build an HR AI Assistant That Knows Your Data (~4773 tok)
-- `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation (~5312 tok)
-- `6.4-angular-ai-nl-search.md` — Natural Language Employee Search in Angular Material (~4924 tok)
-- `6.4.1-dotnet-natural-language-search.md` — Natural Language Employee Search with LLM Query Parsing (~7418 tok)
-- `6.5-angular-ai-vector-search.md` — Semantic Position Search with Vector Embeddings in Angular Material (~4193 tok)
-- `6.6-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs (~4256 tok)
-- `6.7-dotnet-mssql-vector-search.md` — Semantic Position Search with SQL Server Native Vector Search (~6690 tok)
+- `6.1-dotnet-ai-foundation.md` — Run a Local LLM in Your .NET 10 API with Ollama (~6391 tok)
+- `6.2-dotnet-ai-hr-assistant.md` — Build an HR AI Assistant That Knows Your Data (~4920 tok)
+- `6.3-angular-ai-chat-widget.md` — Build a Dedicated AI Section in Angular with Submenu Navigation (~4967 tok)
+- `6.4-angular-ai-nl-search.md` — Natural Language Employee Search in Angular Material (~4897 tok)
+- `6.4.1-dotnet-natural-language-search.md` — Natural Language Employee Search with LLM Query Parsing (~7263 tok)
+- `6.5-angular-ai-vector-search.md` — Semantic Position Search with Vector Embeddings in Angular Material (~4180 tok)
+- `6.6-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs (~4185 tok)
+- `6.7-dotnet-mssql-vector-search.md` — Semantic Position Search with SQL Server Native Vector Search (~6594 tok)
