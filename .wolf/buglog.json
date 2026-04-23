@@ -240,6 +240,102 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-22T18:15:05.533Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-04-22T18:52:28.062Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "root_cause": "Had 'screenshots-output'",
+      "fix": "Changed to '..'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 3,
+      "last_seen": "2026-04-22T18:53:34.248Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-04-22T18:56:28.261Z",
+      "error_message": "Wrong reference: images should be screenshots",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/screenshots/blog-screenshots.spec.ts",
+      "root_cause": "Used \"images\" instead of \"screenshots\"",
+      "fix": "Changed images → screenshots",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-22T18:56:42.804Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-04-22T18:56:38.182Z",
+      "error_message": "Wrong reference: images should be screenshots",
+      "file": "blogs/series-6-ai-app-features/6.1-dotnet-ai-foundation.md",
+      "root_cause": "Used \"images\" instead of \"screenshots\"",
+      "fix": "Changed images → screenshots",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T18:56:38.182Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-04-22T20:34:48.779Z",
+      "error_message": "Significant refactor of ",
+      "file": "blogs/SERIES-NAVIGATION-TOC.md",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 8→10 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-22T20:34:48.779Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-04-23T02:33:32.404Z",
+      "error_message": "Incorrect value in code",
+      "file": "Clients/TalentManagement-Angular-Material/talent-management/src/app/app.routes.ts",
+      "root_cause": "Had 'ai-chat'",
+      "fix": "Changed to '403'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-23T02:33:32.404Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-04-23T02:34:00.669Z",
+      "error_message": "Incorrect value in code",
+      "file": "blogs/series-6-ai-app-features/6.3-angular-ai-chat-widget.md",
+      "root_cause": "Had `ai-chat`",
+      "fix": "Changed to `ai`",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "md"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-23T02:34:00.669Z"
     }
   ]
 }
