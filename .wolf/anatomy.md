@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-23T02:34:17.587Z
-> Files: 11 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-25T22:06:49.657Z
+> Files: 12 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
 
@@ -448,3 +448,4 @@
 - `6.5-angular-ai-vector-search.md` — Semantic Position Search with Vector Embeddings in Angular Material (~4180 tok)
 - `6.6-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs (~4185 tok)
 - `6.7-dotnet-mssql-vector-search.md` — Semantic Position Search with SQL Server Native Vector Search (~6594 tok)
+- `6.8-dotnet-ai-response-caching.md` — Cache Your AI Responses: Save Time and API Costs (~4228 tok)
