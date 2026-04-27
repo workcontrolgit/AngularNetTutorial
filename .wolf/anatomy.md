@@ -1,16 +1,23 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-25T22:06:49.657Z
-> Files: 12 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T16:04:22.178Z
+> Files: 16 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
 
+- `peppy-conjuring-leaf.md` — Plan: New Standalone Series — DotnetAiAgentMcp (~6061 tok)
 
 ## ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/
 
 
+## ../DotnetMcpTutorial/
+
+- `.gitignore` — Git ignore rules (~92 tok)
+- `README.md` — Project documentation (~357 tok)
+
 ## ./
 
+- `.gitignore` — Git ignore rules (~219 tok)
 
 ## .claude/
 

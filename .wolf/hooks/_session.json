@@ -1,47 +1,37 @@
 {
-  "session_id": "session-2026-04-25-1803",
-  "started": "2026-04-25T22:03:04.770Z",
+  "session_id": "session-2026-04-27-1148",
+  "started": "2026-04-27T15:48:51.546Z",
   "files_read": {
     "c:/apps/AngularNetTutotial/.wolf/anatomy.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-25T22:03:53.224Z"
+      "first_read": "2026-04-27T15:49:28.089Z"
     },
-    "c:/apps/AngularNetTutotial/.wolf/cerebrum.md": {
+    "c:/apps/AngularNetTutotial/TokenService/Duende-IdentityServer/src/DuendeIdentityServer.Admin/identitydata.json": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-25T22:03:53.497Z"
+      "first_read": "2026-04-27T15:49:54.777Z"
     },
-    "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.8-dotnet-ai-response-caching.md": {
+    "c:/apps/AngularNetTutotial/.gitignore": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-25T22:04:01.839Z"
-    },
-    "c:/apps/AngularNetTutotial/blogs/SERIES-NAVIGATION-TOC.md": {
-      "count": 1,
-      "tokens": 1927,
-      "first_read": "2026-04-25T22:04:02.801Z"
-    },
-    "c:/apps/AngularNetTutotial/.wolf/memory.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-25T22:06:56.030Z"
+      "first_read": "2026-04-27T16:04:11.481Z"
     }
   },
   "files_written": [
     {
-      "file": "c:/apps/AngularNetTutotial/blogs/series-6-ai-app-features/6.8-dotnet-ai-response-caching.md",
+      "file": "c:/apps/AngularNetTutotial/.gitignore",
       "action": "edit",
-      "tokens": 355,
-      "at": "2026-04-25T22:06:49.665Z"
+      "tokens": 21,
+      "at": "2026-04-27T16:04:22.186Z"
     }
   ],
   "edit_counts": {
-    "blogs/series-6-ai-app-features/6.8-dotnet-ai-response-caching.md": 1
+    ".gitignore": 1
   },
-  "anatomy_hits": 1,
-  "anatomy_misses": 4,
+  "anatomy_hits": 0,
+  "anatomy_misses": 3,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 3
+  "stop_count": 2
 }
