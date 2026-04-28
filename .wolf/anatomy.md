@@ -1,11 +1,12 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T16:04:22.178Z
-> Files: 16 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-28T02:35:14.407Z
+> Files: 67 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ../../Users/Fuji Nguyen/.claude/plans/
 
 - `peppy-conjuring-leaf.md` — Plan: New Standalone Series — DotnetAiAgentMcp (~6061 tok)
+- `toasty-shimmying-haven.md` — Secure Playwright Test Credentials with PKCE Global Auth Setup (~4045 tok)
 
 ## ../../Users/Fuji Nguyen/.claude/projects/c--apps-AngularNetTutotial/memory/
 
@@ -18,6 +19,7 @@
 ## ./
 
 - `.gitignore` — Git ignore rules (~219 tok)
+- `package.json` — Node.js package manifest (~178 tok)
 
 ## .claude/
 
@@ -30,6 +32,10 @@
 
 ## .github/workflows/
 
+
+## .vscode/
+
+- `settings.json` (~94 tok)
 
 ## ApiResources/TalentManagement-API/
 
@@ -437,9 +443,123 @@
 ## Clients/TalentManagement-Angular-Material/talent-management/src/app/services/api/
 
 
+## Tests/AngularNetTutorial-Playwright/
+
+- `.gitignore` — Git ignore rules (~152 tok)
+- `package.json` — Node.js package manifest (~250 tok)
+- `playwright.config.ts` — Load environment-specific credentials and URLs. (~1744 tok)
+- `tsconfig.json` — TypeScript configuration (~91 tok)
+
+## Tests/AngularNetTutorial-Playwright/.github/workflows/
+
+- `playwright.yml` — CI: Playwright Tests (~1274 tok)
+
+## Tests/AngularNetTutorial-Playwright/config/
+
+- `environments.json` (~314 tok)
+- `test-config.ts` — Centralized Test Configuration (~2050 tok)
+- `test-users.json` (~267 tok)
+
+## Tests/AngularNetTutorial-Playwright/fixtures/
+
+- `api.fixtures.ts` — API Fixtures (~3016 tok)
+- `auth.fixtures.ts` — Authentication Fixtures (~4316 tok)
+
+## Tests/AngularNetTutorial-Playwright/scripts/
+
+- `fetch-secrets.ts` — Azure Key Vault → .env generator (~927 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/
+
+- `auth.setup.ts` — Global Authentication Setup (~536 tok)
+- `diagnostic.spec.ts` — Declares currentUrl (~498 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/accessibility/
+
+- `aria-labels.spec.ts` — ARIA Labels Tests (~2252 tok)
+- `keyboard-navigation.spec.ts` — Keyboard Navigation Tests (~2162 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/ai/
+
+- `ai-assistant.spec.ts` — AI Assistant Page Tests (~1506 tok)
+- `ai-hr-insight.spec.ts` — AI HR Insight Page Tests (~1200 tok)
+- `ai-navigation.spec.ts` — AI Submenu Navigation Tests (~1174 tok)
+- `ai-nl-search.spec.ts` — AI NL Search Page Tests (~1478 tok)
+- `ai-vector-search.spec.ts` — AI Vector Search Page Tests (~1679 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/api/
+
+- `auth-api.spec.ts` — Authentication API Tests (~5266 tok)
+- `cache-api.spec.ts` — Cache API Tests (~4486 tok)
+- `departments-api.spec.ts` — Department API Tests (~4574 tok)
+- `employees-api.spec.ts` — Employee API Tests (~5235 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/auth/
+
+- `login.spec.ts` — Authentication Tests - Login Flow (~2167 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/dashboard/
+
+- `dashboard-metrics.spec.ts` — Dashboard Metrics Tests (~2546 tok)
+- `dashboard-navigation.spec.ts` — Dashboard Navigation Tests (~3406 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/department-management/
+
+- `department-crud.spec.ts` — Department CRUD Tests (~2104 tok)
+- `department-validation.spec.ts` — Department Validation Tests (~2776 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/employee-management/
+
+- `employee-create.spec.ts` — Employee Create Tests (~3904 tok)
+- `employee-delete.spec.ts` — Employee Delete Tests (~2562 tok)
+- `employee-edit.spec.ts` — Employee Edit Tests (~2653 tok)
+- `employee-smoke.spec.ts` — Employee Management Smoke Tests (~1898 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/error-handling/
+
+- `api-errors.spec.ts` — API Error Handling Tests (~2315 tok)
+- `network-errors.spec.ts` — Network Error Handling Tests (~2617 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/navigation/
+
+- `routing.spec.ts` — Navigation & Routing Tests (~3421 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/performance/
+
+- `large-datasets.spec.ts` — Large Datasets Performance Tests (~2161 tok)
+- `load-time.spec.ts` — Load Time Performance Tests (~1689 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/position-management/
+
+- `position-crud.spec.ts` — Position CRUD Tests (HRAdmin Only) (~2524 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/salary-ranges/
+
+- `salary-range-crud.spec.ts` — Salary Range CRUD Tests (~2128 tok)
+- `salary-range-validation.spec.ts` — Salary Range Validation Tests (~2615 tok)
+
 ## Tests/AngularNetTutorial-Playwright/tests/screenshots/
 
 - `blog-screenshots.spec.ts` — Blog Screenshots (~10494 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/validation/
+
+- `form-validation.spec.ts` — Form Validation Edge Cases Tests (~4296 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/visual/
+
+- `dashboard-visual.spec.ts` — Dashboard Visual Regression Tests (~1494 tok)
+- `forms-visual.spec.ts` — Forms Visual Regression Tests (~1318 tok)
+
+## Tests/AngularNetTutorial-Playwright/tests/workflows/
+
+- `complete-employee-workflow.spec.ts` — Complete Employee Workflow Test (~2659 tok)
+- `hradmin-operations.spec.ts` — HRAdmin Operations Workflow Test (~3424 tok)
+- `manager-daily-tasks.spec.ts` — Manager Daily Tasks Workflow Test (~3308 tok)
+
+## Tests/AngularNetTutorial-Playwright/utils/
+
+- `token-manager.ts` — Token Manager Utility (~2218 tok)
 
 ## blogs/
 
