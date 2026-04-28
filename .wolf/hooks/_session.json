@@ -1,37 +1,43 @@
 {
-  "session_id": "session-2026-04-27-1148",
-  "started": "2026-04-27T15:48:51.546Z",
+  "session_id": "session-2026-04-28-2043",
+  "started": "2026-04-28T00:43:28.449Z",
   "files_read": {
     "c:/apps/AngularNetTutotial/.wolf/anatomy.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T15:49:28.089Z"
+      "first_read": "2026-04-28T00:44:34.268Z"
     },
-    "c:/apps/AngularNetTutotial/TokenService/Duende-IdentityServer/src/DuendeIdentityServer.Admin/identitydata.json": {
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/config/test-users.json": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T15:49:54.777Z"
+      "first_read": "2026-04-28T00:44:43.159Z"
     },
-    "c:/apps/AngularNetTutotial/.gitignore": {
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T16:04:11.481Z"
+      "first_read": "2026-04-28T00:44:43.167Z"
+    },
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/auth.json": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-28T00:44:43.208Z"
+    },
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/playwright.config.ts": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-28T00:44:46.864Z"
+    },
+    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/auth/role-based-access.spec.ts": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-28T00:44:47.370Z"
     }
   },
-  "files_written": [
-    {
-      "file": "c:/apps/AngularNetTutotial/.gitignore",
-      "action": "edit",
-      "tokens": 21,
-      "at": "2026-04-27T16:04:22.186Z"
-    }
-  ],
-  "edit_counts": {
-    ".gitignore": 1
-  },
+  "files_written": [],
+  "edit_counts": {},
   "anatomy_hits": 0,
-  "anatomy_misses": 3,
+  "anatomy_misses": 6,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 2
+  "stop_count": 5
 }
