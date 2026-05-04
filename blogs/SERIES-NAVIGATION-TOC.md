@@ -93,13 +93,4 @@
 
 ---
 
-## 🛠️ Series 7: Developer Productivity AI
-
-* [7.1 — How We Built 22 Articles with Claude Code](series-7-developer-productivity-ai/7.1-claude-code-workflow.md) — Claude Code Workflow
-* [7.2 — GitHub Copilot for .NET Clean Architecture](series-7-developer-productivity-ai/7.2-copilot-clean-architecture.md) — Copilot for Clean Architecture
-* [7.3 — Generate Playwright Tests from User Stories with AI](series-7-developer-productivity-ai/7.3-ai-generated-playwright-tests.md) — AI-Generated Tests
-* [7.4 — AI Code Review in GitHub Actions](series-7-developer-productivity-ai/7.4-ai-code-review-github-actions.md) — AI Code Review in CI/CD
-
----
-
 *Articles without links are not yet written. Links will be updated to Medium URLs when published.*

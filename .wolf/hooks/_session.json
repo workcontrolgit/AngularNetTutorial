@@ -1,43 +1,12 @@
 {
-  "session_id": "session-2026-04-28-2043",
-  "started": "2026-04-28T00:43:28.449Z",
-  "files_read": {
-    "c:/apps/AngularNetTutotial/.wolf/anatomy.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-28T00:44:34.268Z"
-    },
-    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/config/test-users.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-28T00:44:43.159Z"
-    },
-    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-28T00:44:43.167Z"
-    },
-    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/auth.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-28T00:44:43.208Z"
-    },
-    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/playwright.config.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-28T00:44:46.864Z"
-    },
-    "c:/apps/AngularNetTutotial/Tests/AngularNetTutorial-Playwright/tests/auth/role-based-access.spec.ts": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-28T00:44:47.370Z"
-    }
-  },
+  "session_id": "session-2026-05-04-1507",
+  "started": "2026-05-04T19:07:01.457Z",
+  "files_read": {},
   "files_written": [],
   "edit_counts": {},
   "anatomy_hits": 0,
-  "anatomy_misses": 6,
+  "anatomy_misses": 0,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 5
+  "stop_count": 0
 }
