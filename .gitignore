@@ -47,6 +47,9 @@ node_modules/
 # Scripts with secrets
 infra/scripts/setup-azure.ps1
 
+# OpenWolf
+.wolf/
+
 # Playwright
 /test-results/
 /playwright-report/

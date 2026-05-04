@@ -336,6 +336,550 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-23T02:34:00.669Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-04-28T01:04:57.687Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/package.json",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 14→23 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:04:57.687Z"
+    },
+    {
+      "id": "bug-023",
+      "timestamp": "2026-04-28T01:06:22.653Z",
+      "error_message": "Type error",
+      "file": "Tests/AngularNetTutorial-Playwright/config/test-config.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:06:22.653Z"
+    },
+    {
+      "id": "bug-024",
+      "timestamp": "2026-04-28T01:07:15.206Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "Had '../config/test-users.json'",
+      "fix": "Changed to '../config/test-config'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:07:15.206Z"
+    },
+    {
+      "id": "bug-025",
+      "timestamp": "2026-04-28T01:07:31.053Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "51 lines replaced/restructured",
+      "fix": "Rewrote 72→10 lines (51 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:07:31.053Z"
+    },
+    {
+      "id": "bug-026",
+      "timestamp": "2026-04-28T01:07:57.167Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/utils/token-manager.ts",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 6→6 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:07:57.167Z"
+    },
+    {
+      "id": "bug-027",
+      "timestamp": "2026-04-28T01:09:25.096Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/visual/dashboard-visual.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../config/test-config'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:25.096Z"
+    },
+    {
+      "id": "bug-028",
+      "timestamp": "2026-04-28T01:09:25.182Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/ai/ai-assistant.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../page-objects/ai-assistant.page'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:25.182Z"
+    },
+    {
+      "id": "bug-029",
+      "timestamp": "2026-04-28T01:09:33.507Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/ai/ai-hr-insight.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../page-objects/ai-hr-insight.page'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:33.507Z"
+    },
+    {
+      "id": "bug-030",
+      "timestamp": "2026-04-28T01:09:34.340Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/visual/forms-visual.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../config/test-config'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:34.340Z"
+    },
+    {
+      "id": "bug-031",
+      "timestamp": "2026-04-28T01:09:50.908Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/accessibility/aria-labels.spec.ts",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 12→4 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:50.908Z"
+    },
+    {
+      "id": "bug-032",
+      "timestamp": "2026-04-28T01:09:52.830Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/ai/ai-nl-search.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../page-objects/ai-nl-search.page'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:52.830Z"
+    },
+    {
+      "id": "bug-033",
+      "timestamp": "2026-04-28T01:09:55.269Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/accessibility/keyboard-navigation.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../page-objects/employee-form.page'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:55.269Z"
+    },
+    {
+      "id": "bug-034",
+      "timestamp": "2026-04-28T01:09:59.701Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/accessibility/keyboard-navigation.spec.ts",
+      "root_cause": "9 lines replaced/restructured",
+      "fix": "Rewrote 12→4 lines (9 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:09:59.702Z"
+    },
+    {
+      "id": "bug-035",
+      "timestamp": "2026-04-28T01:10:04.321Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/ai/ai-vector-search.spec.ts",
+      "root_cause": "Had '../../fixtures/auth.fixtures'",
+      "fix": "Changed to '../../page-objects/ai-vector-search.page'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:10:04.321Z"
+    },
+    {
+      "id": "bug-036",
+      "timestamp": "2026-04-28T01:15:41.133Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/playwright.config.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 6→14 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:15:41.133Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-04-28T01:15:51.145Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/package.json",
+      "root_cause": "4 lines replaced/restructured",
+      "fix": "Rewrote 8→10 lines (4 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:15:51.145Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-04-28T01:18:14.566Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/config/environments.json",
+      "root_cause": "5 lines replaced/restructured",
+      "fix": "Rewrote 8→9 lines (5 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:18:14.566Z"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-04-28T01:24:04.116Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "Had 'a:has-text(\"",
+      "fix": "Changed to `a:has-text(\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-28T01:27:31.169Z"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-04-28T01:25:07.366Z",
+      "error_message": "Missing await",
+      "file": "Tests/AngularNetTutorial-Playwright/config/test-config.ts",
+      "root_cause": "Async call without await — returned Promise instead of value",
+      "fix": "Added await to async call",
+      "tags": [
+        "auto-detected",
+        "async-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:25:07.366Z"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-04-28T01:26:13.761Z",
+      "error_message": "Wrong condition in logic",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/diagnostic.spec.ts",
+      "root_cause": "Condition was: if (currentUrl.includes('localhost:4200')",
+      "fix": "Changed to: if (currentUrl.includes(new URL(APP_URLS.angular)",
+      "tags": [
+        "auto-detected",
+        "logic-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:26:13.761Z"
+    },
+    {
+      "id": "bug-042",
+      "timestamp": "2026-04-28T01:26:27.368Z",
+      "error_message": "Wrong reference: localhost should be getAngularUrlPattern",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/auth/login.spec.ts",
+      "root_cause": "Used \"localhost\" instead of \"getAngularUrlPattern\"",
+      "fix": "Changed localhost → getAngularUrlPattern",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-28T01:26:33.257Z"
+    },
+    {
+      "id": "bug-043",
+      "timestamp": "2026-04-28T01:26:44.009Z",
+      "error_message": "Wrong reference: localhost should be getAngularUrlPattern",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/navigation/routing.spec.ts",
+      "root_cause": "Used \"localhost\" instead of \"getAngularUrlPattern\"",
+      "fix": "Changed localhost → getAngularUrlPattern",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:26:44.009Z"
+    },
+    {
+      "id": "bug-044",
+      "timestamp": "2026-04-28T01:26:55.903Z",
+      "error_message": "Wrong reference: localhost should be getAngularUrlPattern",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/workflows/manager-daily-tasks.spec.ts",
+      "root_cause": "Used \"localhost\" instead of \"getAngularUrlPattern\"",
+      "fix": "Changed localhost → getAngularUrlPattern",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:26:55.903Z"
+    },
+    {
+      "id": "bug-045",
+      "timestamp": "2026-04-28T01:27:06.245Z",
+      "error_message": "Wrong reference: localhost should be getAngularUrlPattern",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/workflows/complete-employee-workflow.spec.ts",
+      "root_cause": "Used \"localhost\" instead of \"getAngularUrlPattern\"",
+      "fix": "Changed localhost → getAngularUrlPattern",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:27:06.245Z"
+    },
+    {
+      "id": "bug-046",
+      "timestamp": "2026-04-28T01:27:16.938Z",
+      "error_message": "Wrong reference: localhost should be getAngularUrlPattern",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/workflows/hradmin-operations.spec.ts",
+      "root_cause": "Used \"localhost\" instead of \"getAngularUrlPattern\"",
+      "fix": "Changed localhost → getAngularUrlPattern",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:27:16.938Z"
+    },
+    {
+      "id": "bug-047",
+      "timestamp": "2026-04-28T01:48:42.968Z",
+      "error_message": "Incorrect value in code",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "Had 'networkidle'",
+      "fix": "Changed to 'domcontentloaded'",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-28T01:48:46.422Z"
+    },
+    {
+      "id": "bug-048",
+      "timestamp": "2026-04-28T01:50:16.302Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "3 lines replaced/restructured",
+      "fix": "Rewrote 18→22 lines (3 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:50:16.302Z"
+    },
+    {
+      "id": "bug-049",
+      "timestamp": "2026-04-28T01:52:37.674Z",
+      "error_message": "Missing error handling in function",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:52:37.674Z"
+    },
+    {
+      "id": "bug-050",
+      "timestamp": "2026-04-28T01:52:42.769Z",
+      "error_message": "Type error",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/employee-management/employee-smoke.spec.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:52:42.769Z"
+    },
+    {
+      "id": "bug-051",
+      "timestamp": "2026-04-28T01:57:12.310Z",
+      "error_message": "Type error",
+      "file": "Tests/AngularNetTutorial-Playwright/fixtures/auth.fixtures.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:57:12.310Z"
+    },
+    {
+      "id": "bug-052",
+      "timestamp": "2026-04-28T01:57:33.003Z",
+      "error_message": "Significant refactor of ",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/employee-management/employee-smoke.spec.ts",
+      "root_cause": "2 lines replaced/restructured",
+      "fix": "Rewrote 3→5 lines (2 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T01:57:33.003Z"
+    },
+    {
+      "id": "bug-053",
+      "timestamp": "2026-04-28T01:58:28.569Z",
+      "error_message": "Type error",
+      "file": "Tests/AngularNetTutorial-Playwright/tests/employee-management/employee-smoke.spec.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation | Also: // test.fixme: The employee list table is populated from the; // (https://localhost:44378). Currently the API returns ERR_",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-28T01:58:32.878Z"
+    },
+    {
+      "id": "bug-054",
+      "timestamp": "2026-04-28T02:28:40.719Z",
+      "error_message": "Incorrect value in code",
+      "file": ".vscode/settings.json",
+      "root_cause": "Had \"playwright.configFile\"",
+      "fix": "Changed to \"playwright.workingDirectory\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T02:28:40.719Z"
+    },
+    {
+      "id": "bug-055",
+      "timestamp": "2026-04-28T02:35:14.419Z",
+      "error_message": "Incorrect value in code",
+      "file": ".vscode/settings.json",
+      "root_cause": "Had \"playwright.workingDirectory\"",
+      "fix": "Changed to \"playwright.configFile\"",
+      "tags": [
+        "auto-detected",
+        "wrong-value",
+        "json"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-28T02:35:14.419Z"
     }
   ]
 }
